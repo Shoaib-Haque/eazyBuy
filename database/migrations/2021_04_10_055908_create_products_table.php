@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             //$table->increments('id');
-            $table->string('id', 15)->unique();
+            $table->string('id', 15)->unique()->primary();
             $table->string('title', 500);
             $table->date('date_stamp')->default(Carbon::now());
             $table->integer('brand_id')->unsigned();
