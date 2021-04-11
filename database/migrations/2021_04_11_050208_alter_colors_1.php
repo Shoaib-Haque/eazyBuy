@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandTable extends Migration
+class AlterColors1 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateBrandTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->increments('id')->start_from(40001);
-            //$table->timestamps();
-            $table->string('name', 200);
+        Schema::table('colors', function (Blueprint $table) {
+            $table->integer('brand_id')->unsigned();
+            $table->foreign('brand_id')->references('id')->on('brands');
         });
     }
 
@@ -27,6 +26,8 @@ class CreateBrandTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::table('colors', function (Blueprint $table) {
+            //
+        });
     }
 }
