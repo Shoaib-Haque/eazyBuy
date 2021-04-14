@@ -1,102 +1,100 @@
-﻿#upperdiv{
-    background-color:green;
-    width: 960px; 
-    padding: 0px 0px 10px 0px;
-    margin:20px auto;
+﻿.dropbtn {
+  color: white;
+  font-size: 16px;
+  width: 120px;
+  height: 40px;
+  border: none;
 }
 
-#uppertable {
-height:45px;
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
-#uppertabletr{
-    background-color:#f4c741;
-    height:15%;
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover {
+  outline-style: solid;
+  outline-color: white;
+}
+
+.sign-in:link {
+  background-color: #eba834;
+  color: black;
+  margin: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+}
+
+#start-here-link: {
+  color: blue;
+}
+
+#start-here-div {
+  margin-left: 30px;
+}
+
+#home-link-img {
+  height: 40px;
+  width: 120px;
+}
+
+#home-link-img:hover {
+  outline-style: solid;
+  outline-color: white;
+}
+
+#home-link:hover {
+  outline-style: solid;
+  outline-color: white;
+}
+
+#search-icon {
+  height: 36px;
+  width: 30px;
+}
+
+#search-btn {
+  padding: 0px 0px;
+}
+
+#search-box {
+  width: 550px;
+}
+
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+#cart-link-img {
+  height: 40px;
+  width: 120px;
 } 
 
-#uppertabletd{
-    width:1200px;
+.container:hover {
+  outline-style: solid;
+  outline-color: white;
 }
 
-#middlediv{
-    float: left; 
-    margin-left:132px;
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 5%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
 }
-
-#leftdiv{
-    width: 240px;  
-    margin-top:0px; 
-    float: left;
-}
-
-a{
-  text-decoration: none;
-}
-
-.ui-autocomplete {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            float: left;
-            display: none;
-            min-width: 272px !important;
-            padding: 0px 10px;
-            margin: 0 0 10px 25px;
-            list-style: none;
-            background-color: #f5f8f9;
-            font-family: 'Ubuntu', sans-serif;
-            text-transform: initial !important;
-            font-size: 14px;
-        }
-
-        .ui-menu-item {
-            border-bottom: 1px solid #b4c4d4 !important;
-            padding-bottom: 10px !important;
-            padding-top: 10px !important;
-        }
-
-            .ui-menu-item > a.ui-corner-all {
-                display: block;
-                clear: both;
-                font-weight: normal;
-                line-height: 25px;
-                color: #0a0a0a;
-                white-space: nowrap;
-                text-decoration: none;
-                text-transform: lowercase !important;
-            }
-
-                .ui-menu-item > a.ui-corner-all:first-letter {
-                    text-transform: uppercase;
-                }
-
-        .ui-state-hover, .ui-state-active {
-            color: #ffffff;
-            text-decoration: none;
-            background-color: #0088cc;
-            padding-left: 0px !important;
-            padding-right: 0px !important;
-            border-radius: 0px;
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            background-image: none;
-        }
-
-        .ui-state-highlight a {
-            font-weight: bold;
-            color: #002e5b !important;
-        }
-
-        .ui-state-highlight {
-            font-weight: bold;
-            color: #002e5b !important;
-        }
-        .ui-helper-hidden-accessible {
-            border: 0;
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-        }

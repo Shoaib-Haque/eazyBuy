@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/home','HomeController@index')->name('home.index');
+Route::get('/signin','SigninController@index')->name('signin.index');
