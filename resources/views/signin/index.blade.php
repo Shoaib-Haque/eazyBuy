@@ -19,18 +19,19 @@
       <div class="panel panel-primary">
         <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
         <div class="panel-body">
-          <form method="POST" action="#" role="form">
+          <form method="POST">
+            {{ csrf_field() }}
             <div class="form-group">
               <h2>Sign-In</h2>
             </div>
             <div class="form-group">
               <h6>Email or mobile phone number</h6>
-              <input id="signinEmail" type="email" maxlength="50" class="form-control">
+              <input id="signinEmail" name="email" type="email" maxlength="50" class="form-control">
             </div>
             <div class="form-group">
               <strong>Password</strong>
               <span class="right"><a href="#">Forgot your password?</a></span>
-              <input id="signinPassword" type="password" maxlength="25" class="form-control">
+              <input id="signinPassword" name="password" type="password" maxlength="25" class="form-control">
             </div>
             <div class="form-group">
               <button id="signinSubmit" type="submit" class="btn btn-success btn-block">Sign in</button>

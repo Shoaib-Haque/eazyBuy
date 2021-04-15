@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repository\EloquentRepositoryInterface; 
-use App\Repository\AdminRepositoryInterface; 
+use App\Repository\Interfaces\IAdminRepository;
 use App\Repository\Eloquent\AdminRepository; 
-use App\Repository\Eloquent\BaseRepository; 
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -27,7 +25,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(EloquentRepositoryInterface::class, BaseRepository::class);
-        $this->app->bind(AdminRepositoryInterface::class, AdminRepository::class);
+        $this->app->bind(IAdminRepository::class, AdminRepository::class);
     }
 }
