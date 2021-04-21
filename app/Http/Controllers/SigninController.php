@@ -21,7 +21,7 @@ class SigninController extends Controller
 	public function signin(Request $req)
 	{
 	   	$result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
-        $req->session()->put('adminname', $result->id);
+        $req->session()->put('adminid', $result->id);
         return redirect()->route('admin.index');
 	}
 }
