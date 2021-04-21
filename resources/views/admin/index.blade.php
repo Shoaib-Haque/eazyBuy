@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
-	Welcome, {{session('adminname')}}
+	Welcome, {{session('adminid')}}
+	<a href="/logout">Logout</a>
 </body>
 </html>

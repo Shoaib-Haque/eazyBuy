@@ -15,7 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home','HomeController@index')->name('home.index');
-Route::get('/signin','SigninController@index')->name('signin.index');
-Route::post('/signin','SigninController@signin');
-Route::get('/admin','AdminController@index')->name('admin.index');
+Route::group(['middleware'=>['beforelogin']], function(){
+	Route::get('/signin','SigninController@index')->name('signin.index');
+	Route::post('/signin','SigninController@signin');
+	Route::get('/home','HomeController@index')->name('home.index');
+});
+
+Route::group(['middleware'=>['sess']], function(){
+	Route::group(['middleware'=>['adminsess']], function(){
+		Route::get('/admin','AdminController@index')->name('admin.index');
+	});
+});
+
+Route::get('/logout','LogoutController@index');
