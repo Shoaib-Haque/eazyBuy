@@ -16,14 +16,20 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware'=>['beforelogin']], function(){
+	Route::get('/home','HomeController@index')->name('home.index');
 	Route::get('/signin','SigninController@index')->name('signin.index');
 	Route::post('/signin','SigninController@signin');
-	Route::get('/home','HomeController@index')->name('home.index');
+	Route::get('/registration','RegistrationController@index')->name('registration.index');
+	Route::post('/registration','RegistrationController@registration');
 });
 
 Route::group(['middleware'=>['sess']], function(){
 	Route::group(['middleware'=>['adminsess']], function(){
 		Route::get('/admin','AdminController@index')->name('admin.index');
+	});
+
+	Route::group(['middleware'=>['customersess']], function(){
+		Route::get('/customerhome','CustomerHomeController@index')->name('customer.index');
 	});
 });
 
