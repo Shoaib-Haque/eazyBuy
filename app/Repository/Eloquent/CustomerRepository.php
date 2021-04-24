@@ -1,22 +1,34 @@
 <?php  
 namespace App\Repository\Eloquent;
 
-use App\Models\AdminProfiles;
-use App\Repository\Interfaces\IAdminRepository;
+use App\Models\CustomerProfiles;
+use App\Repository\Interfaces\ICustomerRepository;
 use Illuminate\Support\Facades\Hash;
 
-class AdminRepository implements IAdminRepository
+class CustomerRepository implements ICustomerRepository
 {   
     protected $admin = null;
 
-    public function getAdminByEmailPassword($email, $password)
+    public function getCustomerByEmailPassword($email, $password)
     {
-        $admin = AdminProfiles::where('email', '=', $email, 'and')->where('password', '=' , $password)->first();
-        if( count($admin) ){
-            return $admin;
+        $customer = CustomerProfiles::where('email', '=', $email)->first();
+        if( Hash::check($password, $customer->password) ){
+            return $customer;
         } else {
             return false;
         }
+    }
+
+    public function create($collection = [] )
+    {   
+        $customer = new CustomerProfiles;
+        $customer->id = $collection['id'];
+        $customer->name = $collection['name'];
+        $customer->email = $collection['email'];
+        $customer->password = Hash::make($collection['password']);
+        $customer->save();
+
+        return $customer;
     }
 
     /* 

@@ -18,7 +18,7 @@ class SessionVerify
         if( $request->session()->has('adminid') || $request->session()->has('customerid')){
             return $next($request);
         }else{
-            return redirect()->route('login.index');
+            return redirect()->route('signin.index');
         }
     }
 }

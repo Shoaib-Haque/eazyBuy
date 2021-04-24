@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Repository\Interfaces\IAdminRepository;
+use App\Repository\Interfaces\ICustomerRepository;
 use Illuminate\Http\Request;
 
 class SigninController extends Controller
 {
 	public $admin;
+    public $customer;
     
-    public function __construct(IAdminRepository $admin)
+    public function __construct(IAdminRepository $admin, ICustomerRepository $customer)
     {
         $this->admin = $admin;
+        $this->customer = $customer;
     }
 
     function index() {
@@ -20,8 +23,19 @@ class SigninController extends Controller
 
 	public function signin(Request $req)
 	{
-	   	$result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
-        $req->session()->put('adminid', $result->id);
-        return redirect()->route('admin.index');
+        if (isset($this->admin->getAdminByEmailPassword($req->email, $req->password)->id)) {
+            $result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
+            $req->session()->put('adminid', $result->id);
+            return redirect()->route('admin.index');
+        }
+        else if (isset($this->customer->getCustomerByEmailPassword($req->email, $req->password)->id)) {
+            $result = $this->customer->getCustomerByEmailPassword($req->email, $req->password);
+            $req->session()->put('customerid', $result->id);
+            return redirect()->route('customer.index');
+        }
+        else {
+            $req->session()->flash('msg', '! Invalid Email or Password');
+            return redirect()->route('signin.index');
+        }
 	}
 }

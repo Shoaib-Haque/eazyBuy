@@ -25,6 +25,9 @@
               <h2>Sign-In</h2>
             </div>
             <div class="form-group">
+              <font color="red"><span>{{session('msg')}}</span></font>
+            </div>
+            <div class="form-group">
               <h6>Email or mobile phone number</h6>
               <input id="signinEmail" name="email" type="email" maxlength="50" class="form-control">
             </div>
@@ -42,7 +45,7 @@
         <div class="form-group divider">
             <hr class="left"><small>New to eazyBuy?</small><hr class="right">
         </div>
-        <p class="form-group"><a href="#" class="btn btn-light btn-block">Create your eazyBuy account</a></p>
+        <p class="form-group"><a href="/registration" class="btn btn-light btn-block">Create your eazyBuy account</a></p>
       </div>
     </div>
   </div>

@@ -15,6 +15,10 @@ class CustomerSessionVerify
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($request->session()->has('customerid')){
+            return $next($request);
+        }else{
+            return redirect()->route('signin.index');
+        }
     }
 }
