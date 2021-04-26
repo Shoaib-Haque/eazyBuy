@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@extends('homelayout')
+@extends('layouts.homelayout')
 <html>
 <head>
 	<title>eazyBuy</title>

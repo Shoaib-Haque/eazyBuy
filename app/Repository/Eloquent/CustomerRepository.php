@@ -12,9 +12,14 @@ class CustomerRepository implements ICustomerRepository
     public function getCustomerByEmailPassword($email, $password)
     {
         $customer = CustomerProfiles::where('email', '=', $email)->first();
-        if( Hash::check($password, $customer->password) ){
-            return $customer;
-        } else {
+        if (count($customer)) {
+            if( Hash::check($password, $customer->password) ){
+                return $customer;
+            } else {
+                return false;
+            }
+        }
+        else {
             return false;
         }
     }
