@@ -24,6 +24,7 @@ class SigninController extends Controller
         if (isset($this->admin->getAdminByEmailPassword($req->email, $req->password)->id)) {
             $result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
             $req->session()->put('adminid', $result->id);
+            $req->session()->put('adminname', $result->firstname." ".$result->lastname);
             return redirect()->route('admin.index');
         }
         else if (isset($this->customer->getCustomerByEmailPassword($req->email, $req->password)->id)) {

@@ -7,8 +7,7 @@
 </head>
 <body>
 	@section('index') 
-		Welcome, {{session('adminid')}}
-		<a href="/logout">Logout</a>
+		<h1>Welcome</h1>
 	@endsection 
 </body>
 </html>
