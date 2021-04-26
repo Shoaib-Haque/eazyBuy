@@ -11,8 +11,7 @@ class SigninController extends Controller
 	public $admin;
     public $customer;
     
-    public function __construct(IAdminRepository $admin, ICustomerRepository $customer)
-    {
+    public function __construct(IAdminRepository $admin, ICustomerRepository $customer) {
         $this->admin = $admin;
         $this->customer = $customer;
     }
@@ -21,8 +20,7 @@ class SigninController extends Controller
     	return view('signin.index');
     }
 
-	public function signin(Request $req)
-	{
+	public function signin(Request $req) {
         if (isset($this->admin->getAdminByEmailPassword($req->email, $req->password)->id)) {
             $result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
             $req->session()->put('adminid', $result->id);

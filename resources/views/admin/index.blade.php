@@ -1,10 +1,14 @@
 <!DOCTYPE html>
+@extends('layouts.adminlayout')
 <html>
 <head>
 	<title></title>
 </head>
+</head>
 <body>
-	Welcome, {{session('adminid')}}
-	<a href="/logout">Logout</a>
+	@section('index') 
+		Welcome, {{session('adminid')}}
+		<a href="/logout">Logout</a>
+	@endsection 
 </body>
 </html>
