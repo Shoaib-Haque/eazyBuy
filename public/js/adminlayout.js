@@ -20,3 +20,9 @@ jQuery(function ($) {
     $(".page-wrapper").addClass("toggled");
   }); 
 });
+
+$('.dropdown-toggle').dropdown()
+
+$('.dropdown').click(function(){
+  $('.dropdown-menu').toggleClass('show');
+});
