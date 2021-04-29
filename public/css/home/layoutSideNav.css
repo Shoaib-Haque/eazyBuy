@@ -1,0 +1,98 @@
+/*side navbar*/
+/*sidebar*/
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 0px;
+  padding-bottom: 60px;
+}
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: white;
+}
+
+/*hello*/
+.mySidebar-hello {
+  background-color: #232F3E;
+  color: white;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  text-align: center;
+}
+.mySidebar-hello > a {
+  text-decoration: none;
+  color: white;
+}
+.sidebar-signin {
+  text-align: left;
+}
+
+.menu-btn {
+  border: none;
+  background: none;
+  width: 100%;
+    text-align: left;
+    padding:0px;
+}
+
+/*go back main menu*/
+.main-menu-btn {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid black;
+  padding:0px;
+}
+
+/*arrow*/
+.fa-arrow-right {
+  float: right;
+}
+.fa-arrow-left {
+  margin-right: 5px;
+}
+
+h6 {
+  margin-left: 10px;
+}
+h5 {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.dropdown-item:focus{
+  background-color: white;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 12px;}
+}
+
+.disabledbutton {
+  pointer-events: none;
+  opacity: 0.8;
+}

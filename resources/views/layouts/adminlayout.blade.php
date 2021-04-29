@@ -8,12 +8,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-    <link rel="stylesheet" href="{{asset('css/adminSideNav.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layoutTopNav.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layoutSideNav.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layoutFooter.css')}}" type="text/css">
 
-    <script src="{{ asset('js/adminlayout.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -45,12 +43,8 @@
     </ul>
   </nav>
   
-
   @yield('sidebar')
   <div class="page-wrapper chiller-theme toggled">
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-      <i class="fas fa-bars"></i>
-    </a>
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
@@ -59,7 +53,7 @@
           </a>
         </div>
 
-        <div class="sidebar-menu">
+        <div class="sidebar-menu mb-5">
           <ul>
             <li class="sidebar-dropdown">
               <a href="/admin">
@@ -116,7 +110,7 @@
         <!-- sidebar-menu  -->
       </div>
       <!-- sidebar-content  -->
-      <div class="sidebar-footer">
+      <div class="sidebar-footer mt-5">
         <a href="#">
           <i class="fa fa-bell"></i>
           <span class="badge badge-pill badge-warning notification">3</span>
@@ -134,33 +128,43 @@
         </a>
       </div>
     </nav>
-
-  
-  <!-- sidebar-wrapper  -->
-  <div class="position-fixed top-100 start-0 mt-5">
-    <main class="page-content">
-      @yield('index')
-      <div class="position-fixed top-150 start-0 mt-5">
-        <footer class="text-center">
-          <hr>
-          <div class="mb-2">
-            <small>
-              <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
-            </small>
-          </div>
-          <div>
-            <a href="https://github.com/shoaib2018" target="_blank">
-              <img alt="GitHub followers" src="https://img.shields.io/github/followers/shoaib2018?label=github&style=social" />
-            </a>
-          </div>
-        </footer>
-      </div>
-    </main>
   </div>
-  
-  <!-- page-content" -->
-</div>
-<!-- page-wrapper -->
-</body>
+    <!-- sidebar-wrapper  -->
 
+    <div id="page-container">
+      <div id="content-wrap">
+       <!-- all other page content -->
+        @yield('index')
+      </div>
+      <footer class="mt-5">
+        <hr>
+        <div class="footer-div mb-2">
+          <small>
+            <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
+          </small>
+        </div>
+        <div class="footer-div">
+          <a href="https://github.com/shoaib2018" target="_blank">
+            <img alt="GitHub followers" src="https://img.shields.io/github/followers/shoaib2018?label=github&style=social" />
+          </a>
+        </div>
+      </footer>
+    </div>
+
+
+  <!-- page-content" -->
+
+<!-- page-wrapper -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ asset('js/admin/layoutSideNav.js') }}"></script>
+
+</body>
 </html>

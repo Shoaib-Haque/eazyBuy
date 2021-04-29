@@ -30,6 +30,7 @@ class SigninController extends Controller
         else if (isset($this->customer->getCustomerByEmailPassword($req->email, $req->password)->id)) {
             $result = $this->customer->getCustomerByEmailPassword($req->email, $req->password);
             $req->session()->put('customerid', $result->id);
+            $req->session()->put('customername', $result->name);
             return redirect()->route('customer.index');
         }
         else {

@@ -1,0 +1,49 @@
+/*footer*/
+footer {
+  padding-bottom: 2em; 
+  background-color: #1e2e3a;
+}
+
+/*back to top*/
+.bot{
+  background-color: #37475A;
+  margin-top: 2em;
+  text-align: center;
+  height: 45px;
+}             
+.bot:hover{
+  background-color: #485769;
+}
+.bot a{
+  color: white;
+  text-decoration: none;
+}
+
+.container:hover {
+  outline: none;
+}
+.less {
+  font-size: 1em;
+}
+.foot {
+  font-size: 0.95em;
+}
+.foot:hover{
+  color:#ccc;
+}
+.gap{
+  margin-bottom: 8px;
+}
+.end{
+  text-align: center;
+}
+.pop{
+  font-size: 0.8em;
+}
+
+.footer-license-div {
+  float: center;
+  margin-left: 400px;
+  margin-top: 30px;
+  color: white;
+}

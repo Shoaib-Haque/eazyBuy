@@ -19,9 +19,9 @@ class BeforeLogin
             session()->flash('msg', 'You need to logout first');
             return redirect()->route('admin.index');
         }
-        elseif(session()->has('Companyid')){
+        elseif(session()->has('customerid')){
             session()->flash('msg', 'You need to logout first');
-            //return redirect()->route('companyhome.index');
+            return redirect()->route('customer.index');
         }
         else{
             return $next($request);

@@ -4,27 +4,25 @@
 	<title></title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="shortcut icon" type="image/png" href="{{asset('images/logo/eazyBuyLogo.ico')}}">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutFirstNav.css')}}">
-  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutSecondNav.css')}}">
-  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutFooter.css')}}">
-  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutSideNav.css')}}">
-  	<link rel="shortcut icon" href="{{asset('images/logo/eazyBuyLogo.ico')}}" type="image/png">
+  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/layoutFirstNav.css')}}">
+  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/layoutSecondNav.css')}}">
+  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/layoutFooter.css')}}">
+  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/layoutSideNav.css')}}" >
 
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<script src="{{ asset('js/customer/layoutSideNav.js') }}"></script>
-  	<style>
-	</style>
 </head>
 <body>
 	@yield('sidebar')
 	<!--sidenav-->
 	<div id="mySidebar" class="sidebar">
 	  <div class="mySidebar-hello">
-	  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
+	  	Hello, {{session('customername')}}
 	  	<a href="javascript:void(0)" id="Sidebar" class="closebtn" onclick="closeNav(this.id)">×</a>
 	  </div>
 	  <h5>Shop By Department</h5>
@@ -50,7 +48,7 @@
 
 	<div id="myDepartment" class="sidebar">
 	  <div class="mySidebar-hello">
-	  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
+	  	Hello, {{session('customername')}}
 	  	<a href="javascript:void(0)" id="Department" class="closebtn" onclick="closeNav(this.id)">×</a>
 	  </div>
 	  <button class="main-menu-btn" id="Department" onclick="openNav(this.id)">
@@ -64,7 +62,7 @@
 
 	<div id="myContact" class="sidebar">
 	  <div class="mySidebar-hello">
-	  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
+	  	Hello, {{session('customername')}}
 	  	<a href="javascript:void(0)" id="Contact" class="closebtn" onclick="closeNav(this.id)">×</a>
 	  </div>
 	  <button class="main-menu-btn" id="Contact" onclick="openNav(this.id)">
@@ -73,7 +71,7 @@
 	  <a class="dropdown-item" href="/customerhome">Clients</a>
 	  <a class="dropdown-item" href="#">Contact</a>
 	  <a class="dropdown-item" href="#">About</a>
-	</div> 
+	</div>
 
 	@yield('header')
 	<div class="disable">
@@ -108,18 +106,16 @@
 				</div>
 		    </div>
 
-		    <div class="dropdown ml-3">
-			    <a href="/signin">
-			    	<button class="dropbtn btn-dark">Hello, Sign in</button>
-			    </a>
+		    <div class="dropdown dropdown-hello ml-3">
+			    <button class="dropbtn btn-dark dropdown-toggle">Hello, {{session('customername')}}</button>
 			    <div class="dropdown-content">
-				   	<a class="sign-in" href="/signin">Sign in</a>
-				    <div id="start-here-div">
-			    		New Customer?<a id="start-here-link" href="/registration"> Start here.</a>
-			    	</div>
+			    	<h6>Your Account</h6>
+			    	<a href="#" class="dropdown-link">Account</a><br>
+				   	<a href="/logout" class="dropdown-link">Sign out</a>
 			  	</div>
 			</div>
 		    
+
 		    <li class="nav-item ml-3">
 		    	<div class="cart-container" id="cart-link">
 					<a href="/home"><img src="{{asset('images/logo/Cart.jpg')}}" id="cart-link-img"></a>
@@ -134,7 +130,7 @@
 	  <!-- Links -->
 	  	<ul class="navbar-nav">
 		    <li class="nav-item">
-		      <button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas">☰ All</button> 
+		      <button class="openbtn" onclick="openNav()">☰ All</button> 
 		    </li>
 
 		    <div class="dropdown dropdown-bh ml-3">
@@ -148,7 +144,8 @@
 		    </li>
 	  	</ul>
 	</nav>
-     
+
+
 	@yield('index')
 
 	<!--footer-->
@@ -237,7 +234,7 @@
 	            		easyBuy © 2021-2021 All Rights Reserved. 
 	          		</small>
 	        	</div>
-	        </div>
+        	</div>
         </div>
     </footer>
 	</div>
