@@ -1,0 +1,75 @@
+form { margin: 0px 10px; }
+
+h2 {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.container { max-width: 360px; }
+
+.divider {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.divider hr {
+	margin: 7px 0px;
+	width: 35%;
+}
+
+.left { float: left; }
+
+.right { float: right; }
+
+.form-group {
+	padding-top: 12px;
+}
+
+.panel-body{
+	margin-top: 10px;
+	outline: 1px solid gray;
+}
+
+#home-link-img {
+    height: 40px;
+	width: 120px;
+	margin-left: 30%;
+	margin-top: 10px;
+}
+
+.btn-light {
+	background-color: gray;
+}
+
+button.sub {
+  background-color: #febd69;
+  width: 350px;
+}
+button.sub:hover {
+  background-color: #fead3f;
+}
+
+.registration-button {
+	outline: none;
+	height: 40px;
+	width: 370px;
+}
+.registration-button > a{
+	text-decoration: none;
+	color: black;
+}
+
+footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
+}
+.footer-div {
+  margin-left: 560px;
+  padding-bottom: 15px;
+}
+hr {
+  width: 70%;
+}

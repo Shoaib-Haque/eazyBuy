@@ -1,0 +1,133 @@
+/*first navbar*/
+/*dropdown profile*/
+.dropbtn {
+  color: white;
+  font-size: 16px;
+  width: 120px;
+  height: 40px;
+  border: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  min-height: 100px;
+}
+.dropdown-link {
+  color: black;
+}
+.dropdown:hover .dropbtn {
+  background-color: none;
+}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover {
+  outline: 1px solid white;
+  background-color: none;
+}
+
+h6 {
+  color: black;
+}
+h3 {
+  color: black;
+}
+
+.btn-outline-light {
+  background-color: #DCDCDC;
+  color: black;
+}
+
+.sign-in{
+  color: black;
+}
+.sign-in:link {
+  background-color: #febd69;
+  color: black;
+  margin: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+}
+.sign-in:hover {
+  background-color: #fead3f;
+  color: black;
+}
+
+#start-here-link: {
+  color: blue;
+}
+
+#start-here-div {
+  margin-left: 30px;
+}
+
+/*home link img*/
+#home-link-img {
+  height: 40px;
+  width: 120px;
+}
+
+#home-link-img:hover {
+  outline: 1px solid white;
+}
+
+/*search*/
+#search-box {
+  width: 550px;
+  height: 40px;
+}
+button.sub {
+  background-color: #febd69;
+}
+button.sub:hover {
+  background-color: #fead3f;
+}
+
+/*address*/
+.hidden-xs {
+  width: 150px;
+  height: 40px;
+  padding: 0px 5px;
+}
+.hidden-xs > a {
+  text-decoration: none;
+  font-size: 12px;
+}
+.hidden-xs:hover {
+  outline: 1px solid white;
+}
+
+
+
+/*cart*/
+#cart-link-img {
+  height: 40px;
+  width: 120px;
+}
+.cart-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-left: 3px;
+} 
+.cart-container:hover {
+  outline: 1px solid white;
+}
+/* Centered text cart */
+.centered {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}

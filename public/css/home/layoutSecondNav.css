@@ -1,0 +1,74 @@
+/*second navbar*/
+.navbar-second {
+  height: 40px;
+  padding-top: 2px;
+  background-color: #232F3E;
+  color: white;
+}
+
+.container-fluid {
+  background-color: #1e2e3a;
+}
+
+.white {
+  color: white;
+}
+.grey {
+  color: #ccc;
+}
+.bold {
+  font-weight: bold;
+}
+
+/*all button*/
+.openbtn {
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #232F3E;;
+  color: white;
+  padding: 3px 15px;
+  border: none;
+  height: 30px;
+  margin-top: 5px;
+}
+.openbtn:hover {
+  outline: 1px solid white;
+}
+
+/*dropdown browsing history*/
+.dropbtn-bh {
+  color: white;
+  background-color: #232F3E;
+  font-size: 16px;
+  width: 150px;
+  height: 30px;
+  border: none;
+}
+.dropdown-bh{
+  background-color: #232F3E;
+  height: 25px;
+  width: 150px;
+  margin-top: 5px;
+}
+.dropdown-bh:hover {
+  background-color: #232F3E;
+  outline: 1px solid white;
+}
+.dropdown-bh:hover > .dropbtn-bh{
+  background-color: #232F3E;
+}
+
+/*buy again*/
+.nav-buy-again {
+  height: 30px;
+  padding: 3px 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+.nav-buy-again:hover {
+  outline: 1px solid white;
+}
+.nav-buy-again > a{
+  color: white;
+  text-decoration: none;
+}
