@@ -51,13 +51,17 @@ button.sub:hover {
 }
 
 .registration-button {
-	outline: none;
+	border: none;
+	outline: 1px solid black;
 	height: 40px;
 	width: 370px;
 }
 .registration-button > a{
 	text-decoration: none;
 	color: black;
+}
+.registration-button:hover {
+	background-color: #E8E8E8;
 }
 
 footer {

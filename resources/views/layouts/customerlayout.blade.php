@@ -81,7 +81,7 @@
 		        <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
 		    </li>
 
-		    <li class="hidden-xs deli ml-5 mr-5">
+		    <li class="hidden-xs deli ml-3">
             	<a>
             		<span class="grey">Deliver to</span>
             		<div class="white bold"><i class="fas fa-map-marker-alt"></i>Bangladesh</div>
@@ -151,84 +151,86 @@
 	<!--footer-->
 	@yield('footer')
     <footer>
-      	<div class="bot container-fluid">
-        	<a href="#top">
-          		<h4 class="less white">Back to top</h4>
-        	</a>
-      	</div>
+      	<a class="ba" href="#top">
+       		<div class="bot container-fluid">
+         		<h4 class="less white">Back to top</h4>
+          	</div>
+       	</a>
+
       	<div class="container-fluid">
         	<div class="container">
           		<div class="row">
-            	<div class="col-sm-3">
-              		<h4 class="white">Get to Know Us</h4>
-	             	<div class="gap">
-	               		<a class="grey foot" href="#">About Us</a>
+	            	<div class="col-sm-3">
+	              		<h4 class="white">Get to Know Us</h4>
+		             	<div class="gap">
+		               		<a class="grey foot" href="#">About Us</a>
+		            	</div>
+		              	<div class="gap">
+		               		<a class="grey foot" href="#">Careers</a>
+		            	</div>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Press Release</a>
+		              	</div>
+		            	<div class="gap">
+		               		<a class="grey foot" href="#">XYZ cares</a>
+		              	</div>
+		              	<div class="gap">
+		               		<a class="grey foot" href="#">Gift a Smile</a>
+		              	</div>
 	            	</div>
-	              	<div class="gap">
-	               		<a class="grey foot" href="#">Careers</a>
+	            	
+	            	<div class="col-sm-3">
+	              		<h4 class="white">Connect with Us</h4>
+	              		<div class="gap">
+		                	<a class="grey foot" href="#">Facebook</a>
+		              	</div>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Twitter</a>
+		              	</div>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Instagram</a>
+		              	</div>
+		            	</div>
+		            
+		            <div class="col-sm-3">
+		              	<h4 class="white">Make Money with Us</h4>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Sell on XYZ</a>
+		              	</div>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Become an Affiliate</a>
+		              	</div>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Fulfilment by XYZ</a>
+		              	</div>
+	              		<div class="gap">
+	                		<a class="grey foot" href="#">Advertise Your Products</a>
+	              		</div>
+	              		<div class="gap">
+	                	<a class="grey foot" href="#">XYZ Pay on Merchants</a>
+	              		</div>
 	            	</div>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Press Release</a>
-	              	</div>
-	            	<div class="gap">
-	               		<a class="grey foot" href="#">XYZ cares</a>
-	              	</div>
-	              	<div class="gap">
-	               		<a class="grey foot" href="#">Gift a Smile</a>
-	              	</div>
-            	</div>
-            	
-            	<div class="col-sm-3">
-              		<h4 class="white">Connect with Us</h4>
-              		<div class="gap">
-	                	<a class="grey foot" href="#">Facebook</a>
-	              	</div>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Twitter</a>
-	              	</div>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Instagram</a>
-	              	</div>
-	            	</div>
-	            
-	            <div class="col-sm-3">
-	              	<h4 class="white">Make Money with Us</h4>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Sell on XYZ</a>
-	              	</div>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Become an Affiliate</a>
-	              	</div>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Fulfilment by XYZ</a>
-	              	</div>
-              		<div class="gap">
-                		<a class="grey foot" href="#">Advertise Your Products</a>
-              		</div>
-              		<div class="gap">
-                	<a class="grey foot" href="#">XYZ Pay on Merchants</a>
-              		</div>
-            	</div>
 
-	            <div class="col-sm-3">
-	              	<h4 class="white">Let Us Help You</h4>
-	              	<div class="gap">
-	                	<a class="grey foot" href="#">Your Account</a>
-	              	</div>
-		            <div class="gap">
-		                <a class="grey foot" href="#">Returns Centre</a>
+		            <div class="col-sm-3">
+		              	<h4 class="white">Let Us Help You</h4>
+		              	<div class="gap">
+		                	<a class="grey foot" href="#">Your Account</a>
+		              	</div>
+			            <div class="gap">
+			                <a class="grey foot" href="#">Returns Centre</a>
+			            </div>
+			            <div class="gap">
+			                <a class="grey foot" href="#">100% Purchase Protection</a>
+			            </div>
+			            <div class="gap">
+			                <a class="grey foot" href="#">XYZ Assisstant</a>
+			            </div>
+			            <div class="gap">
+			                <a class="grey foot" href="#">Help</a>
+			            </div>
 		            </div>
-		            <div class="gap">
-		                <a class="grey foot" href="#">100% Purchase Protection</a>
-		            </div>
-		            <div class="gap">
-		                <a class="grey foot" href="#">XYZ Assisstant</a>
-		            </div>
-		            <div class="gap">
-		                <a class="grey foot" href="#">Help</a>
-		            </div>
-	            </div>
           		</div>
+          		
           		<div class="footer-license-div">
           			<small>
 	            		easyBuy © 2021-2021 All Rights Reserved. 
