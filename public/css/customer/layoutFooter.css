@@ -14,11 +14,13 @@ footer {
 .bot:hover{
   background-color: #485769;
 }
-.bot a{
-  color: white;
-  text-decoration: none;
+footer > a:link{
+  text-decoration: none!important;
 }
 
+.container {
+  padding-top: 10px;
+}
 .container:hover {
   outline: none;
 }
