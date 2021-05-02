@@ -1,0 +1,7 @@
+#toolbar-container {
+    width: 900px;
+}
+#editor {
+    outline: 1px solid black;
+    height: 200px;
+}

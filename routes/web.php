@@ -26,6 +26,9 @@ Route::group(['middleware'=>['beforelogin']], function(){
 Route::group(['middleware'=>['sess']], function(){
 	Route::group(['middleware'=>['adminsess']], function(){
 		Route::get('/admin','AdminController@index')->name('admin.index');
+		Route::get('/admin/products','AdminProductController@index')->name('adminproduct.index');
+		Route::get('/admin/addproduct','AdminProductController@addproduct')->name('adminproduct.addproduct');
+		Route::post('/admin/addproduct','AdminProductController@addck');
 	});
 
 	Route::group(['middleware'=>['customersess']], function(){
