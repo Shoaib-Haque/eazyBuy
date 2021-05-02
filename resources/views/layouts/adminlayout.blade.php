@@ -73,7 +73,7 @@
                     <a href="#">Categories</a>
                   </li>
                   <li>
-                    <a href="#">Products</a>
+                    <a href="/admin/products">Products</a>
                   </li>
                 </ul>
               </div>
@@ -131,11 +131,16 @@
   </div>
     <!-- sidebar-wrapper  -->
 
+
     <div id="page-container">
       <div id="content-wrap">
        <!-- all other page content -->
         @yield('index')
+        @yield('products')
+        @yield('addproduct')
+        
       </div>
+      <div class="footer-outer-div">
       <footer class="mt-5">
         <hr>
         <div class="footer-div mb-2">
@@ -149,6 +154,7 @@
           </a>
         </div>
       </footer>
+      </div>
     </div>
 
 

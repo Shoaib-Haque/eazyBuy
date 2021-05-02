@@ -83,7 +83,7 @@
 		        <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
 		    </li>
 
-		    <li class="hidden-xs deli ml-5 mr-5">
+		    <li class="hidden-xs deli ml-3">
             	<a>
             		<span class="grey">Deliver to</span>
             		<div class="white bold"><i class="fas fa-map-marker-alt"></i>Bangladesh</div>
