@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Repository\Interfaces\IDepartmentRepository;
 
 class AdminProductController extends Controller
 {
+    public $department;
+
+    public function __construct(IDepartmentRepository $department) {
+        $this->department = $department;
+    }
+    
     function index() {
-    	$productlist = DB::table('ckeditor')
-    	            ->select('ckeditor.*')
-       			    ->get();
-    	return view('admin.catalog.product.index', ['productlist'=>$productlist]);
+    	return view('admin.catalog.product.index');
     }
 
     function add() {
-    	return view('admin.catalog.product.add');
+        $departmentlist = $this->department->getAllDepartments();
+    	return view('admin.catalog.product.add', ['departmentlist' => $departmentlist]);
     }
 
     /*

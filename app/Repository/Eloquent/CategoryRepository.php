@@ -39,5 +39,15 @@ class CategoryRepository implements ICategoryRepository
         $category->save();
         return $category;
     }
+
+    public function categoryByDepartment($did)
+    {
+        return Categories::from('Categories as c')
+                        ->where('c.department_id', '=', $did)
+                        ->join('Departments as d', 'c.department_id', '=', 'd.id')
+                        ->orderBy('c.title', 'ASC')
+                        ->select('c.title as title', 'c.id as id')
+                        ->get();
+    }
 }
 ?>

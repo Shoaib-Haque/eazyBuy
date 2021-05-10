@@ -40,5 +40,20 @@ class AdminCategoryController extends Controller
     function editCategory($cid, CategoryRequest $req) {
     	$result = $this->category->createOrUpdate($cid, array('title' => $req->title, 'department_id' => $req->department_id));
     	return redirect()->route('admincategory.index');
-    }    
+    }
+
+    function categoryByDepartment(Request $req) {
+        if($req->department_id){
+            $result = $this->category->categoryByDepartment($req->department_id);
+            if(count($result) >=1){
+                echo '<option value="">Select Category</option>';
+                foreach($result as $key => $value){ 
+                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
+                }
+            }
+            else {
+                echo '<option value="">No Category</option>';
+            }
+        }
+    }
 }
