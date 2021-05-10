@@ -29,7 +29,7 @@
   cursor:pointer; 
   font-size: 16px;
 }
-#data, #links, #price, #image, #features {
+#data, #links, #price, #image, #features, #maximum_day_needs_to_arrive_td {
 	display: none;
 }
 
@@ -38,15 +38,20 @@ tr > td {
   padding-top: 10px;
 }
 .td-left {
-	width: 150px;
+	min-width: 150px;
+  	max-width: 150px;
+  	overflow: hidden;
 	padding-right: 5px;
 	text-align: right;
 }
 .td-right {
-	width: 700px;
+	min-width: 700px;
+  	max-width: 700px;
+ 	overflow: hidden;
 	padding-left: 5px;
 	text-align: left;
 }
+
 tr.border_bottom td {
   width: 1100px;
   border-bottom: 1px solid #DCDCDC;
@@ -66,4 +71,8 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
 .star {
 	color: red;
+}
+
+#maximum_day_needs_to_arrive {
+	width: 450px;
 }

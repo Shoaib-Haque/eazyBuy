@@ -13,7 +13,7 @@
 		<h1>
 			<span class="normal">Products</span>
 			<div class="button-group">
-				<form method="POST">
+				<form method="POST" id="token">
 					{{csrf_field()}}
 				<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
 					onclick="return validation()">
@@ -37,7 +37,7 @@
 
 		<div class="table-div">
 			<div class="buttons">
-				<nav class="navbar navbar-light bg-light navbar-button">
+				<nav class="navbar navbar-light bg-light navbar-button mb-5">
 					<a onclick="divVisibility('general');" class="btn btn-light">General</a>
 					<a onclick="divVisibility('data');" class="btn btn-light">Data</a>
 					<a onclick="divVisibility('links');" class="btn btn-light">Links</a>
@@ -51,7 +51,7 @@
 				<table>
 			    	<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Product Name</strong></td>
-			            <td class="td-right"><input type="text" name="name"></td>
+			            <td class="td-right"><input type="text" name="title" id="name"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -62,7 +62,7 @@
 			            <td class="td-right">
 			            	<div id="toolbar-container"></div>
         					<div id="editor"></div>
-        					<input type="hidden" name="des" id="des" value="">
+        					<input type="hidden" name="description" id="description" value="">
 			            </td>
 			        </tr>
 			    </table>
@@ -82,6 +82,22 @@
 			        	<td class="td-left"><strong>Weight</strong></td>
 			            <td class="td-right"><input type="text" name="weight"></td>
 			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left">
+			        		<input type="checkbox" name="shipping_required" value="Shipping Required" 
+			        		id="shipping_required" onclick="maximumDay()">
+			        		Shipping Required
+			        	</td>
+				        <td class="td-right" id="maximum_day_needs_to_arrive_td">
+				           	<strong><font class="star">*</font>Maximum Days Needs To Arrive</strong>
+				           	<input type="number" name="maximum_day_needs_to_arrive" id="maximum_day_needs_to_arrive">
+				        </td>
+			        </tr>
+
 			    </table>
 			</div>
 
@@ -90,31 +106,36 @@
 					<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Department</strong></td>
 			            <td class="td-right">
-			            	<select name="deptid">
-			            		<option>Select Department</option>
+			            	<select name="department_id" id="department_id">
+			            		<option value="">Select Department</option>
+			            		@foreach($departmentlist as $key => $value)
+			            			<option value="{{$value->id}}">{{$value->title}}</option>
+			            		@endforeach
 			            	</select>
 			            </td>
 			        </tr>
 
-			        <tr class="border_bottom"><td colspan="2"></td></tr>
-			        <tr><td colspan="2"></td></tr>
+			        <tbody id="category_tbody">
+			        	<tr class="border_bottom"><td colspan="2"></td></tr>
+				        <tr><td colspan="2"></td></tr>
 
-					<tr>
-			        	<td class="td-left"><strong><font class="star">*</font>Category</strong></td>
-			            <td class="td-right">
-			            	<select name="categoryid">
-			            		<option>Select Category</option>
-			            	</select>
-			            </td>
-			        </tr>
-
+				        <tr>
+				        	<td class="td-left"><strong><font class="star">*</font>Category</strong></td>
+				            <td class="td-right">
+				            	<select name="category_id" id="category_id">
+				            		<option value="">Select Department First</option>
+				            	</select>
+				            </td>
+				        </tr>
+			        </tbody>
+			    	
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Brand</strong></td>
 			            <td class="td-right">
-			            	<select name="brandid">
+			            	<select name="brand_id" id="brand_id">
 			            		<option>Select Brand</option>
 			            	</select>
 			            </td>
@@ -170,9 +191,13 @@
 	</div>
 
 	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
-	<script src="{{ asset('js/admin/addproducttoolbar.js') }}" async></script>
-	<script src="{{ asset('js/admin/addproducteditor.js') }}" async></script>
-	<script src="{{ asset('js/admin/uploadImage.js') }}" async></script>
+
+	<script src="{{ asset('js/admin/catalog/product/addproducttoolbar.js') }}" async></script>
+	<script src="{{ asset('js/admin/catalog/product/addproducteditor.js') }}" async></script>
+	<script src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
+	<script src="{{ asset('js/admin/catalog/product/uploadImage.js') }}" async></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
     @endsection
 </body>
 </html>

@@ -38,6 +38,8 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::post('/admin/catalog/category/add','AdminCategoryController@addCategory');
 		Route::get('/admin/catalog/category/edit/{cid}','AdminCategoryController@edit')->name('admincategory.edit');
 		Route::post('/admin/catalog/category/edit/{cid}','AdminCategoryController@editCategory');
+		Route::get('/department/category','AdminCategoryController@categoryByDepartment')
+		->name('category.by.department');
 
 		Route::get('/admin/catalog/products','AdminProductController@index')->name('adminproduct.index');
 		Route::get('/admin/catalog/product/add','AdminProductController@add')->name('adminproduct.add');
