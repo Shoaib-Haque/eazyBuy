@@ -1,9 +1,9 @@
-var divs = ["general", "data", "image"];
+var divs = ["general", "data", "links", "price", "image", "features"];
 var visibleDivId = null;
 function divVisibility(divId) {
   if(visibleDivId === divId) {
-    visibleDivId = null;
-    //visibleDivId = divId;
+    //visibleDivId = null;
+    visibleDivId = divId;
   } 
   else {
     visibleDivId = divId;

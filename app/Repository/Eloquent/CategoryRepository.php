@@ -1,0 +1,43 @@
+<?php  
+namespace App\Repository\Eloquent;
+
+use App\Models\Categories;
+use App\Models\Departments;
+use App\Repository\Interfaces\ICategoryRepository;
+
+class CategoryRepository implements ICategoryRepository
+{   
+    protected $category = null;
+
+	public function getAllCategories()
+    {
+        return Categories::from('Categories as c')
+                        ->join('Departments as d', 'c.department_id', '=', 'd.id')
+                        ->orderBy('d.title', 'ASC')
+                        ->orderBy('c.title', 'ASC')
+                        ->select('c.*', 'd.title as dtitle')
+                        ->get();
+    }
+
+    public function getCategoryById($id)
+    {
+        return Categories::find($id);
+    }
+
+    public function createOrUpdate( $id = null, $collection = [] )
+    {   
+        if(is_null($id)) {
+            $category = new Categories;
+            $category->title = $collection['title'];
+            $category->department_id = $collection['department_id'];
+            $category->save();
+            return $category;
+        }
+        $category = Categories::find($id);
+        $category->title = $collection['title'];
+        $category->department_id = $collection['department_id'];
+        $category->save();
+        return $category;
+    }
+}
+?>

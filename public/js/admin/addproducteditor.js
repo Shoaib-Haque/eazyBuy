@@ -8,10 +8,10 @@ DecoupledEditor
         console.error( error );
     } );
 
+
 document.querySelector( '#submit' ).addEventListener( 'click', () => {
 	//var node = document.getElementById('editor'),
 	//editorData = node.textContent;
     editorData = $("#editor").html();
-    alert(editorData);
     document.getElementById( 'des' ).value = editorData;
 } );  

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/layoutTopNav.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/admin/layoutSideNav.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/admin/layoutFooter.css')}}" type="text/css">
-
+    <link rel="stylesheet" href="{{asset('css/admin/layoutMain.css')}}" type="text/css">
 </head>
 
 <body>
@@ -70,10 +70,16 @@
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Categories</a>
+                    <a href="/admin/catalog/departments">Departments</a>
                   </li>
                   <li>
-                    <a href="/admin/products">Products</a>
+                    <a href="/admin/catalog/categories">Categories</a>
+                  </li>
+                  <li>
+                    <a href="/admin/catalog/products">Products</a>
+                  </li>
+                  <li>
+                    <a href="/admin/catalog/brands">Brands</a>
                   </li>
                 </ul>
               </div>
@@ -134,26 +140,40 @@
 
     <div id="page-container">
       <div id="content-wrap">
-       <!-- all other page content -->
+        <div class="body">
+         <!-- all other page content -->
         @yield('index')
+        @yield('departments')
+        @yield('adddepartment')
+        @yield('editdepartment')
+
+        @yield('categories')
+        @yield('addcategory')
+        @yield('editcategory')
+
+        @yield('brands')
+        @yield('addbrand')
+        @yield('editbrand')
+
         @yield('products')
         @yield('addproduct')
-        
-      </div>
-      <div class="footer-outer-div">
-      <footer class="mt-5">
-        <hr>
-        <div class="footer-div mb-2">
-          <small>
-            <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
-          </small>
+          
         </div>
-        <div class="footer-div">
-          <a href="https://github.com/shoaib2018" target="_blank">
-            <img alt="GitHub followers" src="https://img.shields.io/github/followers/shoaib2018?label=github&style=social" />
-          </a>
+        <div class="footer-outer-div">
+        <footer class="mt-5">
+          <hr>
+          <div class="footer-div mb-2">
+            <small>
+              <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
+            </small>
+          </div>
+          <div class="footer-div">
+            <a href="https://github.com/shoaib2018" target="_blank">
+              <img alt="GitHub followers" src="https://img.shields.io/github/followers/shoaib2018?label=github&style=social" />
+            </a>
+          </div>
+        </footer>
         </div>
-      </footer>
       </div>
     </div>
 
@@ -162,15 +182,15 @@
 
 <!-- page-wrapper -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" async>
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous" async>
     </script>
-    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="{{ asset('js/admin/layoutSideNav.js') }}"></script>
+    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js" async></script>
+    <script src="{{ asset('js/admin/layoutSideNav.js') }}" async></script>
 
 </body>
 </html>
