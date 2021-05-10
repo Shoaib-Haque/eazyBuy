@@ -1,16 +1,69 @@
+.main_div {
+	position: relative;
+	margin-top: 60px;
+}
+.add_product {
+	height: 47px;
+	outline: 1px solid #DCDCDC;
+	background-color: #F5F5F5;
+	padding-top: 5px;
+	padding-left: 5px; 
+}
+#submit {
+	margin-left: 840px;
+}
+.buttons > nav {
+	position: relative;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 .buttons {
-	position: fixed;
-	margin-top: 30px;
+	margin-top: 0px;
 }
 
-.inner_div {
-	position: fixed;
-	margin-top: 100px;
-}
 .buttons a {
   font-size: 16px;
+  background-color: #F8F8F8;
 }
 .buttons a:hover {
   cursor:pointer; 
   font-size: 16px;
+}
+#data, #links, #price, #image, #features {
+	display: none;
+}
+
+tr > td {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.td-left {
+	width: 150px;
+	padding-right: 5px;
+	text-align: right;
+}
+.td-right {
+	width: 700px;
+	padding-left: 5px;
+	text-align: left;
+}
+tr.border_bottom td {
+  width: 1100px;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+input[type=text], input[type=number], select {
+	width: 98%;
+	height: 35px;
+	border: 1px solid #DCDCDC;
+	border-radius: 5px;
+}
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.star {
+	color: red;
 }

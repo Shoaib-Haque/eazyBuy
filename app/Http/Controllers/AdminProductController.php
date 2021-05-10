@@ -11,21 +11,28 @@ class AdminProductController extends Controller
     	$productlist = DB::table('ckeditor')
     	            ->select('ckeditor.*')
        			    ->get();
-        //$productlist['des'] = htmlspecialchars_decode($productlist['des']);
-    	return view('admin.products', ['productlist'=>$productlist]);
+    	return view('admin.catalog.product.index', ['productlist'=>$productlist]);
     }
 
-    function addproduct() {
-    	return view('admin.addproduct');
+    function add() {
+    	return view('admin.catalog.product.add');
     }
 
+    /*
     function addck(Request $req) {
         $des = trim($req->des);
         $des = stripslashes($des);
         $des = htmlspecialchars($des);
-    	DB::table('ckeditor')->insertGetId(
+        DB::table('ckeditor')->insertGetId(
             ['des' => $des, 'name' => $req->name, 'image' => $req->image]
         );
-    	return redirect()->route('adminproduct.index');
+        return redirect()->route('adminproduct.index');
     }
+    <table>
+        @foreach($productlist as $productlist)
+            <tr>
+                <td>{!! html_entity_decode($productlist->des, ENT_QUOTES, 'UTF-8') !!} </td>
+            </tr>
+        @endforeach
+    </table>*/
 }

@@ -1,0 +1,102 @@
+/*--------------------------page-content-----------------------------*/
+#page-container {
+  position: relative;
+  top: 55px;
+  min-height: 90vh;
+  max-height: 90vh;
+  margin-left: 260px;
+  padding-left: 0px;
+  padding-bottom: 30px;
+  overflow-x: hidden;
+  background-color: #F5F5F5;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+  overflow-x: auto;
+}
+
+.main {
+  margin: 20px 20px 10px 20px;
+  background-color: #F5F5F5;
+}
+.list {
+  outline: 1px solid #DCDCDC;
+}
+.heading {
+  padding: 10px;
+  border-bottom: 1px solid #DCDCDC;
+}
+.table-div {
+  background-color: white;
+  padding: 10px;
+}
+.form-table-div {
+  background-color: white;
+  padding: 10px 0px;
+}
+
+input[type=text], input[type=number], select {
+  width: 98%;
+  height: 35px;
+  border: 1px solid #DCDCDC;
+  border-radius: 5px;
+}
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.full {
+  width: 100%;
+}
+.normal { 
+  font-weight: normal; 
+}
+.star {
+  color: red;
+}
+.button-group {
+  float: right;
+}
+
+
+
+th {
+  color: #6666ff;
+  text-align: center;
+}
+tr > td {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.td-left {
+  width: 150px;
+  padding-right: 5px;
+  text-align: right;
+}
+.td-right {
+  width: 900px;
+  padding-left: 5px;
+  text-align: left;
+}
+tr.border_bottom td {
+  width: 1100px;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+.btn-td {
+  text-align: center;
+}
+
+.table-hover, .table-hover > thead > tr >  th, .table-hover > tbody > tr > td {
+  border: 1px solid #DCDCDC;
+}
+
+.name-th, .name-td {
+  width: 90%;
+}
+.btn-th, .btn-td {
+  width: 10%;
+}

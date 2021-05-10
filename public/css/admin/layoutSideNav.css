@@ -290,26 +290,7 @@ ul.x {
   animation: sonar 1.5s infinite;
 }
 
-/*--------------------------page-content-----------------------------*/
-#page-container {
-  position: relative;
-  top: 55px;
-  min-height: 90vh;
-  max-height: 90vh;
-  margin-left: 300px;
-  padding-left: 0px;
-  padding-bottom: 30px;
-  overflow-x: hidden;
-}
-
-#content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
-  overflow-x: auto;
-}
-
-
 /*-----------------------------chiller-theme-------------------------------------------------*/
-
 .chiller-theme .sidebar-wrapper {
     background: #31353D;
 }

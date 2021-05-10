@@ -1,7 +1,8 @@
 #toolbar-container {
-    width: 900px;
+    width: 98%;
 }
 #editor {
-    outline: 1px solid black;
-    height: 200px;
+    outline: 1px solid #DCDCDC;
+    height: 250px;
+    width: 98%;
 }
