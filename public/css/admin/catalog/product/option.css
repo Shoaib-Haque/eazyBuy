@@ -22,7 +22,7 @@
 th {
 	color: black;
 }
-.remove-option-group-id {
+.remove-option-group-class {
 	cursor: pointer;
 }
 .sort-order-th, .sort-order-td {
@@ -34,7 +34,7 @@ th {
 .option-image-th, .option-image-td {
 	width: 30%;
 }
-.option-remove-th, .option-remove-td {
-	width: 5%;
+.option-add-td, .option-remove-th, .option-remove-td {
+	width: 7%;
 	align-content: center;
 }
