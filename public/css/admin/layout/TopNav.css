@@ -7,7 +7,7 @@
 .home-link-img-div {
   margin-left: 10px;
   width: 250px;
-  border-right: 1px solid gray;
+  border-right: 1px solid #DCDCDC;
 }
 
 .btn-group {
@@ -18,10 +18,11 @@
   position: fixed;
   padding: 0px;
   height: 52px;
+  z-index: 1;
 }
 
 .btn-group-div {
-  border-left: 1px solid gray;
+  border-left: 1px solid #DCDCDC;
 }
 
 .btn-light {

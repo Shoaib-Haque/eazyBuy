@@ -12,24 +12,22 @@
 #submit {
 	margin-left: 840px;
 }
-.buttons > nav {
-	position: relative;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-.buttons {
+
+#nav-tab {
 	margin-top: 0px;
+	margin-bottom: 20px;
 }
 
 .buttons a {
   font-size: 16px;
-  background-color: #F8F8F8;
+  color: #A8A8A8;
 }
 .buttons a:hover {
   cursor:pointer; 
-  font-size: 16px;
+  color: #A8A8A8;
 }
-#data, #links, #price, #image, #features, #maximum_day_needs_to_arrive_td {
+
+#data, #links, #price, #image, #features, #options, #maximum_day_needs_to_arrive_td, #category_tbody {
 	display: none;
 }
 
@@ -74,5 +72,5 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 }
 
 #maximum_day_needs_to_arrive {
-	width: 450px;
+	width: 630px;
 }
