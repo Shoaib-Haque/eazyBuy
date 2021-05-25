@@ -1,0 +1,40 @@
+.option {
+	position: relative;
+	outline: 1px solid #DCDCDC;
+	margin-bottom: 10px;
+}
+.add-option-group-btn-div {
+	position: relative;
+}
+.option-table {
+	padding: 5px;
+}
+.remove-option {
+	position: relative;
+	background-color: #E6E6FA;
+	margin-bottom: 5px;
+	padding: 5px;
+	min-height: 35px;
+}
+.remove-btn {
+	float: right;
+}
+th {
+	color: black;
+}
+.remove-option-group-id {
+	cursor: pointer;
+}
+.sort-order-th, .sort-order-td {
+	width: 10%;
+}
+.option-quantity-th, .option-quantity-td, .option-price-th, .option-price-td {
+	width: 15%;
+}
+.option-image-th, .option-image-td {
+	width: 30%;
+}
+.option-remove-th, .option-remove-td {
+	width: 5%;
+	align-content: center;
+}

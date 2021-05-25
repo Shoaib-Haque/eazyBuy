@@ -1,6 +1,9 @@
-var divs = ["general", "data", "links", "price", "image", "features"];
-var visibleDivId = null;
+var divs = ["general", "data", "links", "options", "price", "image", "features"];
+
 function divVisibility(divId) {
+  visibleDivId = divId;
+
+  /*
   if(visibleDivId === divId) {
     //visibleDivId = null;
     visibleDivId = divId;
@@ -8,7 +11,7 @@ function divVisibility(divId) {
   else {
     visibleDivId = divId;
   }
-  
+  */
   hideNonVisibleDivs();
 }
     

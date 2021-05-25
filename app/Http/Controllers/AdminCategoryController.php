@@ -9,11 +9,11 @@ use App\Repository\Interfaces\ICategoryRepository;
 
 class AdminCategoryController extends Controller
 {
-    public $department, $category;
+    public $category, $department;
 
-	public function __construct(IDepartmentRepository $department, ICategoryRepository $category) {
-        $this->department = $department;
+	public function __construct(ICategoryRepository $category, IDepartmentRepository $department) {
         $this->category = $category;
+        $this->department = $department;
     }
 
     function index() {

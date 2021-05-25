@@ -9,7 +9,7 @@ function maximumDay() {
 
   	// If the checkbox is checked, display the td
   	if (shipping_required.checked == true){
-    	maximum_day_needs_to_arrive_td.style.display = "block";
+    	maximum_day_needs_to_arrive_td.style.display = "table-cell";
   	} else {
   		maximum_day_needs_to_arrive.value = "";
     	maximum_day_needs_to_arrive_td.style.display = "none";
@@ -34,14 +34,14 @@ $(document).ready(function () {
 					},
 				datatype:'html',
 				success:function(response){
-					//category_tbody.style.display = "category_tbody";
+					category_tbody.style.display = "table-row-group";
 					console.log(response);
 					category_id.html(response);
 				}
 			});
         } 
         else {
-        	//category_tbody.style.display = "none";
+        	category_tbody.style.display = "none";
         	category_id.find('option').remove().end().append('<option value="">Select Department First</option>').val('');
         }
     });

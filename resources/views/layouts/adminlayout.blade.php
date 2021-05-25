@@ -8,10 +8,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-    <link rel="stylesheet" href="{{asset('css/admin/layoutTopNav.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/admin/layoutSideNav.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/admin/layoutFooter.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/admin/layoutMain.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layout/TopNav.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layout/SideNav.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layout/Footer.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/admin/layout/Main.css')}}" type="text/css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
           <img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}">
         </div>
       </li>
-      
+
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <div class="btn-group-div">
           <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
@@ -48,38 +48,41 @@
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a> 
-            <span><i class="fas fa-bars"></i>Navigation</span>
-          </a>
+          <a><i class="fas fa-bars"></i><span>Navigation</span></a>
         </div>
 
         <div class="sidebar-menu mb-5">
           <ul>
             <li class="sidebar-dropdown">
-              <a href="/admin">
-                <i class="fa fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-              </a>
+              <a href="/admin"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
             </li>
 
             <li class="sidebar-dropdown">
-              <a>
-                <i class="fa fa-shopping-cart"></i>
-                <span>Catalog</span>
-              </a>
+              <a><i class="fas fa-clipboard"></i><span>Catalog</span></a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="/admin/catalog/departments">Departments</a>
+                    <a href="/admin/catalog/departments"><i class="fa fa-angle-double-right"><span></i>Departments</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/categories">Categories</a>
+                    <a href="/admin/catalog/categories"><i class="fa fa-angle-double-right"></i><span>Categories</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/products">Products</a>
+                    <a href="/admin/catalog/products"><i class="fa fa-angle-double-right"></i><span>Products</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/brands">Brands</a>
+                    <a href="/admin/catalog/brands"><i class="fa fa-angle-double-right"></i><span>Brands</span></a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="sidebar-dropdown">
+              <a><i class="fas fa-shopping-cart"></i><span>Sales</span></a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-double-right"></i><span>Orders</span></a>
                   </li>
                 </ul>
               </div>
@@ -87,27 +90,13 @@
 
             <li class="sidebar-dropdown">
               <a>
-                <i class="fa fa-shopping-cart"></i>
-                <span>Sales</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Orders</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="sidebar-dropdown">
-              <a>
-                <i class="fa fa-chart-line"></i>
+                <i class="fas fa-chart-line"></i>
                 <span>Reports</span>
               </a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Statistics</a>
+                    <a href="#"><i class="fa fa-angle-double-right"></i><span>Statistics</span></a>
                   </li>
                 </ul>
               </div>
