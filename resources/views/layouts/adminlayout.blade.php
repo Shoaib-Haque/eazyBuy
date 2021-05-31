@@ -58,7 +58,7 @@
             </li>
 
             <li class="sidebar-dropdown">
-              <a><i class="fas fa-clipboard"></i><span>Catalog</span></a>
+              <a><i class="fas fa-tags"></i><span>Catalog</span></a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>

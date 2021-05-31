@@ -46,3 +46,24 @@ $(document).ready(function () {
         }
     });
 });
+
+$( "#brandName" ).autocomplete({
+    source: function( request, response ) {
+        $.ajax({
+        	url: "/brand/search",
+        	dataType: "json",
+        	data: {
+        		term : request.term,
+        		_token:$("#token").data('token'),
+          	},
+        	success: function(data) {
+                response(data);
+            },
+        	minLength: 1,
+        	autoFocus: true,
+		    select: function( event, ui ) {
+		    	$('#brandName').val(ui.item.value);
+		    }
+        });
+    }
+});

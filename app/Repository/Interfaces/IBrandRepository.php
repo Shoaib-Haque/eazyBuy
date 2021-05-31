@@ -12,5 +12,7 @@ interface IBrandRepository
     public function createOrUpdate( $id = null, $collection = [] );
 
     //public function deleteUser($id);
+
+    public function searchBrand($term);
 }
 ?>

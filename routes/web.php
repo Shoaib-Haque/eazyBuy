@@ -50,6 +50,7 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::post('/admin/catalog/brand/add','AdminBrandController@addBrand');
 		Route::get('/admin/catalog/brand/edit/{bid}','AdminBrandController@edit')->name('adminbrand.edit');
 		Route::post('/admin/catalog/brand/edit/{bid}','AdminBrandController@editBrand');
+		Route::get('/brand/search','AdminBrandController@searchBrand')->name('searchbrand');
 	});
 
 	Route::group(['middleware'=>['customersess']], function(){

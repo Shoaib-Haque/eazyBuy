@@ -1,4 +1,4 @@
-var div = 1;
+var div = 0;
 
 function removeOptionDiv(option) {
 	var divObj = document.getElementById(option.id);
@@ -15,7 +15,7 @@ function addRemoveDiv(option) {
 	
 	//span for remove btn
 	var span = document.createElement('span');
-	span.id = 'remove-option-group-id'+div;
+	span.id = 'remove-option-group-id'+option.id;
 	span.className = 'remove-option-group-class';
 	span.title = "Remove Option Group";
 	
@@ -62,6 +62,26 @@ function addTable1Heading(table) {
 	table.appendChild(table1Heading);
 }
 
+function preventDot(event) {
+	if(event.key === '.'){
+		event.preventDefault();
+	}
+}
+function preventPaste(event) {
+	let pasteData = event.clipboardData.getData('text'); 
+	if(pasteData) {
+		pasteData.replace(/[^0-9]*/g,'');
+	}
+}
+function preventInput(event) {
+	event.target.value = event.target.value.replace(/[^0-9]*/g,'');
+}
+function preventStringPaste(event) {
+	if (event.originalEvent.clipboardData.getData('Text').match(/[^\d]/)) {
+    	event.preventDefault();
+  	}	
+} 
+
 function addTable1Row(table) {
 	//row
 	var row = document.createElement('tr');
@@ -70,6 +90,7 @@ function addTable1Row(table) {
 	//text box for group title
 	var table1RowTd1 = document.createElement('td');
 	var optionGroupText = document.createElement('input');
+	optionGroupText.setAttribute('placeholder', "Option Group");
 	optionGroupText.setAttribute("type", "text");
 	table1RowTd1.appendChild(optionGroupText);
 
@@ -99,9 +120,13 @@ function addTable1Row(table) {
 	//<td class="sort-order-td"><input type="number" name=""></td>
 	var table1RowTd4 = document.createElement('td');
 	table1RowTd4.className = "sort-order-td";
-	var sordOrderNumber = document.createElement('input');
-	sordOrderNumber.setAttribute("type", "number");
-	table1RowTd4.appendChild(sordOrderNumber);
+	var sortOrderNumber = document.createElement('input');
+	sortOrderNumber.setAttribute("type", "number");
+	sortOrderNumber.setAttribute("min", "0");
+	sortOrderNumber.addEventListener('keydown', preventDot, false);
+	sortOrderNumber.addEventListener('paste', preventPaste, false);
+	sortOrderNumber.addEventListener('input', preventInput, false);
+	table1RowTd4.appendChild(sortOrderNumber);
 
 	//adding td to the row
 	row.appendChild(table1RowTd1);
@@ -130,8 +155,10 @@ function addTable2Heading(table) {
 	var row =  document.createElement('tr');
 
 	//th
+	var table2HeadingTh0 = document.createElement('th');
 	var table2HeadingTh1 = document.createElement('th');
 	table2HeadingTh1.innerHTML = "Option";
+	table2HeadingTh1.className = "option-name-th";
 	var table2HeadingTh2 = document.createElement('th');
 	table2HeadingTh2.innerHTML = "Quantity";
 	table2HeadingTh2.className = "option-quantity-th";
@@ -145,6 +172,7 @@ function addTable2Heading(table) {
 	table2HeadingTh5.className = "option-remove-th";
 
 	//adding ths into heading row
+	row.appendChild(table2HeadingTh0);
 	row.appendChild(table2HeadingTh1);
 	row.appendChild(table2HeadingTh2);
 	row.appendChild(table2HeadingTh3);
@@ -162,23 +190,39 @@ function removeOptionRow(row) {
 }
 
 var rowCount = 0;
-function addOptionRow(tbody) {
+function addOptionRow(tbody, DivId) {
 	var row =  document.createElement('tr');
-	row.id = "row"+rowCount+"div"+div;
-	rowCount++;
-	var cell1 =  document.createElement('td');
-	var cell2 =  document.createElement('td');
-	var cell3 =  document.createElement('td');
-	var cell4 =  document.createElement('td');
-	var cell5 =  document.createElement('td');
+	row.id = "row"+rowCount+"div"+DivId;
+	
+	var cell0 = document.createElement('td');
+	var cell1 = document.createElement('td');
+	var cell2 = document.createElement('td');
+	var cell3 = document.createElement('td');
+	var cell4 = document.createElement('td');
+	var cell5 = document.createElement('td');
+
+	var defaultOption = document.createElement('input');
+	defaultOption.setAttribute("type", "radio");
+	defaultOption.setAttribute("name", "defaultOption"+DivId);
+	defaultOption.title = "Make Default";
+	cell0.align = "center";
+	cell0.appendChild(defaultOption);
 
 	var optionText = document.createElement('input');
 	optionText.setAttribute('type', 'text');
+	optionText.setAttribute('placeholder', "Option");
 	cell1.appendChild(optionText);
+	cell1.className = "option-name-td";
 
 	var quantityNumber = document.createElement('input');
 	quantityNumber.setAttribute('type', 'number');
+	quantityNumber.setAttribute("min", "0");
+	quantityNumber.setAttribute('placeholder', "Quantity");
+	quantityNumber.addEventListener('keydown',preventDot, false);
+	quantityNumber.addEventListener('paste', preventPaste, false);
+	quantityNumber.addEventListener('input', preventInput, false);
 	cell2.appendChild(quantityNumber);
+	cell2.className = "option-quantity-td";
 
 	var selectVar = document.createElement('select');
 	//Create and append the options
@@ -192,10 +236,73 @@ function addOptionRow(tbody) {
 
 	var priceNumber = document.createElement('input');
 	priceNumber.setAttribute('type', 'number');
+	priceNumber.setAttribute("min", "0");
+	priceNumber.setAttribute('placeholder', "Price");
+	priceNumber.addEventListener('paste', preventStringPaste, false);
 
 	cell3.appendChild(selectVar);
 	cell3.appendChild(priceNumber);
+	cell3.className = "option-price-td";
 
+	//Image
+	var uploadBtnDiv = document.createElement("div");
+
+	var uploadBtnLabel = document.createElement("label");
+	uploadBtnLabel.for = "uploadFile";
+	uploadBtnLabel.className = "btn btn-light btn-sm";
+	uploadBtnLabel.title = "Upload Image";
+
+	var uploadIcon = document.createElement("i");
+	uploadIcon.className = "fas fa-camera";
+
+	var fileInput = document.createElement('input');
+	fileInput.setAttribute('type', 'file');
+	fileInput.addEventListener("change", function(e) {
+		if($("#slider-container"+$(this).parent().parent().parent().parent().attr('id')+" img").length >= 10) {
+      		$('#sorryImageCount').modal();
+      		return;
+    	}
+    	else {
+  			uploadImage(e, $(this).parent().parent().parent().parent().attr('id'));
+  				    //fileinput. label.    div.    cell.     tr.      id
+    	}
+	});
+
+	uploadBtnLabel.appendChild(uploadIcon);
+	uploadBtnLabel.appendChild(fileInput);
+	uploadBtnDiv.appendChild(uploadBtnLabel);
+
+	var sliderContainerDiv = document.createElement("div");
+	sliderContainerDiv.className = "slider";
+	sliderContainerDiv.id = "slider-container"+row.id;
+
+	var prevBtnDiv = document.createElement("div");
+	prevBtnDiv.className = "control-prev-btn";
+	prevBtnDiv.id = "control-prev-btn"+row.id;
+	prevBtnDiv.innerText = "<";
+	prevBtnDiv.addEventListener('click', function() {
+  		prev($(this).parent().parent().parent().attr('id'));
+  		//prevbtndiv. div.      cell.     row.      id
+	});
+
+	var nextBtnDiv = document.createElement("div");
+	nextBtnDiv.className = "control-next-btn";
+	nextBtnDiv.id = "control-next-btn"+row.id;
+	nextBtnDiv.innerText = ">";
+	nextBtnDiv.addEventListener('click', function() {
+  		next($(this).parent().parent().parent().attr('id'));
+  		//prevbtndiv. div.      cell.     row.      id
+  		//alert($(this).parent().attr('id'));
+	});
+
+	sliderContainerDiv.appendChild(prevBtnDiv);
+	sliderContainerDiv.appendChild(nextBtnDiv);
+
+	cell4.className = "option-image-td";
+	cell4.appendChild(uploadBtnDiv);
+	cell4.appendChild(sliderContainerDiv);
+	
+	///
 	var removeBtn = document.createElement("button");
 	removeBtn.className = "btn btn-danger";
 	removeBtn.title = "Remove";
@@ -209,8 +316,10 @@ function addOptionRow(tbody) {
 	removeBtn.addEventListener("click", function() {
   		removeOptionRow(row);
 	});
+	cell5.className = "option-remove-td";
 
 	//adding cell into row
+	row.appendChild(cell0);
 	row.appendChild(cell1);
 	row.appendChild(cell2);
 	row.appendChild(cell3);
@@ -218,6 +327,8 @@ function addOptionRow(tbody) {
 	row.appendChild(cell5);
 	//adding row into tbody
 	tbody.appendChild(row);
+	
+	rowCount++;
 }
 
 function addTable2Foot(table) {
@@ -227,14 +338,15 @@ function addTable2Foot(table) {
 
 	//cell
 	cell.className = "option-add-td";
-	cell.colSpan = "5";
+	cell.colSpan = "6";
 	cell.align = "right";
 	//button
 	var button =  document.createElement('button');
 	button.className = "btn btn-primary";
 	button.title = "Add Row";
 	button.addEventListener("click", function() {
-  		addOptionRow(table.tBodies[0]);
+  		addOptionRow(table.tBodies[0], $(this).parent().parent().parent().parent().parent().parent().attr('id'));
+  									  //button. cell.     row.    tfoot.   table.    div.     div.      id
 	});
 	//icon
 	var addIcon = document.createElement('i');
@@ -256,7 +368,7 @@ function addTable2Foot(table) {
 function addTable2(optionTable) {
 	//table
 	var table2 = document.createElement('table');
-	table2.className = "table table-bordered table-striped";
+	table2.className = "table fixed table-bordered table-striped";
 
 	var tbody = document.createElement('tbody');
 

@@ -39,5 +39,6 @@ class AdminProductController extends Controller
                 <td>{!! html_entity_decode($productlist->des, ENT_QUOTES, 'UTF-8') !!} </td>
             </tr>
         @endforeach
-    </table>*/
+    </table>
+    */
 }

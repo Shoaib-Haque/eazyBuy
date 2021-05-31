@@ -3,10 +3,13 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/add.css')}}" type="text/css">
+	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/add.css')}}"    type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/editor.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/option.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/uploadImage.css')}}" type="text/css">
+	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/slider.css')}}" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
+	
 </head>
 <body>
 	@section('addproduct')
@@ -42,7 +45,6 @@
 				<a onclick="divVisibility('data');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Data</a>
 				<a onclick="divVisibility('links');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Links</a>
 				<a onclick="divVisibility('options');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Option</a>
-				<a onclick="divVisibility('price');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Price</a>
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
 				<a onclick="divVisibility('features');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Features</a>
@@ -53,14 +55,14 @@
 				<table>
 			    	<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Product Name</strong></td>
-			            <td class="td-right"><input type="text" name="title" id="name"></td>
+			            <td class="td-right"><input type="text" name="title" id="name" placeholder="Product Name"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left"><strong>Description</strong></td>
+			        	<td class="td-left"><strong>About this item</strong></td>
 			            <td class="td-right">
 			            	<div id="toolbar-container"></div>
         					<div id="editor"></div>
@@ -73,8 +75,8 @@
 			<div id="data">
 				<table>
 					<tr>
-			        	<td class="td-left"><strong><font class="star">*</font>Model</strong></td>
-			            <td class="td-right"><input type="text" name="model" id="model"></td>
+			        	<td class="td-left"><strong>Model</strong></td>
+			            <td class="td-right"><input type="text" name="model" id="model" placeholder="Model"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -135,8 +137,23 @@
 			        	</td>
 				        <td class="td-right" id="maximum_day_needs_to_arrive_td">
 				           	<strong><font class="star">*</font>Maximum Days Needs To Arrive</strong>
-				           	<input type="number" name="maximum_day_needs_to_arrive" id="maximum_day_needs_to_arrive">
+				           	<input type="number" name="maximum_day_needs_to_arrive" id="maximum_day_needs_to_arrive"
+				           	onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)" 
+				           	placeholder="Maximum Days Needs To Arrive">
 				        </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left"><strong>Stock Status</strong></td>
+			            <td class="td-right">
+			            	<select name="stock_status">
+			            		<option value="InStock">In Stock</option>
+			            		<option value="OutOfStock">Out of Stock</option>
+			            	</select>
+			            </td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -156,10 +173,21 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
+			        	<td class="td-left"><strong><font class="star">*</font>Selling Price</strong></td>
+			            <td class="td-right">
+			            	<input type="number" name="selling_price" id="selling_price" placeholder="Selling Price"
+			            	onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
 			        	<td class="td-left"><strong>Tax Class</strong></td>
 			            <td class="td-right">
 			            	<select name="subtract_stock">
-			            		<option value="none">None</option>
+			            		<option value="none">---None---</option>
 			            		<option value="taxable_goods">Taxable Goods</option>
 			            		<option value="downloadable_products">Downloadable Products</option>
 			            	</select>
@@ -203,15 +231,135 @@
 			        <tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Brand</strong></td>
 			            <td class="td-right">
-			            	<select name="brand_id" id="brand_id">
-			            		<option>Select Brand</option>
-			            	</select>
+			            	<i class="fas fa-search form__icon"></i>
+			            	<input type="text" name="brandName" id="brandName" 
+			            	class="form__input" placeholder="     Search Brand...">
 			            </td>
 			        </tr>
 			    </table>
 			</div>
 
 			<div id="options">
+				<div class="modal fade" id="sorryImageCount" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Sorry!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>One Option May Have Ten Images At Most.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="sorryFileFormat" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Wrong File Format!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>You can upload JPEG, PNG, GIF or TIFF files.<br>easyBuy prefers JPEG.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="sorryImageBadResolution" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Bad Resolution!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>Image dimensions need to be at least 500 pixels wide and 500 pixels tall.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="sorryImageBigResolution" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Too Large Resolution!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>Image dimensions need to be at most 10000 pixels wide and 10000 pixels tall.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="sorryImageSizeSmall" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Poor Image Size!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>Image Size is too small. It must be at least 1 megapixel.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="sorryImageSizeLarge" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Too Large Image Size!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>Image Size is too large. It must be at most 10 megapixels.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
 				<div id="option-div">
 					
 				</div>
@@ -219,15 +367,6 @@
 				<div class="add-option-group-btn-div">
 					<button type="button" onclick="addOptionGroup()" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Add Option Group"><i class="fas fa-plus"></i></button>
 				</div>
-			</div>
-
-			<div id="price">
-				<table>
-					<tr>
-			        	<td class="td-left"><strong><font class="star">*</font>Selling Price</strong></td>
-			            <td class="td-right"><input type="number" name="price"></td>
-			        </tr>
-			    </table>
 			</div>
 
 			<div id="image">
@@ -254,12 +393,12 @@
 			<div id="features">
 				<table>
 					<tr>
-						<td class="td-left"><strong>Feature Name</strong></td>
-						<td class="td-right"><input type="text" name=""></td>
+						<td class="td-left"><strong>Feature Type</strong></td>
+						<td class="td-right"><input type="text" name="" placeholder="Feature Type"></td>
 					</tr>
 					<tr>
-						<td class="td-left"><strong>Value</strong></td>
-						<td class="td-right"><input type="text" name=""></td>
+						<td class="td-left"><strong>Attribute</strong></td>
+						<td class="td-right"><input type="text" name="" placeholder="Attribute"></td>
 					</tr>
 				</table>
 			</div>
@@ -267,13 +406,17 @@
 		</div>
 	</div>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.js"></script>
+   	
 	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
 	<script src="{{ asset('js/admin/catalog/product/addproducttoolbar.js') }}" async></script>
 	<script src="{{ asset('js/admin/catalog/product/addproducteditor.js') }}" async></script>
-	<script src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
+	<script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
 	<script src="{{ asset('js/admin/catalog/product/option.js') }}" async></script>
-	<script src="{{ asset('js/admin/catalog/product/uploadImage.js') }}" async></script>
+	<script src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
+	
     @endsection
 </body>
 </html>
