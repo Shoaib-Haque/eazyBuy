@@ -106,8 +106,11 @@ function prev(rowid) {
 function next(rowid) {
     document.getElementById('slider-container'+rowid).scrollLeft += 270;
 }
-
-$(".slide img").on("click" , function(){
-  $(this).toggleClass('zoomed');
-  $(".overlay").toggleClass('active');
-})
+jQuery.noConflict()(function ($) {
+  $(document).ready(function () {
+    $(".slide img").on("click" , function(){
+      $(this).toggleClass('zoomed');
+      $(".overlay").toggleClass('active');
+    });
+  });
+});

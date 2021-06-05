@@ -43,9 +43,6 @@ class AdminBrandController extends Controller
         $term = $request->term;
 
         $queries = $this->brand->searchBrand($term);
-        //$queries = DB::table('brands') //Your table name
-        //    ->where('name', 'like', '%'.$term.'%') //Your selected row
-        //    ->take(5)->get();
         $results = array();
 
         foreach ($queries as $query)

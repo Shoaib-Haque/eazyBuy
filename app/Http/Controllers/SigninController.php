@@ -21,13 +21,19 @@ class SigninController extends Controller
     }
 
 	public function signin(Request $req) {
-        if (isset($this->admin->getAdminByEmailPassword($req->email, $req->password)->id)) {
-            $result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
-            $req->session()->put('adminid', $result->id);
-            $req->session()->put('adminname', $result->firstname." ".$result->lastname);
-            return redirect()->route('admin.index');
+        if (substr($req->email, strlen($req->email)-12) == "@easybuy.com") {
+            if (isset($this->admin->getAdminByEmailPassword($req->email, $req->password)->id)) {
+                $result = $this->admin->getAdminByEmailPassword($req->email, $req->password);
+                $req->session()->put('adminid', $result->id);
+                $req->session()->put('adminname', $result->firstname." ".$result->lastname);
+                return redirect()->route('admin.index');
+            }
+            else {
+                $req->session()->flash('msg', '! Invalid Email or Password');
+                return redirect()->route('signin.index');
+            }
         }
-        else if (isset($this->customer->getCustomerByEmailPassword($req->email, $req->password)->id)) {
+        elseif (isset($this->customer->getCustomerByEmailPassword($req->email, $req->password)->id)) {
             $result = $this->customer->getCustomerByEmailPassword($req->email, $req->password);
             $req->session()->put('customerid', $result->id);
             $req->session()->put('customername', $result->name);

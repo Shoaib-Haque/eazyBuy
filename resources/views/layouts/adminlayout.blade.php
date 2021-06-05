@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sidebar template</title>
+    <title></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
@@ -53,25 +53,25 @@
 
         <div class="sidebar-menu mb-5">
           <ul>
-            <li class="sidebar-dropdown">
+            <li class="sidebar-dropdown dashboard">
               <a href="/admin"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
             </li>
 
             <li class="sidebar-dropdown">
-              <a><i class="fas fa-tags"></i><span>Catalog</span></a>
+              <a class="sidebar-dropdown-a"><i class="fas fa-tags fw"></i><span>Catalog</span></a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="/admin/catalog/departments"><i class="fa fa-angle-double-right"><span></i>Departments</span></a>
+                    <a href="/admin/catalog/department"><i class="fa fa-angle-double-right"><span></i>Departments</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/categories"><i class="fa fa-angle-double-right"></i><span>Categories</span></a>
+                    <a href="/admin/catalog/category"><i class="fa fa-angle-double-right"></i><span>Categories</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/products"><i class="fa fa-angle-double-right"></i><span>Products</span></a>
+                    <a href="/admin/catalog/product"><i class="fa fa-angle-double-right"></i><span>Products</span></a>
                   </li>
                   <li>
-                    <a href="/admin/catalog/brands"><i class="fa fa-angle-double-right"></i><span>Brands</span></a>
+                    <a href="/admin/catalog/brand"><i class="fa fa-angle-double-right"></i><span>Brands</span></a>
                   </li>
                 </ul>
               </div>
@@ -170,16 +170,12 @@
   <!-- page-content" -->
 
 <!-- page-wrapper -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" async>
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous" async>
-    </script>
-    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" async></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" crossorigin="anonymous" async 
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" ></script>
     <script src="{{ asset('js/admin/layoutSideNav.js') }}" async></script>
-
 </body>
 </html>

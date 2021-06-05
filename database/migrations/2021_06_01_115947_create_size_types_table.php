@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterColors1 extends Migration
+class CreateSizeTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AlterColors1 extends Migration
      */
     public function up()
     {
-        Schema::table('colors', function (Blueprint $table) {
-            $table->integer('brand_id')->unsigned();
-            $table->foreign('brand_id')->references('id')->on('brands');
+        Schema::create('size_types', function (Blueprint $table) {
+            $table->increments('id');
+            //$table->timestamps();
+            $table->string('type', 50);
         });
     }
 
@@ -26,8 +27,6 @@ class AlterColors1 extends Migration
      */
     public function down()
     {
-        Schema::table('colors', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('size_types');
     }
 }

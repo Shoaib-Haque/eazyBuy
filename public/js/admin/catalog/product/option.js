@@ -7,34 +7,34 @@ function removeOptionDiv(option) {
 
 function addRemoveDiv(option) {
 	//option remove div
-	var removeDiv = document.createElement('div');
-	removeDiv.className = 'remove-option';
-	//remove btn div
-	var removeBtnDiv = document.createElement('div');
-	removeBtnDiv.className = "remove-btn";
-	
-	//span for remove btn
-	var span = document.createElement('span');
-	span.id = 'remove-option-group-id'+option.id;
-	span.className = 'remove-option-group-class';
-	span.title = "Remove Option Group";
-	
-	//icon
-	var trashIcon = document.createElement('i');
-	trashIcon.className = "far fa-trash-alt";
-	//call remove div
-	trashIcon.addEventListener("click", function() {
-  		removeOptionDiv(option);
-	});
+		var removeDiv = document.createElement('div');
+		removeDiv.className = 'remove-option';
+		//remove btn div
+		var removeBtnDiv = document.createElement('div');
+		removeBtnDiv.className = "remove-btn";
+		
+		//span for remove btn
+		var span = document.createElement('span');
+		span.id = 'remove-option-group-id'+option.id;
+		span.className = 'remove-option-group-class';
+		span.title = "Remove Option Group";
+		
+		//icon
+		var trashIcon = document.createElement('i');
+		trashIcon.className = "far fa-trash-alt";
+		//call remove div
+		trashIcon.addEventListener("click", function() {
+	  		removeOptionDiv(option);
+		});
 
-	//adding icon into span
-	span.appendChild(trashIcon);
-	//adding span into remove btn div
-	removeBtnDiv.appendChild(span);
-	//adding remove btn div into option  remove div
-	removeDiv.appendChild(removeBtnDiv);
-	//adding option remove div into option div
-	option.appendChild(removeDiv);
+		//adding icon into span
+		span.appendChild(trashIcon);
+		//adding span into remove btn div
+		removeBtnDiv.appendChild(span);
+		//adding remove btn div into option  remove div
+		removeDiv.appendChild(removeBtnDiv);
+		//adding option remove div into option div
+		option.appendChild(removeDiv);
 }
 
 function addTable1Heading(table) {
@@ -332,37 +332,38 @@ function addOptionRow(tbody, DivId) {
 }
 
 function addTable2Foot(table) {
-	var tfoot =  document.createElement('tfoot');
-	var row =  document.createElement('tr');
-	var cell =  document.createElement('td');
+		var tfoot =  document.createElement('tfoot');
+		var row =  document.createElement('tr');
+		var cell =  document.createElement('td');
 
-	//cell
-	cell.className = "option-add-td";
-	cell.colSpan = "6";
-	cell.align = "right";
-	//button
-	var button =  document.createElement('button');
-	button.className = "btn btn-primary";
-	button.title = "Add Row";
-	button.addEventListener("click", function() {
-  		addOptionRow(table.tBodies[0], $(this).parent().parent().parent().parent().parent().parent().attr('id'));
-  									  //button. cell.     row.    tfoot.   table.    div.     div.      id
-	});
-	//icon
-	var addIcon = document.createElement('i');
-	addIcon.className = "fa fa-plus-circle";
-	//addIcon.aria-hidden = "true";
+		//cell
+		cell.className = "option-add-td";
+		cell.colSpan = "6";
+		cell.align = "right";
+		//button
+		var button =  document.createElement('button');
+		button.className = "btn btn-primary";
+		button.title = "Add Row";
+		button.addEventListener("click", function() {
+	  		addOptionRow(table.tBodies[0],
+	  			$(this).parent().parent().parent().parent().parent().parent().attr('id'));
+	  									  //button. cell.     row.    tfoot.   table.    div.     div.      id
+		});
+		//icon
+		var addIcon = document.createElement('i');
+		addIcon.className = "fa fa-plus-circle";
+		//addIcon.aria-hidden = "true";
 
-	//adding icon into button
-	button.appendChild(addIcon);
-	//adding button into cell
-	cell.appendChild(button);
-	//adding cell into row
-	row.appendChild(cell);
-	//adding row into foot
-	tfoot.appendChild(row);
-	//adding foot into table
-	table.appendChild(tfoot);
+		//adding icon into button
+		button.appendChild(addIcon);
+		//adding button into cell
+		cell.appendChild(button);
+		//adding cell into row
+		row.appendChild(cell);
+		//adding row into foot
+		tfoot.appendChild(row);
+		//adding foot into table
+		table.appendChild(tfoot);
 }
 
 function addTable2(optionTable) {
@@ -383,25 +384,25 @@ function addTable2(optionTable) {
 
 function addOptionGroup() {
 	//option div
-	var option = document.createElement('div');
-	option.id = 'option'+div;
-	option.className = 'option';
+		var option = document.createElement('div');
+		option.id = 'option'+div;
+		option.className = 'option';
 
-	//option table div
-	var optionTable = document.createElement('div');
-	optionTable.className = "option-table";
+		//option table div
+		var optionTable = document.createElement('div');
+		optionTable.className = "option-table";
 
-	addRemoveDiv(option);
+		addRemoveDiv(option);
 
-	addTable1(optionTable);
-	addTable2(optionTable);
+		addTable1(optionTable);
+		addTable2(optionTable);
 
-	//adding optionTable div into option div
-	option.appendChild(optionTable);
+		//adding optionTable div into option div
+		option.appendChild(optionTable);
 
-	//adding every option div into main option div
-	var optionDiv = document.getElementById("option-div");
-	optionDiv.appendChild(option);
+		//adding every option div into main option div
+		var optionDiv = document.getElementById("option-div");
+		optionDiv.appendChild(option);
 
-	div++;
+		div++;
 }

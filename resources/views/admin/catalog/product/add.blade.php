@@ -7,9 +7,8 @@
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/editor.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/option.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/slider.css')}}" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
-	
+	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/autocomplete.css')}}" type="text/css">
+	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">-->
 </head>
 <body>
 	@section('addproduct')
@@ -19,7 +18,7 @@
 			<div class="button-group">
 				<form method="POST" id="token">
 					{{csrf_field()}}
-				<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
+				<button type="submit" id="submitBtn" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
 					onclick="return validation()">
 					<i class="fas fa-save"></i>
 				</button>
@@ -45,6 +44,9 @@
 				<a onclick="divVisibility('data');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Data</a>
 				<a onclick="divVisibility('links');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Links</a>
 				<a onclick="divVisibility('options');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Option</a>
+				<a onclick="divVisibility('map');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
+					Size & Color Map
+				</a>
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
 				<a onclick="divVisibility('features');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Features</a>
@@ -231,9 +233,8 @@
 			        <tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Brand</strong></td>
 			            <td class="td-right">
-			            	<i class="fas fa-search form__icon"></i>
-			            	<input type="text" name="brandName" id="brandName" 
-			            	class="form__input" placeholder="     Search Brand...">
+			            	<input type="text" name="brandName" id="brandName" class="fas" placeholder="&#xf002;Search Brand...">
+			            	<input type="hidden" name="brandId" id="brandId">
 			            </td>
 			        </tr>
 			    </table>
@@ -369,6 +370,56 @@
 				</div>
 			</div>
 
+			<div id="map">
+				<div>
+					<font class="star">
+						<strong>**This Size and Color Mapping System Preferable for Clothing, Jewelry and Accessories.**</strong>
+					</font> 
+				</div>
+				<div>
+					<div class="mb-2 mt-2">
+						<select id="size_type_id">
+							<option value="">Select Size Type</option>
+							@foreach($sizetypelist as $key => $value)
+				        	    <option value="{{$value->id}}">{{$value->type}}</option>
+				       		@endforeach
+						</select>
+					</div>
+					<div id="sizes_div" class="mb-2">
+						
+					</div>
+					<div id="color_div">
+						<div class="remove-option mb-0">
+							<i class="fas fa-tint"></i> Add Color Option
+						</div>
+						<table class="table color table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Color</th>
+									<th>Sizes</th>
+									<th>quantity</th>
+									<th>Price</th>
+									<th>Image</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="colorOptionTableTbody">
+								
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="6" align="right">
+										<button type="button" class="btn btn-primary" onclick="addColorOption()" title="Add Color">
+											<i class="fas fa-plus"></i>
+										</button>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+
 			<div id="image">
 				<table>
 					<tr class="image-tr">
@@ -405,18 +456,16 @@
 			</form>
 		</div>
 	</div>
-
-
-	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.js"></script>
-   	
-	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
-	<script src="{{ asset('js/admin/catalog/product/addproducttoolbar.js') }}" async></script>
-	<script src="{{ asset('js/admin/catalog/product/addproducteditor.js') }}" async></script>
-	<script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
-	<script src="{{ asset('js/admin/catalog/product/option.js') }}" async></script>
-	<script src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
-	
     @endsection
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" async></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
+    <!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js" async></script>-->
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/toolbar.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/editor.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/option.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/color.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
 </body>
 </html>

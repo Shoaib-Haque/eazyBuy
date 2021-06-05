@@ -1,18 +1,17 @@
 <?php  
 namespace App\Repository\Interfaces;
 
-interface IDepartmentRepository 
+interface ISizeRepository 
 {
-    public function getAllDepartments();
+    public function getAllSizes();
 
-    public function getDepartmentById($id);
+    public function getSizeById($id);
 
     //public function create( $collection = [] );
 
     public function createOrUpdate( $id = null, $collection = [] );
 
-    public function checkDuplicate( $name );
-
     //public function deleteUser($id);
+    public function SizeBySizeType($stid);
 }
 ?>
