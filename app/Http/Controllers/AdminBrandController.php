@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\http\Requests\BrandRequest;
 use App\Repository\Interfaces\IBrandRepository;
+use Illuminate\Support\Facades\DB;
 
 class AdminBrandController extends Controller
 {
@@ -37,4 +38,17 @@ class AdminBrandController extends Controller
     	$result = $this->brand->createOrUpdate($bid, array('name' => $req->name));
     	return redirect()->route('adminbrand.index');
     }  
+
+    public function searchBrand(Request $request) {
+        $term = $request->term;
+
+        $queries = $this->brand->searchBrand($term);
+        $results = array();
+
+        foreach ($queries as $query)
+        {
+            $results[] = ['id' => $query->id, 'value' => $query->name]; //you can take custom values as you want
+        }
+        return response()->json($results);
+    }
 }

@@ -36,5 +36,15 @@ class AdminDepartmentController extends Controller
     function editDepartment($did, DepartmentRequest $req) {
     	$result = $this->department->createOrUpdate($did, array('title' => $req->title));
     	return redirect()->route('admindepartment.index');
-    }    
+    } 
+
+    function checkDuplicate(Request $req) {
+        $name = $req->name;
+        if (isset($this->department->checkDuplicate($name)->id)) {
+            return "Has Duplicate";
+        }
+        else {
+            return "No Duplicate";
+        }
+    }
 }

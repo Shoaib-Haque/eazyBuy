@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAvailableSizeTable extends Migration
+class CreateSizesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAvailableSizeTable extends Migration
      */
     public function up()
     {
-        Schema::create('available_sizes', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->increments('id');
             //$table->timestamps();
-            $table->string('product_id', 15);
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('size_id')->unsigned();
-            $table->foreign('size_id')->references('id')->on('sizes');
+            $table->integer('size_type_id')->unsigned()->nullable();
+            $table->foreign('size_type_id')->references('id')->on('size_types');
+            $table->string('size', 50);
         });
     }
 
@@ -30,6 +29,6 @@ class CreateAvailableSizeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('available_sizes');
+        Schema::dropIfExists('sizes');
     }
 }

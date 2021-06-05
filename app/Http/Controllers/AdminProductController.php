@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\Interfaces\IDepartmentRepository;
+use App\Repository\Interfaces\ISizeTypeRepository;
 
 class AdminProductController extends Controller
 {
     public $department;
 
-    public function __construct(IDepartmentRepository $department) {
+    public function __construct(IDepartmentRepository $department, ISizeTypeRepository $sizeType) {
         $this->department = $department;
+        $this->sizeType = $sizeType;
     }
     
     function index() {
@@ -20,7 +22,8 @@ class AdminProductController extends Controller
 
     function add() {
         $departmentlist = $this->department->getAllDepartments();
-    	return view('admin.catalog.product.add', ['departmentlist' => $departmentlist]);
+        $sizetypelist = $this->sizeType->getAllSizeTypes();
+    	return view('admin.catalog.product.add', ['departmentlist' => $departmentlist, 'sizetypelist' => $sizetypelist]);
     }
 
     /*
@@ -39,5 +42,6 @@ class AdminProductController extends Controller
                 <td>{!! html_entity_decode($productlist->des, ENT_QUOTES, 'UTF-8') !!} </td>
             </tr>
         @endforeach
-    </table>*/
+    </table>
+    */
 }

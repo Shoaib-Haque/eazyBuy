@@ -27,29 +27,32 @@ Route::group(['middleware'=>['sess']], function(){
 	Route::group(['middleware'=>['adminsess']], function(){
 		Route::get('/admin','AdminController@index')->name('admin.index');
 
-		Route::get('/admin/catalog/departments','AdminDepartmentController@index')->name('admindepartment.index');
+		Route::get('/admin/catalog/department','AdminDepartmentController@index')->name('admindepartment.index');
 		Route::get('/admin/catalog/department/add','AdminDepartmentController@add')->name('admindepartment.add');
 		Route::post('/admin/catalog/department/add','AdminDepartmentController@addDepartment');
 		Route::get('/admin/catalog/department/edit/{did}','AdminDepartmentController@edit')->name('admindepartment.edit');
 		Route::post('/admin/catalog/department/edit/{did}','AdminDepartmentController@editDepartment');
+		Route::get('/department/checkduplicate','AdminDepartmentController@checkDuplicate')->name('admindepartment.checkduplicate');
 
-		Route::get('/admin/catalog/categories','AdminCategoryController@index')->name('admincategory.index');
+		Route::get('/admin/catalog/category','AdminCategoryController@index')->name('admincategory.index');
 		Route::get('/admin/catalog/category/add','AdminCategoryController@add')->name('admincategory.add');
 		Route::post('/admin/catalog/category/add','AdminCategoryController@addCategory');
 		Route::get('/admin/catalog/category/edit/{cid}','AdminCategoryController@edit')->name('admincategory.edit');
 		Route::post('/admin/catalog/category/edit/{cid}','AdminCategoryController@editCategory');
-		Route::get('/department/category','AdminCategoryController@categoryByDepartment')
-		->name('category.by.department');
+		Route::get('/department/category','AdminCategoryController@categoryByDepartment')->name('category.by.department');
 
-		Route::get('/admin/catalog/products','AdminProductController@index')->name('adminproduct.index');
+		Route::get('/admin/catalog/product','AdminProductController@index')->name('adminproduct.index');
 		Route::get('/admin/catalog/product/add','AdminProductController@add')->name('adminproduct.add');
 		Route::post('/admin/catalog/product/add','AdminProductController@addproduct');
 
-		Route::get('/admin/catalog/brands','AdminBrandController@index')->name('adminbrand.index');
+		Route::get('/admin/catalog/brand','AdminBrandController@index')->name('adminbrand.index');
 		Route::get('/admin/catalog/brand/add','AdminBrandController@add')->name('adminbrand.add');
 		Route::post('/admin/catalog/brand/add','AdminBrandController@addBrand');
 		Route::get('/admin/catalog/brand/edit/{bid}','AdminBrandController@edit')->name('adminbrand.edit');
 		Route::post('/admin/catalog/brand/edit/{bid}','AdminBrandController@editBrand');
+		Route::get('/brand/search','AdminBrandController@searchBrand')->name('searchbrand');
+
+		Route::get('/sizetype/size','AdminSizeController@sizeBySizeType')->name('sizetype.size');
 	});
 
 	Route::group(['middleware'=>['customersess']], function(){

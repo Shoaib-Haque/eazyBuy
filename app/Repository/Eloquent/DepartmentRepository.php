@@ -31,5 +31,14 @@ class DepartmentRepository implements IDepartmentRepository
         $department->save();
         return $department;
     }
+
+    public function checkDuplicate( $name ) {
+        $department = Departments::where('title', '=', $name)->first();
+        if( count($department) ){
+            return $department;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

@@ -31,5 +31,13 @@ class BrandRepository implements IBrandRepository
         $brand->save();
         return $brand;
     }
+
+    public function searchBrand($term) {
+        $data = Brands::where('name','LIKE','%'.$term.'%')
+                        ->take(5)
+                        ->get();
+
+        return $data;
+    }
 }
 ?>

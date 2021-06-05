@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title></title>
-	<script src="{{ asset('js/admin/catalog/department/validation.js') }}"></script>
+	<script src="{{ asset('js/admin/catalog/department/add/validation.js') }}"></script>
 </head>
 <body>
 	@section('adddepartment')
@@ -17,6 +17,7 @@
 					onclick="return validation()">
 					<i class="fas fa-save"></i>
 				</button>
+
 				<a href="/admin/catalog/departments">
 					<button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="Cancel">
 						<i class="fas fa-long-arrow-alt-left"></i>

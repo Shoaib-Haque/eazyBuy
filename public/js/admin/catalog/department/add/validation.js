@@ -16,6 +16,28 @@ function special_character_check(name){
 	}
 }
 
+function checkDuplicate(name) {
+	var result;
+	$.ajax({
+		type:"get",
+		url: '/department/checkduplicate',
+		async: false, 
+		data:{
+			name:name,
+		},
+		datatype:'text',
+		success:function(data){
+			console.log(data);
+			if (data == "Has Duplicate") {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+		},
+	});
+	return result;
+}
 
 function validation(){
 	var name = document.getElementById("name");
@@ -31,12 +53,14 @@ function validation(){
 	else if(special_character_check(name.value)){
 		document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
 	}
+	else if(checkDuplicate(name.value)) {
+		document.getElementById("nameLabel").innerHTML = "Department name already in use!!";
+	}
 	else{
 		document.getElementById("nameLabel").innerHTML = "";
 		document.getElementById("name").innerHTML = name;
 		flagname = true;
 	}
-	
 	
 	if (flagname == false) {
 		return false;

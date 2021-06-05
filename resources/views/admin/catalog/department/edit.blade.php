@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title></title>
-	<script src="{{ asset('js/admin/catalog/department/validation.js') }}"></script>
+	<script src="{{ asset('js/admin/catalog/department/edit/validation.js') }}"></script>
 </head>
 <body>
 	@section('editdepartment')
@@ -13,10 +13,28 @@
 			<div class="button-group">
 				<form method="POST">
 					{{csrf_field()}}
-				<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
+				<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
 					onclick="return validation()">
 					<i class="fas fa-save"></i>
 				</button>
+
+				<div class="modal fade" id="confirmBox" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+				    	<div class="modal-content">
+				    		<div class="modal-body">
+				    			<h6>Are you sure you want to change this department name?</h6>
+				      		</div>
+				      		<div>
+				      			<a href="/admin/catalog/departments">
+				        			<button type="button" class="btn btn-danger btn-sm ml-3">No</button>
+				        		</a>
+				        		<button type="submit" class="btn btn-success btn-sm">Yes</button>
+				      		</div>
+				    	</div>
+				  	</div>
+				</div>
+
 				<a href="/admin/catalog/departments">
 					<button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="Cancel">
 						<i class="fas fa-long-arrow-alt-left"></i>
