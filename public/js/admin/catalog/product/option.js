@@ -249,7 +249,7 @@ function addOptionRow(tbody, DivId) {
 
 	var uploadBtnLabel = document.createElement("label");
 	uploadBtnLabel.for = "uploadFile";
-	uploadBtnLabel.className = "btn btn-light btn-sm";
+	uploadBtnLabel.className = "btn btn-light btn-sm rounded-label";
 	uploadBtnLabel.title = "Upload Image";
 
 	var uploadIcon = document.createElement("i");
@@ -264,7 +264,7 @@ function addOptionRow(tbody, DivId) {
     	}
     	else {
   			uploadImage(e, $(this).parent().parent().parent().parent().attr('id'));
-  				    //fileinput. label.    div.    cell.     tr.      id
+  				    //fileinput.    label.    div.    cell.     tr.      id
     	}
 	});
 
@@ -332,44 +332,48 @@ function addOptionRow(tbody, DivId) {
 }
 
 function addTable2Foot(table) {
-		var tfoot =  document.createElement('tfoot');
-		var row =  document.createElement('tr');
-		var cell =  document.createElement('td');
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			var tfoot =  document.createElement('tfoot');
+			var row =  document.createElement('tr');
+			var cell =  document.createElement('td');
 
-		//cell
-		cell.className = "option-add-td";
-		cell.colSpan = "6";
-		cell.align = "right";
-		//button
-		var button =  document.createElement('button');
-		button.className = "btn btn-primary";
-		button.title = "Add Row";
-		button.addEventListener("click", function() {
-	  		addOptionRow(table.tBodies[0],
-	  			$(this).parent().parent().parent().parent().parent().parent().attr('id'));
-	  									  //button. cell.     row.    tfoot.   table.    div.     div.      id
+			//cell
+			cell.className = "option-add-td";
+			cell.colSpan = "6";
+			cell.align = "right";
+			//button
+			var button =  document.createElement('button');
+			button.className = "btn btn-primary";
+			button.title = "Add Row";
+			button.addEventListener("click", function() {
+		  		addOptionRow(table.tBodies[0],
+		  			$(this).parent().parent().parent().parent().parent().parent().attr('id'));
+		  									  //button. cell.     row.    tfoot.   table.    div.     div.      id
+			});
+			//icon
+			var addIcon = document.createElement('i');
+			addIcon.className = "fa fa-plus-circle";
+			//addIcon.aria-hidden = "true";
+
+			//adding icon into button
+			button.appendChild(addIcon);
+			//adding button into cell
+			cell.appendChild(button);
+			//adding cell into row
+			row.appendChild(cell);
+			//adding row into foot
+			tfoot.appendChild(row);
+			//adding foot into table
+			table.appendChild(tfoot);
 		});
-		//icon
-		var addIcon = document.createElement('i');
-		addIcon.className = "fa fa-plus-circle";
-		//addIcon.aria-hidden = "true";
-
-		//adding icon into button
-		button.appendChild(addIcon);
-		//adding button into cell
-		cell.appendChild(button);
-		//adding cell into row
-		row.appendChild(cell);
-		//adding row into foot
-		tfoot.appendChild(row);
-		//adding foot into table
-		table.appendChild(tfoot);
+	});
 }
 
 function addTable2(optionTable) {
 	//table
 	var table2 = document.createElement('table');
-	table2.className = "table fixed table-bordered table-striped";
+	table2.className = "table fixed table-bordered table-striped table-sm";
 
 	var tbody = document.createElement('tbody');
 

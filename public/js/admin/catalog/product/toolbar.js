@@ -1,4 +1,4 @@
-var divs = ["general", "data", "links", "options", "map", "image", "features"];
+var divs = ["general", "data", "links", "options", "map", "image", "attribute"];
 
 function divVisibility(divId) {
   visibleDivId = divId;

@@ -20,8 +20,8 @@ class AdminSizeController extends Controller
             $result = $this->size->sizeBySizeType($req->size_type_id);
             if(count($result) >=1){
                 echo '<div class="remove-option">Select Size(s)</div>';
-                echo '<div><input type="checkbox" onclick="selectAllSizes(this);">
-                <label id="selectAllLabel">Select All</label><div>';
+                echo '<div><input id="selectAllSizesId" type="checkbox" onclick="selectAllSizes(this);">
+                <label id="selectAllLabel">Select All</label></div>';
                 echo '<div id="sizes">';
                 foreach($result as $key => $value){ 
                     echo '<input type="checkbox" name="size" id="size'.$value->id.'" value="'.$value->id.'">

@@ -43,15 +43,17 @@ jQuery.noConflict()(function ($) { // this was missing for me
 	        } 
 	        else {
 	        	category_tbody.style.display = "none";
+	        	//category_id.remove();
 	        	category_id.find('option').remove().end().append('<option value="">Select Department First</option>').val('');
 	        }
 	    });
 	});
 });
 
+//Brand Search
 jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
-		$( "#brandName" ).autocomplete({
+		$( "#brand" ).autocomplete({
 		    source: function( request, response ) {
 		        $.ajax({
 		        	url: "/brand/search",
@@ -67,8 +69,8 @@ jQuery.noConflict()(function ($) {
 		        	minLength: 1,
 		        	autoFocus: true,
 				    select: function( event, ui ) {
-				    	$('#brandName').val(ui.item.value);
-				    	$('#brandId').val(ui.item.id);
+				    	$('#brand').val(ui.item.value);
+				    	$('#brand_id').val(ui.item.id);
 				    }
 		        });
 		    }
@@ -76,7 +78,8 @@ jQuery.noConflict()(function ($) {
 	});
 });
 
-jQuery.noConflict()(function ($) { // this was missing for me
+//Get sizes by size type
+jQuery.noConflict()(function ($) { 
 	$(document).ready(function () {
 		var size_type_id = $("#size_type_id");
 	    $("#size_type_id").change(function () {
@@ -110,13 +113,188 @@ jQuery.noConflict()(function ($) { // this was missing for me
 	});
 });
 
-
+var selectOptions = ["+", "-"];
+//select all sizes checkbox
 function selectAllSizes(source) {
     var checkboxes = document.querySelectorAll('#sizes > input[type="checkbox"]');
     var selectAllLabel = document.getElementById("selectAllLabel");
-    selectAllLabel.innerText == "Select All" ? selectAllLabel.innerText =  "Deselect All" : selectAllLabel.innerText = "Select All"; 
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
     }
+
+    if (selectAllLabel.innerText == "Deselect All") {
+    	jQuery('#color_div table tbody tr').find('td:lt(4):gt(0)').empty();
+    }
+    else {
+    	if ($('#color_div table tbody tr').length >= 1) {
+    		//var tbody = jQuery('#color_div table tbody');
+    		var checkedSizes = document.querySelectorAll('input[name=size]:checked');
+
+    		$('#color_div > table > tbody  > tr').each(function(index, tr) { 
+   				cell2 = tr.cells[1];
+    			cell3 = tr.cells[2];
+    			cell4 = tr.cells[3];
+    			
+    			var allTextBox = $(cell2).find(':input[type=text],select').clone();
+
+    			outer_loop: 
+    			for (var i = 0; i < checkedSizes.length; i++) {
+					var checkBoxId = checkedSizes[i].id;
+					var labelText = $("#"+checkBoxId).next("label").html();
+    				for (var t = 0; t < allTextBox.length; t++) {
+    					if (allTextBox[t].value == labelText) {
+    						continue outer_loop;
+    					}
+    				}
+					var sizeText = document.createElement('input');
+					sizeText.setAttribute('type', 'text');
+					sizeText.setAttribute('disabled', 'disabled');
+					sizeText.setAttribute('value', labelText);
+					sizeText.className = "disabledText";
+					cell2.appendChild(sizeText);
+
+					var quantityNumber = document.createElement('input');
+					quantityNumber.setAttribute('type', 'number');
+					quantityNumber.setAttribute("min", "0");
+					quantityNumber.setAttribute('placeholder', "Quantity");
+					quantityNumber.addEventListener('keydown',preventDot, false);
+					quantityNumber.addEventListener('paste', preventPaste, false);
+					quantityNumber.addEventListener('input', preventInput, false);
+					cell3.appendChild(quantityNumber);
+
+					var selectVar = document.createElement('select');
+					selectVar.className = "colorPriceSelect";
+					//Create and append the options
+					
+					for (var j = 0; j < selectOptions.length; j++) {
+					    var selectOption = document.createElement("option");
+					    selectOption.value = selectOptions[j];
+					    selectOption.text = selectOptions[j];
+					    selectVar.appendChild(selectOption);
+					}
+
+					var priceNumber = document.createElement('input');
+					priceNumber.setAttribute('type', 'number');
+					priceNumber.setAttribute("min", "0");
+					priceNumber.setAttribute('placeholder', "Price");
+					priceNumber.className = "colorPriceNumber";
+					priceNumber.addEventListener('paste', preventStringPaste, false);
+
+					cell4.appendChild(selectVar);
+					cell4.appendChild(priceNumber);
+				}
+			});	
+    	}   
+    }
+
+    selectAllLabel.innerText == "Select All" ? 
+    selectAllLabel.innerText = "Deselect All" : selectAllLabel.innerText = "Select All"; 
 }
+
+//Select or unselect any size checkbox
+jQuery.noConflict()(function ($) { 
+	$(document).ready(function () {
+		// $(<parent>).on('<event>', '<child>', callback);
+		$(document).on('change', 'input[name=size]', function() {
+			var totalSizes = document.querySelectorAll('#sizes > input[type="checkbox"]');
+    		var selectAllLabel = document.getElementById("selectAllLabel");
+    		var selectAllSizesId = document.getElementById("selectAllSizesId");
+		    if(this.checked) {
+    			var checkedSizes = document.querySelectorAll('input[name=size]:checked');
+
+		    	if (totalSizes.length == checkedSizes.length) {
+		    		selectAllSizesId.checked = true;
+		    		selectAllLabel.innerText = "Deselect All";
+		    	}
+
+		    	var checkBoxId = this.id;
+				var labelText = $("#"+checkBoxId).next("label").html();
+		      	if ($('#color_div table tbody tr').length >= 1) {
+		    		$('#color_div > table > tbody  > tr').each(function(index, tr) { 
+		   				cell2 = tr.cells[1];
+		    			cell3 = tr.cells[2];
+		    			cell4 = tr.cells[3];
+							
+						var sizeText = document.createElement('input');
+						sizeText.setAttribute('type', 'text');
+						sizeText.setAttribute('disabled', 'disabled');
+						sizeText.setAttribute('value', labelText);
+						sizeText.className = "disabledText";
+						cell2.appendChild(sizeText);
+
+						var quantityNumber = document.createElement('input');
+						quantityNumber.setAttribute('type', 'number');
+						quantityNumber.setAttribute("min", "0");
+						quantityNumber.setAttribute('placeholder', "Quantity");
+						quantityNumber.addEventListener('keydown',preventDot, false);
+						quantityNumber.addEventListener('paste', preventPaste, false);
+						quantityNumber.addEventListener('input', preventInput, false);
+						cell3.appendChild(quantityNumber);
+
+						var selectVar = document.createElement('select');
+						selectVar.className = "colorPriceSelect";
+						//Create and append the options
+						for (var j = 0; j < selectOptions.length; j++) {
+							var selectOption = document.createElement("option");
+						    selectOption.value = selectOptions[j];
+						    selectOption.text = selectOptions[j];
+						    selectVar.appendChild(selectOption);
+						}
+
+						var priceNumber = document.createElement('input');
+						priceNumber.setAttribute('type', 'number');
+						priceNumber.setAttribute("min", "0");
+						priceNumber.setAttribute('placeholder', "Price");
+						priceNumber.className = "colorPriceNumber";
+						priceNumber.addEventListener('paste', preventStringPaste, false);
+
+						cell4.appendChild(selectVar);
+						cell4.appendChild(priceNumber);
+					});	
+		    	}   
+		    }
+		    else {
+		    	var uncheckedSizes = document.querySelectorAll('#sizes > input[type="checkbox"]:not(:checked)');
+    			
+		    	if (totalSizes.length == uncheckedSizes.length) {
+		    		selectAllSizesId.checked = false;
+		    		selectAllLabel.innerText = "Select All";
+		    	}
+
+		    	var checkBoxId = this.id;
+				var labelText = $("#"+checkBoxId).next("label").html();
+
+		      	if ($('#color_div table tbody tr').length >= 1) {
+		    		$('#color_div > table > tbody  > tr').each(function(index, tr) { 
+		    			cell2 = tr.cells[1];
+		    			cell3 = tr.cells[2];
+		    			cell4 = tr.cells[3];
+
+		    			var allTextBox = $(cell2).find(':input[type=text],select').clone();
+		    			var count = 0;
+
+		    			for (var t = 0; t < allTextBox.length; t++) {
+		    				if (allTextBox[t].value == labelText) {
+		    					break;
+		    				}
+		    				count++;
+		  				}
+
+		  				var textChild = $(cell2).find(':input[type=text]').eq(count);
+		  				var quantityChild = $(cell3).find(':input[type=number]').eq(count);
+		  				var selectChild = $(cell4).find('select').eq(count);
+		  				var priceChild = $(cell4).find(':input[type=number]').eq(count);
+		  				//var selectChild = $(cell4).children().eq(count*2);
+		  				//var priceChild = $(cell4).children().eq((count*2)+1);
+
+		  				textChild.remove();
+		  				quantityChild.remove();
+		  				selectChild.remove();
+		  				priceChild.remove();
+		    		});	
+		    	}
+		    }
+		});
+	});
+});
