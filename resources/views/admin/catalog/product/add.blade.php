@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/add.css')}}"    type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/editor.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/option.css')}}" type="text/css">
+	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/attribute.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/slider.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/autocomplete.css')}}" type="text/css">
 	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">-->
@@ -48,8 +49,8 @@
 					Size & Color Map
 				</a>
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
-				<a onclick="divVisibility('features');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
-				Features</a>
+				<a onclick="divVisibility('attribute');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
+				Attribute</a>
 			</div>
 
 			
@@ -57,7 +58,9 @@
 				<table>
 			    	<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Product Name</strong></td>
-			            <td class="td-right"><input type="text" name="title" id="name" placeholder="Product Name"></td>
+			            <td class="td-right">
+			            	<input type="text" name="product_name" id="product_name" placeholder="Product Name">
+			            </td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -68,7 +71,7 @@
 			            <td class="td-right">
 			            	<div id="toolbar-container"></div>
         					<div id="editor"></div>
-        					<input type="hidden" name="description" id="description" value="">
+        					<input type="hidden" name="about_this_item" id="about_this_item" value="">
 			            </td>
 			        </tr>
 			    </table>
@@ -85,10 +88,10 @@
 			        <tr><td colspan="2"></td></tr>
 
 					<tr>
-			        	<td class="td-left"><strong>Size Class</strong></td>
+			        	<td class="td-left"><strong>Length Class</strong></td>
 			            <td class="td-right">
-			            	<select name="size_class" id="size_class">
-			            		<option value="">Select Size Class</option>
+			            	<select name="length_class" id="length_class">
+			            		<option value="">Select Length Class</option>
 			            		<option value="centimeter">Centimeter</option>
 			            		<option value="millimeter">Millimeter</option>
 			            		<option value="inch">Inch</option>
@@ -100,8 +103,12 @@
 			        <tr><td colspan="2"></td></tr>
 
 			    	<tr>
-			        	<td class="td-left"><strong>Size</strong></td>
-			            <td class="td-right"><input type="text" name="size" id="size"></td>
+			        	<td class="td-left"><strong>Dimensions (L x W x H)</strong></td>
+			            <td class="td-right">
+			            	<input type="number" name="length" id="length" placeholder="Length">
+			            	<input type="number" name="width" id="width" placeholder="Width">
+			            	<input type="number" name="height" id="height" placeholder="Height">
+			            </td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -125,7 +132,7 @@
 
 			        <tr>
 			        	<td class="td-left"><strong>Weight</strong></td>
-			            <td class="td-right"><input type="text" name="weight" id="weight"></td>
+			            <td class="td-right"><input type="text" name="weight" id="weight" placeholder="Weight"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -133,14 +140,14 @@
 
 			        <tr>
 			        	<td class="td-left">
-			        		<input type="checkbox" name="shipping_required" value="Shipping Required" 
-			        		id="shipping_required" onclick="maximumDay()">
+			        		<input type="checkbox" value="Shipping Required" onclick="maximumDay()" 
+			        		id="shipping_required" name="shipping_required">
 			        		Shipping Required
 			        	</td>
 				        <td class="td-right" id="maximum_day_needs_to_arrive_td">
 				           	<strong><font class="star">*</font>Maximum Days Needs To Arrive</strong>
 				           	<input type="number" name="maximum_day_needs_to_arrive" id="maximum_day_needs_to_arrive"
-				           	onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)" 
+				           	onkeydown="preventDot(event)" oninput="preventInput(event)" onpaste="preventPaste(event)"
 				           	placeholder="Maximum Days Needs To Arrive">
 				        </td>
 			        </tr>
@@ -151,7 +158,7 @@
 			        <tr>
 			        	<td class="td-left"><strong>Stock Status</strong></td>
 			            <td class="td-right">
-			            	<select name="stock_status">
+			            	<select name="stock_status" id="stock_status">
 			            		<option value="InStock">In Stock</option>
 			            		<option value="OutOfStock">Out of Stock</option>
 			            	</select>
@@ -162,9 +169,30 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
+			        	<td class="td-left"><strong>Stock Quantity</strong></td>
+			        	<td class="td-right">
+			        		<input type="number" name="stock_quantity" id="stock_quantity" min="0" placeholder="Stock Quantity">
+			        	</td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left"><strong>Minimum Quantity</strong></td>
+			        	<td class="td-right">
+			        		<input type="number" name="minimum_quantity" id="minimum_quantity" 
+			        			min="1" placeholder="Minimum Quantity">
+			        	</td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
 			        	<td class="td-left"><strong>Subtract Stock</strong></td>
 			            <td class="td-right">
-			            	<select name="subtract_stock">
+			            	<select name="subtract_stock" id="subtract_stock">
 			            		<option value="yes">Yes</option>
 			            		<option value="no">No</option>
 			            	</select>
@@ -188,7 +216,7 @@
 			        <tr>
 			        	<td class="td-left"><strong>Tax Class</strong></td>
 			            <td class="td-right">
-			            	<select name="subtract_stock">
+			            	<select name="tax_class" id="tax_class">
 			            		<option value="none">---None---</option>
 			            		<option value="taxable_goods">Taxable Goods</option>
 			            		<option value="downloadable_products">Downloadable Products</option>
@@ -231,17 +259,119 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left"><strong><font class="star">*</font>Brand</strong></td>
+			        	<td class="td-left"><strong title="Autocomplete"><font class="star">*</font>Brand</strong></td>
 			            <td class="td-right">
-			            	<input type="text" name="brandName" id="brandName" class="fas" placeholder="&#xf002;Search Brand...">
-			            	<input type="hidden" name="brandId" id="brandId">
+			            	<input type="text" name="brand" id="brand" class="fas" placeholder="&#xf002;Search Brand...">
+			            	<input type="hidden" name="brand_id" id="brand_id">
 			            </td>
 			        </tr>
 			    </table>
 			</div>
 
 			<div id="options">
-				<div class="modal fade" id="sorryImageCount" tabindex="-1" role="dialog" 
+				<div id="option-div">
+					
+				</div>
+
+				<div class="add-option-group-btn-div">
+					<button type="button" onclick="addOptionGroup()" class="btn btn-info" 
+					data-toggle="tooltip" data-placement="top" title="Add Option Group">
+						<i class="fas fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+			<div id="map">
+				<div>
+					<font class="star">
+						<strong>**This Size and Color Mapping System Preferable for Clothing, Jewelry and Accessories.**</strong>
+					</font> 
+				</div>
+				<div>
+					<div class="mb-2 mt-2">
+						<select id="size_type_id" name="size_type_id">
+							<option value="">Select Size Type</option>
+							@foreach($sizetypelist as $key => $value)
+				        	    <option value="{{$value->id}}">{{$value->type}}</option>
+				       		@endforeach
+						</select>
+					</div>
+					<div id="sizes_div" class="mb-2">
+						
+					</div>
+					<div id="color_div">
+						<div class="remove-option mb-0">Add Color Option</div>
+						<table class="table color table-bordered table-striped table-sm">
+							<thead>
+								<tr>
+									<th>Color</th>
+									<th>Sizes</th>
+									<th>quantity</th>
+									<th>Price</th>
+									<th>Image</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="colorOptionTableTbody">
+								
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="6" align="right">
+										<button type="button" class="btn btn-primary" 
+										onclick="addColorOption()" title="Add Color">
+											<i class="fas fa-plus"></i>
+										</button>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div id="image">
+				<div>
+					<label class="btn btn-light btn-sm" for="uploadFile"  title="Upload Image">
+						<i class="fas fa-camera"></i>
+						<input type="file" name="" id="uploadFile" onchange="upImage(event);">
+					</label>
+				</div>
+				<div id="slider-container-div" class="slider-container">
+
+
+					<div class="image-prev" onclick="prevImage();" id="control-prev-div"><</div>
+					<div class="image-next" onclick="nextImage();" id="control-next-div">></div>
+				</div>
+			</div>
+
+			<div id="attribute">
+				<table class="table attribute table-bordered table-striped table-sm">
+					<thead>
+						<tr>
+							<td align="center">Attribute</td>
+							<td align="center">Text</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="attributeBody">
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3" align="right">
+								<button type="button" class="btn btn-primary" 
+								onclick="addAttribute()" title="Add Attribute">
+									<i class="fas fa-plus"></i>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			</form>
+
+			<div class="modal fade" id="sorryImageCount" tabindex="-1" role="dialog" 
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered" role="document">
 				    <div class="modal-content">
@@ -252,7 +382,7 @@
 				        </button>
 				      </div>
 				      <div class="modal-body">
-				        <h6>One Option May Have Ten Images At Most.</h6>
+				        <h6>You May Upload Ten Images At Most.</h6>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -360,105 +490,12 @@
 				    </div>
 				  </div>
 				</div>
-
-				<div id="option-div">
-					
-				</div>
-
-				<div class="add-option-group-btn-div">
-					<button type="button" onclick="addOptionGroup()" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Add Option Group"><i class="fas fa-plus"></i></button>
-				</div>
-			</div>
-
-			<div id="map">
-				<div>
-					<font class="star">
-						<strong>**This Size and Color Mapping System Preferable for Clothing, Jewelry and Accessories.**</strong>
-					</font> 
-				</div>
-				<div>
-					<div class="mb-2 mt-2">
-						<select id="size_type_id">
-							<option value="">Select Size Type</option>
-							@foreach($sizetypelist as $key => $value)
-				        	    <option value="{{$value->id}}">{{$value->type}}</option>
-				       		@endforeach
-						</select>
-					</div>
-					<div id="sizes_div" class="mb-2">
-						
-					</div>
-					<div id="color_div">
-						<div class="remove-option mb-0">
-							<i class="fas fa-tint"></i> Add Color Option
-						</div>
-						<table class="table color table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Color</th>
-									<th>Sizes</th>
-									<th>quantity</th>
-									<th>Price</th>
-									<th>Image</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody id="colorOptionTableTbody">
-								
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="6" align="right">
-										<button type="button" class="btn btn-primary" onclick="addColorOption()" title="Add Color">
-											<i class="fas fa-plus"></i>
-										</button>
-									</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-				</div>
-			</div>
-
-			<div id="image">
-				<table>
-					<tr class="image-tr">
-			        	<td class="image-td-1"><strong><font class="star">*</font>Display Picture</strong></td>
-			            <td class="image-td-2">
-			            	<div class="uploadOuter">
-							  	<label for="uploadFile" class="btn btn-primary">Upload Image</label>
-							  	<strong>OR</strong>
-								<span class="dragBox" >
-								  	Darg and Drop image here
-									<input type="file" id="uploadFile"
-										onChange="dragNdrop(event)"  ondragover="drag()" ondrop="drop()" />
-								</span>
-							</div>
-			           	</td>
-
-			           	<td class="image-td-3"><div id="preview"></div></td>
-			        </tr>
-				</table>
-			</div>
-
-			<div id="features">
-				<table>
-					<tr>
-						<td class="td-left"><strong>Feature Type</strong></td>
-						<td class="td-right"><input type="text" name="" placeholder="Feature Type"></td>
-					</tr>
-					<tr>
-						<td class="td-left"><strong>Attribute</strong></td>
-						<td class="td-right"><input type="text" name="" placeholder="Attribute"></td>
-					</tr>
-				</table>
-			</div>
-			</form>
 		</div>
 	</div>
     @endsection
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" async></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" async></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
     <!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js" async></script>-->
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/toolbar.js') }}" async></script>
@@ -466,6 +503,8 @@
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/option.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/color.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/attribute.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}" async></script>
 </body>
 </html>
