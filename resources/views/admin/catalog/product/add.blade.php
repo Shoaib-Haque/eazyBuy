@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/add.css')}}"    type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/editor.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/option.css')}}" type="text/css">
+	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/nestedOption.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/attribute.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/slider.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/autocomplete.css')}}" type="text/css">
@@ -51,6 +52,8 @@
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
 				<a onclick="divVisibility('attribute');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Attribute</a>
+				<a onclick="divVisibility('discount');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
+				Discount</a>
 			</div>
 
 			
@@ -274,10 +277,16 @@
 				</div>
 
 				<div class="add-option-group-btn-div">
-					<button type="button" onclick="addOptionGroup()" class="btn btn-info" 
-					data-toggle="tooltip" data-placement="top" title="Add Option Group">
-						<i class="fas fa-plus"></i>
-					</button>
+					<button type="button" onclick="addOptionGroup()" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Single Option Group">Add Single Option Group</button>
+					<strong>OR</strong>
+					<select id="nestedGroupCount">
+						<option value="">Select number of nested option</option>
+						@for($i = 2; $i <= 15; $i++)
+							<option value="{{$i}}">{{$i}}</option>
+						@endfor
+					</select>
+					<button type="button" onclick="addNestedOptionGroup()" class="btn btn-info btn-sm" data-toggle="tooltip" 
+					data-placement="top" title="Add Nested Option Group">Add Nested Option Group</button>
 				</div>
 			</div>
 
@@ -362,6 +371,33 @@
 							<td colspan="3" align="right">
 								<button type="button" class="btn btn-primary" 
 								onclick="addAttribute()" title="Add Attribute">
+									<i class="fas fa-plus"></i>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id="discount">
+				<table class="table discount table-bordered table-striped table-sm">
+					<thead>
+						<tr>
+							<th>Min Quantity</th>
+							<th>Discount</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="discountBody">
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5" align="right">
+								<button type="button" class="btn btn-primary" 
+								onclick="addDiscount()" title="Add Discount">
 									<i class="fas fa-plus"></i>
 								</button>
 							</td>
@@ -490,6 +526,26 @@
 				    </div>
 				  </div>
 				</div>
+
+				<div class="modal fade" id="selectOptionNumber" tabindex="-1" role="dialog" 
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Select Number!</font></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <h6>Please select number of nested option group.</h6>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 		</div>
 	</div>
     @endsection
@@ -501,10 +557,12 @@
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/toolbar.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/editor.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/option.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/singleOption.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/nestedOption.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/color.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/attribute.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/discount.js') }}" async></script>
 </body>
 </html>
