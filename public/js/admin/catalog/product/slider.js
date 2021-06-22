@@ -1,5 +1,6 @@
 "use strict";
 var slideDivCount = 0;
+
 function showImgRemoveBtn(btnId) {
     document.getElementById(btnId).style.display = "inline";
 }
@@ -122,6 +123,7 @@ function next(rowid) {
     document.getElementById('slider-container'+rowid).scrollLeft += 270;
 }
 
+///common for image.js
 jQuery.noConflict()(function ($) {
   $(document).ready(function () {
     $(".slide img").on("click" , function(){

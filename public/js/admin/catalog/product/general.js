@@ -1,3 +1,4 @@
+///editor
 DecoupledEditor
     .create( document.querySelector( '#editor' ) )
     .then( editor => {

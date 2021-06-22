@@ -1,11 +1,5 @@
-<!DOCTYPE html>
 @extends('layouts/adminlayout')
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	@section('departments')
+@section('departments')
 	<div class="main">
 		<h1>
 			<span class="normal">Departments</span>
@@ -50,6 +44,4 @@
 			</table>
 		</div>
 	</div>
-	@endsection
-</body>
-</html>
+@endsection

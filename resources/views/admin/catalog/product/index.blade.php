@@ -1,11 +1,5 @@
-<!DOCTYPE html>
 @extends('layouts.adminlayout')
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	@section('products')
+@section('products')
 	<div class="main">
 		<h1>
 			<span class="normal">Products</span>
@@ -39,6 +33,4 @@
 			</table>
 		</div>
 	</div>
-	@endsection
-</body>
-</html>
+@endsection

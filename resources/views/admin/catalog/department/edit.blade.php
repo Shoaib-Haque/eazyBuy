@@ -1,12 +1,5 @@
-<!DOCTYPE html>
 @extends('layouts/adminlayout')
-<html>
-<head>
-	<title></title>
-	<script src="{{ asset('js/admin/catalog/department/edit/validation.js') }}"></script>
-</head>
-<body>
-	@section('editdepartment')
+@section('editdepartment')
 	<div class="main">
 		<h1>
 			<span class="normal">Departments</span>
@@ -68,6 +61,6 @@
 			</form>
 		</div>
 	</div>
-	@endsection
-</body>
-</html>
+	
+	<script type="text/javascript" src="{{ asset('js/admin/catalog/department/edit/validation.js') }}"></script>
+@endsection

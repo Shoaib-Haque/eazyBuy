@@ -1,118 +1,25 @@
 var selectOptions = ["+", "-"];
-var nestedDiv = 1;
-
-function addOptionTypeTableHeading(table) {
-	//heading
-	var tableHeading = document.createElement('tr');
-
-	//th
-	var tableHeadingTh1 = document.createElement('th');
-	tableHeadingTh1.innerHTML = "<font class = 'star'>*</font>"+"Option Group";
-	var tableHeadingTh2 = document.createElement('th');
-	tableHeadingTh2.innerHTML = "<font class = 'star'>*</font>"+"Input Type";
-	var tableHeadingTh3 = document.createElement('th');
-	tableHeadingTh3.innerText = "Required";
-	var tableHeadingTh4 = document.createElement('th');
-	tableHeadingTh4.innerText = "Sort Order";
-	tableHeadingTh4.className = "sort-order-th";
-
-	//adding ths into heading
-	tableHeading.appendChild(tableHeadingTh1);
-	tableHeading.appendChild(tableHeadingTh2);
-	tableHeading.appendChild(tableHeadingTh3);
-	tableHeading.appendChild(tableHeadingTh4);
-
-	//adding heading into table
-	table.appendChild(tableHeading);
-}
-
-function addOptionTypeTableRow(table) {
-	//row
-	var row = document.createElement('tr');
-
-	//td
-	//text box for group title
-	var table1RowTd1 = document.createElement('td');
-	var optionGroupText = document.createElement('input');
-	optionGroupText.setAttribute('placeholder', "Option Group");
-	optionGroupText.setAttribute("type", "text");
-	table1RowTd1.appendChild(optionGroupText);
-
-	//select option for input type
-	var table1RowTd2 = document.createElement('td');
-	var optionGroupSelect = document.createElement('select');
-
-	//Create and append the options
-	var typeOptions = ["Checkbox", "Select", "Radio Button"];
-	for (var i = 0; i < typeOptions.length; i++) {
-	    var typeOption = document.createElement("option");
-	    typeOption.value = typeOptions[i];
-	    typeOption.text = typeOptions[i];
-	    optionGroupSelect.appendChild(typeOption);
-	}
-
-	table1RowTd2.appendChild(optionGroupSelect);
-
-	//checkbox for required
-	var table1RowTd3 = document.createElement('td');
-	table1RowTd3.align = "center";
-	var checkBoxRequired = document.createElement('input');
-	checkBoxRequired.setAttribute("type", "checkbox");
-	checkBoxRequired.value = "Required";
-	table1RowTd3.appendChild(checkBoxRequired);
-
-	//<td class="sort-order-td"><input type="number" name=""></td>
-	var table1RowTd4 = document.createElement('td');
-	table1RowTd4.className = "sort-order-td";
-	var sortOrderNumber = document.createElement('input');
-	sortOrderNumber.setAttribute("type", "number");
-	sortOrderNumber.setAttribute("min", "0");
-	sortOrderNumber.addEventListener('keydown', preventDot, false);
-	sortOrderNumber.addEventListener('paste', preventPaste, false);
-	sortOrderNumber.addEventListener('input', preventInput, false);
-	table1RowTd4.appendChild(sortOrderNumber);
-
-	//adding td to the row
-	row.appendChild(table1RowTd1);
-	row.appendChild(table1RowTd2);
-	row.appendChild(table1RowTd3);
-	row.appendChild(table1RowTd4);
-	//adding row to the table
-	table.appendChild(row);
-}
-
-function addOptionTypeTable(optionDiv) {
-	//table
-	var table = document.createElement('table');
-	table.className = "table table-borderless";
-
-	//call 
-	addOptionTypeTableHeading(table);
-	addOptionTypeTableRow(table);
-	
-	//adding table into div
-	optionDiv.appendChild(table);
-}
-
+var nestedDiv = 0;
+var nestedRowCount = 0;
 
 function addOptionTableHeading(table) {
 	var thead =  document.createElement('thead');
+	thead.className = "thead-light";
 	var row =  document.createElement('tr');
 
 	//th
-	var table2HeadingTh0 = document.createElement('th');
-	var table2HeadingTh1 = document.createElement('th');
-	table2HeadingTh1.innerHTML = "Option";
-	table2HeadingTh1.className = "option-name-th";
-	var table2HeadingTh2 = document.createElement('th');
-	table2HeadingTh2.innerHTML = "Image";
-	var table2HeadingTh3 = document.createElement('th');
-	table2HeadingTh3.className = "option-remove-th";
+	var th0 = document.createElement('th');
+	var th1 = document.createElement('th');
+	th1.innerHTML = "Option";
+	var th2 = document.createElement('th');
+	th2.innerHTML = "Image";
+	var th3 = document.createElement('th');
 
 	//adding ths into heading row
-	row.appendChild(table2HeadingTh0);
-	row.appendChild(table2HeadingTh1);
-	row.appendChild(table2HeadingTh2);
+	row.appendChild(th0);
+	row.appendChild(th1);
+	row.appendChild(th2);
+	row.appendChild(th3);
 
 	//adding row into thead
 	thead.appendChild(row);
@@ -120,35 +27,28 @@ function addOptionTableHeading(table) {
 	table.appendChild(thead);
 }
 
-function removeSingleOptionRow(row) {
-	var rowObj = document.getElementById(row.id);
-	rowObj.remove();
-}
-
-var rowCount = 0;
 function addSingleOptionRow(tbody, DivId) {
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			var row =  document.createElement('tr');
-			row.id = "row"+rowCount+"div"+DivId;
+			row.id = "row"+nestedRowCount+"div"+DivId;
 			
 			var cell0 = document.createElement('td');
 			var cell1 = document.createElement('td');
 			var cell2 = document.createElement('td');
 			var cell3 = document.createElement('td');
 
-			var defaultOption = document.createElement('input');
-			defaultOption.setAttribute("type", "radio");
-			defaultOption.setAttribute("name", "defaultOption"+DivId);
-			defaultOption.title = "Make Default";
+			var dfault = document.createElement('input');
+			dfault.setAttribute("type", "radio");
+			dfault.setAttribute("name", "defaultOption"+DivId);
+			dfault.title = "Make Default";
 			cell0.align = "center";
-			cell0.appendChild(defaultOption);
+			cell0.appendChild(dfault);
 
-			var optionText = document.createElement('input');
-			optionText.setAttribute('type', 'text');
-			optionText.setAttribute('placeholder', "Option");
-			cell1.appendChild(optionText);
-			cell1.className = "option-name-td";
+			var option = document.createElement('input');
+			option.setAttribute('type', 'text');
+			option.setAttribute('placeholder', "Option");
+			cell1.appendChild(option);
 
 			//Image
 			var uploadBtnDiv = document.createElement("div");
@@ -203,7 +103,6 @@ function addSingleOptionRow(tbody, DivId) {
 			sliderContainerDiv.appendChild(prevBtnDiv);		
 			sliderContainerDiv.appendChild(nextBtnDiv);
 
-			cell2.className = "option-image-td";
 			cell2.appendChild(uploadBtnDiv);
 			cell2.appendChild(sliderContainerDiv);
 			
@@ -219,9 +118,8 @@ function addSingleOptionRow(tbody, DivId) {
 
 			cell3.appendChild(removeBtn);
 			removeBtn.addEventListener("click", function() {
-		  		removeSingleOptionRow(row);
+		  		removeOptionRow(row);
 			});
-			cell3.className = "option-remove-td";
 
 			//adding cell into row
 			row.appendChild(cell0);
@@ -231,7 +129,7 @@ function addSingleOptionRow(tbody, DivId) {
 			//adding row into tbody
 			tbody.appendChild(row);
 			
-			rowCount++;
+			nestedRowCount++;
 		});
 	});
 }
@@ -257,12 +155,12 @@ function addOptionTableFoot(table){
 		  			//button. cell.     row.    tfoot.   table.    div.     div.      id
 			});
 			//icon
-			var addIcon = document.createElement('i');
-			addIcon.className = "fa fa-plus-circle";
+			var icon = document.createElement('i');
+			icon.className = "fa fa-plus-circle";
 			//addIcon.aria-hidden = "true";
 
 			//adding icon into button
-			button.appendChild(addIcon);
+			button.appendChild(icon);
 			//adding button into cell
 			cell.appendChild(button);
 			//adding cell into row
@@ -278,7 +176,7 @@ function addOptionTableFoot(table){
 function addOptionTable(optionDiv) {
 	//table
 	var table = document.createElement('table');
-	table.className = "table singleOptionTable table-bordered table-striped table-sm";
+	table.className = "table nested-option-table table-bordered table-striped table-sm";
 
 	var tbody = document.createElement('tbody');
 	tbody.className = "singleOptionTableTbody";
@@ -299,23 +197,27 @@ function makeComboTable(list, DivId) {
 	}
 	var div = document.getElementById(DivId);
 	var table = document.createElement('table');
-	table.className = "table combinationTable table-bordered table-striped table-sm";
+	table.className = "table combination-table table-bordered table-striped table-sm";
 
 	var thead =  document.createElement('thead');
+	thead.className = "thead-light";
 	var hrow =  document.createElement('tr');
 
 	//th
-	var table2HeadingTh1 = document.createElement('th');
-	table2HeadingTh1.innerHTML = "Combination";
-	var table2HeadingTh2 = document.createElement('th');
-	table2HeadingTh2.innerHTML = "Stock Quantity";
-	var table2HeadingTh3 = document.createElement('th');
-	table2HeadingTh3.innerHTML = "Price";
+	var th0 = document.createElement('th');
+	th0.innerHTML = "Combination";
+	var th1 = document.createElement('th');
+	th1.innerHTML = "SKU";
+	var th2 = document.createElement('th');
+	th2.innerHTML = "St.Qty";
+	var th3 = document.createElement('th');
+	th3.innerHTML = "Price";
 
 	//adding ths into heading row
-	hrow.appendChild(table2HeadingTh1);
-	hrow.appendChild(table2HeadingTh2);
-	hrow.appendChild(table2HeadingTh3);
+	hrow.appendChild(th0);
+	hrow.appendChild(th1);
+	hrow.appendChild(th2);
+	hrow.appendChild(th3);
 
 	//adding row into thead
 	thead.appendChild(hrow);
@@ -325,28 +227,35 @@ function makeComboTable(list, DivId) {
 	//console.log(list.length);
 	for (var i = 0; i < list.length; i++) {
 		var brow =  document.createElement('tr');
-		var cell1 =  document.createElement('td');
+		var cell0 =  document.createElement('td');
 		var hidden = document.createElement('input');
 		hidden.setAttribute('type', 'hidden');
 		var iLength = list[i].length;
 		for (var j = 0; j < iLength; j++) {
 			if (j < iLength-1) {
-				cell1.innerText += list[i][j]+"-";
+				cell0.innerText += list[i][j]+"-";
 			}
 			else {
-				cell1.innerText += list[i][j];
+				cell0.innerText += list[i][j];
 			}
 		}
-		hidden.value = cell1.innerText;
+		hidden.value = cell0.innerText;
 		//console.log(hidden.value);
-		cell1.appendChild(hidden);
+		cell0.appendChild(hidden);
+		brow.appendChild(cell0);
+
+		var cell1 =  document.createElement('td');
+		var sku = document.createElement('input');
+		sku.setAttribute('type', 'text');
+		sku.setAttribute('placeholder', "SKU");
+		cell1.appendChild(sku);
 		brow.appendChild(cell1);
 
 		var cell2 =  document.createElement('td');
 		var quantity = document.createElement('input');
 		quantity.setAttribute('type', 'number');
 		quantity.setAttribute("min", "0");
-		quantity.setAttribute('placeholder', "Quantity");
+		quantity.setAttribute('placeholder', "St.Qty.");
 		quantity.addEventListener('keydown',preventDot, false);
 		quantity.addEventListener('paste', preventPaste, false);
 		quantity.addEventListener('input', preventInput, false);
@@ -355,7 +264,7 @@ function makeComboTable(list, DivId) {
 
 		var cell3 =  document.createElement('td');
 		var selectVar = document.createElement('select');
-		selectVar.className = "colorPriceSelect";
+		selectVar.className = "price-select";
 		//Create and append the options
 		for (var k = 0; k < selectOptions.length; k++) {
 		    var selectOption = document.createElement("option");
@@ -368,7 +277,7 @@ function makeComboTable(list, DivId) {
 		price.setAttribute('type', 'number');
 		price.setAttribute("min", "0");
 		price.setAttribute('placeholder', "Price");
-		price.className = "colorPriceNumber";
+		price.className = "price";
 		price.addEventListener('paste', preventStringPaste, false);
 		cell3.appendChild(selectVar);
 		cell3.appendChild(price);
@@ -433,7 +342,7 @@ function changeButton(id) {
 function addNestedOptionGroup() {
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
-			var optionGroupNumber = document.getElementById("nestedGroupCount");
+			var optionGroupNumber = document.getElementById("nested-group-count");
 			if (optionGroupNumber.value == "") {
 				$('#selectOptionNumber').modal();
 				return;
@@ -450,7 +359,8 @@ function addNestedOptionGroup() {
 				var option = document.createElement('div');
 				option.id = 'nestedOption'+nestedDiv+"option"+i;
 				option.className = "single-option";
-				addOptionTypeTable(option);
+				//addOptionTypeTable(option);
+				addTable1(option);
 				addOptionTable(option);
 
 				nestedOption.appendChild(option);

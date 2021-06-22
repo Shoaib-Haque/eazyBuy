@@ -1,12 +1,5 @@
-<!DOCTYPE html>
 @extends('layouts/adminlayout')
-<html>
-<head>
-	<title></title>
-	<script src="{{ asset('js/admin/catalog/brand/validation.js') }}"></script>
-</head>
-<body>
-	@section('addbrand')
+@section('addbrand')
 	<div class="main">
 		<h1>
 			<span class="normal">Brands</span>
@@ -49,6 +42,6 @@
 			</form>
 		</div>
 	</div>
-	@endsection
-</body>
-</html>
+
+	<script type="text/javascript" src="{{ asset('js/admin/catalog/brand/validation.js') }}"></script>
+@endsection

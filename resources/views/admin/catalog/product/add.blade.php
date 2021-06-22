@@ -1,19 +1,20 @@
-<!DOCTYPE html>
 @extends('layouts/adminlayout')
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/add.css')}}"    type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/editor.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/option.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/nestedOption.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/attribute.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/slider.css')}}" type="text/css">
-	<link rel="stylesheet" href="{{asset('css/admin/catalog/product/autocomplete.css')}}" type="text/css">
+@section('addproduct')
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/auto.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/slider.css')}}">
+
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/main.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/general.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/data.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/links.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/option.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/single.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/nested.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/map.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/image.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/feature.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/discount.css')}}">
 	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">-->
-</head>
-<body>
-	@section('addproduct')
 	<div class="main">
 		<h1>
 			<span class="normal">Products</span>
@@ -24,7 +25,7 @@
 					onclick="return validation()">
 					<i class="fas fa-save"></i>
 				</button>
-				<a href="/admin/catalog/products">
+				<a href="/admin/catalog/product">
 					<button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="Cancel">
 						<i class="fas fa-long-arrow-alt-left"></i>
 					</button>
@@ -50,15 +51,15 @@
 					Size & Color Map
 				</a>
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
-				<a onclick="divVisibility('attribute');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
-				Attribute</a>
+				<a onclick="divVisibility('feature');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
+				Feature</a>
 				<a onclick="divVisibility('discount');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Discount</a>
 			</div>
 
 			
 			<div id="general">
-				<table>
+				<table class="table-sm">
 			    	<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Product Name</strong></td>
 			            <td class="td-right">
@@ -81,7 +82,7 @@
 			</div>
 
 			<div id="data">
-				<table>
+				<table class="table-sm">
 					<tr>
 			        	<td class="td-left"><strong>Model</strong></td>
 			            <td class="td-right"><input type="text" name="model" id="model" placeholder="Model"></td>
@@ -90,52 +91,13 @@
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
 			        <tr><td colspan="2"></td></tr>
 
-					<tr>
-			        	<td class="td-left"><strong>Length Class</strong></td>
-			            <td class="td-right">
-			            	<select name="length_class" id="length_class">
-			            		<option value="">Select Length Class</option>
-			            		<option value="centimeter">Centimeter</option>
-			            		<option value="millimeter">Millimeter</option>
-			            		<option value="inch">Inch</option>
-			            	</select>
-			            </td>
-			        </tr>
-
-			        <tr class="border_bottom"><td colspan="2"></td></tr>
-			        <tr><td colspan="2"></td></tr>
-
-			    	<tr>
-			        	<td class="td-left"><strong>Dimensions (L x W x H)</strong></td>
-			            <td class="td-right">
-			            	<input type="number" name="length" id="length" placeholder="Length">
-			            	<input type="number" name="width" id="width" placeholder="Width">
-			            	<input type="number" name="height" id="height" placeholder="Height">
-			            </td>
-			        </tr>
-
-			        <tr class="border_bottom"><td colspan="2"></td></tr>
-			        <tr><td colspan="2"></td></tr>
-
 			        <tr>
-			        	<td class="td-left"><strong>Weight Class</strong></td>
-			            <td class="td-right">
-			            	<select name="weight_class" id="weight_class">
-			            		<option value="">Select Weight Class</option>
-			            		<option value="kiligram">Kiligram</option>
-			            		<option value="gram">Gram</option>
-			            		<option value="pound">Pound</option>
-			            		<option value="ounch">Ounch</option>
-			            	</select>
-			            </td>
-			        </tr>
-
-			        <tr class="border_bottom"><td colspan="2"></td></tr>
-			        <tr><td colspan="2"></td></tr>
-
-			        <tr>
-			        	<td class="td-left"><strong>Weight</strong></td>
-			            <td class="td-right"><input type="text" name="weight" id="weight" placeholder="Weight"></td>
+			        	<td class="td-left">
+			        		<strong title="Stock-Keeping Unit">
+			        			SKU<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
+			        		</strong>
+			        	</td>
+			            <td class="td-right"><input type="text" name="sku" id="sku" placeholder="SKU"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -227,11 +189,61 @@
 			            </td>
 			        </tr>
 
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+					<tr>
+			        	<td class="td-left"><strong>Length Class</strong></td>
+			            <td class="td-right">
+			            	<select name="length_class" id="length_class">
+			            		<option value="">Select Length Class</option>
+			            		<option value="centimeter">Centimeter</option>
+			            		<option value="millimeter">Millimeter</option>
+			            		<option value="inch">Inch</option>
+			            	</select>
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			    	<tr>
+			        	<td class="td-left"><strong>Dimensions (L x W x H)</strong></td>
+			            <td class="td-right">
+			            	<input type="number" name="length" id="length" placeholder="Length">
+			            	<input type="number" name="width" id="width" placeholder="Width">
+			            	<input type="number" name="height" id="height" placeholder="Height">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left"><strong>Weight Class</strong></td>
+			            <td class="td-right">
+			            	<select name="weight_class" id="weight_class">
+			            		<option value="">Select Weight Class</option>
+			            		<option value="kiligram">Kiligram</option>
+			            		<option value="gram">Gram</option>
+			            		<option value="pound">Pound</option>
+			            		<option value="ounch">Ounch</option>
+			            	</select>
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left"><strong>Weight</strong></td>
+			            <td class="td-right"><input type="text" name="weight" id="weight" placeholder="Weight"></td>
+			        </tr>
 			    </table>
 			</div>
 
 			<div id="links">
-				<table>
+				<table class="table-sm">
 					<tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Department</strong></td>
 			            <td class="td-right">
@@ -262,10 +274,29 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left"><strong title="Autocomplete"><font class="star">*</font>Brand</strong></td>
+			        	<td class="td-left">
+			        		<strong title="Autocomplete">
+			        			<font class="star">*</font>Brand
+			        			<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
+			        		</strong>
+			        	</td>
 			            <td class="td-right">
-			            	<input type="text" name="brand" id="brand" class="fas" placeholder="&#xf002;Search Brand...">
+			            	<input type="text" name="brand" id="brand" class="fas fa-sm" placeholder=" &#xf002; Search Brand...">
 			            	<input type="hidden" name="brand_id" id="brand_id">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left">
+			        		<strong title="Autocomplete">
+			        			Related Products<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
+			        		</strong>
+			        	</td>
+			            <td class="td-right">
+			            	<input type="text" name="related_product_search" id="related_product_search" placeholder="Related Products">
 			            </td>
 			        </tr>
 			    </table>
@@ -279,7 +310,7 @@
 				<div class="add-option-group-btn-div">
 					<button type="button" onclick="addOptionGroup()" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Single Option Group">Add Single Option Group</button>
 					<strong>OR</strong>
-					<select id="nestedGroupCount">
+					<select id="nested-group-count">
 						<option value="">Select number of nested option</option>
 						@for($i = 2; $i <= 15; $i++)
 							<option value="{{$i}}">{{$i}}</option>
@@ -321,7 +352,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="colorOptionTableTbody">
+							<tbody id="color-tbody" class="tbody-color">
 								
 							</tbody>
 							<tfoot>
@@ -354,23 +385,22 @@
 				</div>
 			</div>
 
-			<div id="attribute">
-				<table class="table attribute table-bordered table-striped table-sm">
-					<thead>
+			<div id="feature">
+				<table class="table feature table-bordered table-striped table-sm">
+					<thead class="thead-light">
 						<tr>
-							<td align="center">Attribute</td>
-							<td align="center">Text</td>
-							<td></td>
+							<th align="center">Future Name</th>
+							<th align="center">Future Value</th>
+							<th></th>
 						</tr>
 					</thead>
-					<tbody id="attributeBody">
+					<tbody id="featureBody">
 						
 					</tbody>
 					<tfoot>
 						<tr>
 							<td colspan="3" align="right">
-								<button type="button" class="btn btn-primary" 
-								onclick="addAttribute()" title="Add Attribute">
+								<button type="button" class="btn btn-primary" onclick="addFeature()" title="Add Feature">
 									<i class="fas fa-plus"></i>
 								</button>
 							</td>
@@ -381,7 +411,7 @@
 
 			<div id="discount">
 				<table class="table discount table-bordered table-striped table-sm">
-					<thead>
+					<thead class="thead-light">
 						<tr>
 							<th>Min Quantity</th>
 							<th>Discount</th>
@@ -548,21 +578,21 @@
 				</div>
 		</div>
 	</div>
-    @endsection
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" async></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" async></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js" async></script>
-    <!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js" async></script>-->
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/toolbar.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/editor.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/select.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/singleOption.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/nestedOption.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/color.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/attribute.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}" async></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/discount.js') }}" async></script>
-</body>
-</html>
+	
+	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>
+<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"  async></script>-->
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/prevent.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/general.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/data.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/links.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/option.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/single.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/nested.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/map.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/feature.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/discount.js') }}"></script>
+@endsection

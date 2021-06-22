@@ -1,10 +1,16 @@
 var today = new Date().toISOString().split('T')[0];
 var tableBody = document.getElementById("discountBody");
 
+discountRow = 0;
+
+function removeDiscountOptionRow(row) {
+	var rowObj = document.getElementById(row.id);
+	rowObj.remove();
+}
+
 function addDiscount() {
-	var rowId = tableBody.rows.length;
  	var row = document.createElement("tr");
- 	row.id = "DiscountRow"+rowId;
+ 	row.id = "DiscountRow"+discountRow;
 
 	var cell1 = document.createElement("td");
 	var cell2 = document.createElement("td");
@@ -12,10 +18,10 @@ function addDiscount() {
 	var cell4 = document.createElement("td");
 	var cell5 = document.createElement("td");
 
-	var minQuality = document.createElement("input");
-	minQuality.setAttribute("type", "number");
-	minQuality.setAttribute('placeholder', "Min Quality");
-	cell1.appendChild(minQuality);
+	var quantity = document.createElement("input");
+	quantity.setAttribute("type", "number");
+	quantity.setAttribute('placeholder', "Min Quantity");
+	cell1.appendChild(quantity);
 
 	var discount = document.createElement("input");
 	discount.setAttribute("type", "number");
@@ -34,18 +40,18 @@ function addDiscount() {
 	cell4.appendChild(endDate);
 	cell4.setAttribute('style','text-align :center;');
 
-	var removeBtn = document.createElement("button");
-	removeBtn.className = "btn btn-danger";
-	removeBtn.title = "Remove";
+	var button = document.createElement("button");
+	button.className = "btn btn-danger";
+	button.title = "Remove";
 
 	var icon = document.createElement("i");
 	icon.className = "fa fa-minus-circle";
 
-	removeBtn.appendChild(icon);
+	button.appendChild(icon);
 
-	cell5.appendChild(removeBtn);
-	removeBtn.addEventListener("click", function() {
-		removeOptionRow(row);
+	cell5.appendChild(button);
+	button.addEventListener("click", function() {
+		removeDiscountOptionRow(row);
 	});
 
 	row.appendChild(cell1);
@@ -55,4 +61,6 @@ function addDiscount() {
 	row.appendChild(cell5);
 
 	tableBody.appendChild(row);
+
+	discountRow++;
 }
