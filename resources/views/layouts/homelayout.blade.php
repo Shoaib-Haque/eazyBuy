@@ -25,7 +25,7 @@
 		<div id="sidebar" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('sidebar').id)">×</a>
+	<!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('sidebar').id)">×</a>-->
 		  </div>
 		  <h5>Shop By Department</h5>
 		  <button class="menu-btn" onclick="openDepartment()">
@@ -51,7 +51,7 @@
 		<div id="department" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('department').id)">×</a>
+	<!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('department').id)">×</a>-->
 		  </div>
 		  <button class="main-menu-btn" onclick="openNav(document.getElementById('department').id)">
 		    <a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
@@ -65,7 +65,7 @@
 		<div id="contact" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	<a href="/signin" class="sidebar-signin">Hello, Sign in</a>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('contact').id)">×</a>
+	<!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('contact').id)">×</a>-->>
 		  </div>
 		  <button class="main-menu-btn" onclick="openNav(document.getElementById('contact').id)">
 		    <a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
