@@ -22,17 +22,17 @@
 	<body>
 		@yield('sidebar')
 		<!--sidenav-->
-		<div id="mySidebar" class="sidebar">
+		<div id="sidebar" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	Hello, {{session('customername')}}
-		  	<a href="javascript:void(0)" id="Sidebar" class="closebtn" onclick="closeNav(this.id)">×</a>
+		  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('sidebar').id)">×</a>
 		  </div>
 		  <h5>Shop By Department</h5>
 		  <button class="menu-btn" id="aboutBtn" onclick="openDepartment()">
-		  <a class="dropdown-item" href="#">About<i class="fas fa-arrow-right fa-xs"></i></a>
+		  	<a class="dropdown-item" href="javascript:void(0)">About<i class="fas fa-arrow-right fa-xs"></i></a>
 		  </button>
 		  <button class="menu-btn" id="aboutBtn" onclick="openContact()">
-		  <a class="dropdown-item" href="#">Contact<i class="fas fa-arrow-right fa-xs"></i></a>
+		  	<a class="dropdown-item" href="javascript:void(0)">Contact<i class="fas fa-arrow-right fa-xs"></i></a>
 		  </button>
 		  <a class="dropdown-item" href="/customerhome">Services</a>
 		  <a class="dropdown-item" href="#">Clients</a>
@@ -48,13 +48,13 @@
 		  <a class="dropdown-item" href="#">Contact</a>
 		</div>
 
-		<div id="myDepartment" class="sidebar">
+		<div id="department" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	Hello, {{session('customername')}}
-		  	<a href="javascript:void(0)" id="Department" class="closebtn" onclick="closeNav(this.id)">×</a>
+		  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('department').id)">×</a>
 		  </div>
-		  <button class="main-menu-btn" id="Department" onclick="openNav(this.id)">
-		    <a class="dropdown-item" href="#"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
+		  <button class="main-menu-btn" onclick="openNav(document.getElementById('department').id)">
+		    <a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
 		  </button>
 		  <a class="dropdown-item" href="/customerhome">Clients</a>
 		  <a class="dropdown-item" href="#">Contact</a>
@@ -62,13 +62,13 @@
 		  <a class="dropdown-item" href="#">Services</a>
 		</div>
 
-		<div id="myContact" class="sidebar">
+		<div id="contact" class="sidebar">
 		  <div class="mySidebar-hello">
 		  	Hello, {{session('customername')}}
-		  	<a href="javascript:void(0)" id="Contact" class="closebtn" onclick="closeNav(this.id)">×</a>
+		  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('contact').id)">×</a>
 		  </div>
-		  <button class="main-menu-btn" id="Contact" onclick="openNav(this.id)">
-		    <a class="dropdown-item" href="#"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
+		  <button class="main-menu-btn" onclick="openNav(document.getElementById('contact').id)">
+		    <a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-arrow-left fa-xs"></i>Main Menu</a>
 		  </button>
 		  <a class="dropdown-item" href="/customerhome">Clients</a>
 		  <a class="dropdown-item" href="#">Contact</a>
@@ -132,7 +132,7 @@
 			  <!-- Links -->
 			  	<ul class="navbar-nav">
 				    <li class="nav-item">
-				      <button class="openbtn" onclick="openNav()">☰ All</button> 
+				      <button class="openbtn" onclick="openNav()"><i class="fas fa-bars"></i> All</button> 
 				    </li>
 
 				    <div class="dropdown dropdown-bh ml-3">

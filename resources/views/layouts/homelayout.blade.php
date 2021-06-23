@@ -134,7 +134,7 @@
 		  <!-- Links -->
 		  	<ul class="navbar-nav">
 			    <li class="nav-item">
-			      <button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas">☰ All</button> 
+			      <button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas"><i class="fas fa-bars"></i> All</button> 
 			    </li>
 
 			    <div class="dropdown dropdown-bh ml-3">
