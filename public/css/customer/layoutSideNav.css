@@ -29,6 +29,10 @@
   margin-left: 50px;
   color: white;
 }
+.sidebar .dropdown-item:hover {
+  background-color: #E8E8E8;
+}
+
 
 /*hello*/
 .mySidebar-hello {
