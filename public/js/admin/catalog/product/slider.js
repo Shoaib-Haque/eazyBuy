@@ -47,6 +47,7 @@ function uploadImage(event, rowid) {
       } 
 
       //Checking Size
+      /*
       var i=0;
       while(_size>900) {
         _size /= 1024;
@@ -60,6 +61,7 @@ function uploadImage(event, rowid) {
         $('#sorryImageSizeLarge').modal();
         return;
       }
+      */
 
       var slideDiv = document.createElement('div');
       slideDiv.className = 'slide';
@@ -70,7 +72,9 @@ function uploadImage(event, rowid) {
 
       var slideImg = document.createElement("img");
       slideImg.setAttribute("src", file);
+
       //cheking resolution
+      /*
       slideImg.onload =  function () {
         if (this.naturalWidth < 500 || this.naturalHeight < 500) {
           this.remove();
@@ -83,6 +87,8 @@ function uploadImage(event, rowid) {
           return;
         }
       };
+      */
+      
       slideImg.id = "img"+slideDivCount+rowid;
       slideImg.addEventListener('mouseover', function(e) {
         showImgRemoveBtn($(this).siblings('BUTTON').attr('id'));

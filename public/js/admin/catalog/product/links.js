@@ -35,6 +35,7 @@ jQuery.noConflict()(function ($) { // this was missing for me
 jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
 		$( "#brand" ).autocomplete({
+			minLength: 0,
 		    source: function( request, response ) {
 		        $.ajax({
 		        	url: "/brand/search",
@@ -47,13 +48,24 @@ jQuery.noConflict()(function ($) {
 		                response(data);
 		                //console.log(data);
 		            },
-		        	minLength: 1,
+		        	
 		        	autoFocus: true,
 				    select: function( event, ui ) {
 				    	$('#brand').val(ui.item.value);
 				    	$('#brand_id').val(ui.item.id);
 				    }
 		        });
+		    }
+		});
+	});
+});
+
+//when focus, means there is no char
+jQuery.noConflict()(function ($) {
+	$(document).ready(function () {
+		$("#brand").focus(function() {
+		    if ($(this).val().length == 0) {
+		        $(this).autocomplete("search", "");
 		    }
 		});
 	});

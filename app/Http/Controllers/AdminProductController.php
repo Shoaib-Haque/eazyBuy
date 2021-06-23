@@ -9,7 +9,7 @@ use App\Repository\Interfaces\ISizeTypeRepository;
 
 class AdminProductController extends Controller
 {
-    public $department;
+    public $department, $sizeType;
 
     public function __construct(IDepartmentRepository $department, ISizeTypeRepository $sizeType) {
         $this->department = $department;
@@ -26,7 +26,8 @@ class AdminProductController extends Controller
     	return view('admin.catalog.product.add', ['departmentlist' => $departmentlist, 'sizetypelist' => $sizetypelist]);
     }
 
-    /*
+    /* 
+    ck decouple editor text saving indo db
     function addck(Request $req) {
         $des = trim($req->des);
         $des = stripslashes($des);
@@ -36,6 +37,8 @@ class AdminProductController extends Controller
         );
         return redirect()->route('adminproduct.index');
     }
+
+    ck decouple editor text show from DB
     <table>
         @foreach($productlist as $productlist)
             <tr>

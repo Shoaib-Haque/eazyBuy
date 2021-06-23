@@ -10,11 +10,14 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/option.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/single.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/nested.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/map.css')}}">
+	<!--<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/map.css')}}">-->
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/image.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/feature.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/discount.css')}}">
 	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">-->
+
+	<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+	<!--<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>-->
 	<div class="main">
 		<h1>
 			<span class="normal">Products</span>
@@ -47,9 +50,9 @@
 				<a onclick="divVisibility('data');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Data</a>
 				<a onclick="divVisibility('links');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Links</a>
 				<a onclick="divVisibility('options');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Option</a>
-				<a onclick="divVisibility('map');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
+				<!--<a onclick="divVisibility('map');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 					Size & Color Map
-				</a>
+				</a>-->
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
 				<a onclick="divVisibility('feature');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Feature</a>
@@ -72,12 +75,26 @@
 
 			        <tr>
 			        	<td class="td-left"><strong>About this item</strong></td>
+			        	<td class="td-right">
+			        		<!--<ck classic editor!-->
+			        		<textarea name="about_this_item" id="editor"></textarea>
+							<div id="count"></div>
+			            </td>
+			        </tr>
+
+			        <!--<ck decouple editor
+			        tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left"><strong>About this item</strong></td>
 			            <td class="td-right">
 			            	<div id="toolbar-container"></div>
         					<div id="editor"></div>
         					<input type="hidden" name="about_this_item" id="about_this_item" value="">
 			            </td>
 			        </tr>
+			        !-->
 			    </table>
 			</div>
 
@@ -136,7 +153,9 @@
 			        <tr>
 			        	<td class="td-left"><strong>Stock Quantity</strong></td>
 			        	<td class="td-right">
-			        		<input type="number" name="stock_quantity" id="stock_quantity" min="0" placeholder="Stock Quantity">
+			        		<input type="number" name="stock_quantity" id="stock_quantity" 
+			        		min="0" placeholder="Stock Quantity"
+			        		onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
 			        	</td>
 			        </tr>
 
@@ -147,7 +166,8 @@
 			        	<td class="td-left"><strong>Minimum Quantity</strong></td>
 			        	<td class="td-right">
 			        		<input type="number" name="minimum_quantity" id="minimum_quantity" 
-			        			min="1" placeholder="Minimum Quantity">
+			        		value="1" min="1" placeholder="Minimum Quantity"
+			        		onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
 			        	</td>
 			        </tr>
 
@@ -170,8 +190,8 @@
 			        <tr>
 			        	<td class="td-left"><strong><font class="star">*</font>Selling Price</strong></td>
 			            <td class="td-right">
-			            	<input type="number" name="selling_price" id="selling_price" placeholder="Selling Price"
-			            	onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
+			            	<input type="number" name="selling_price" id="selling_price" 
+			            	onpaste="preventPaste(event)" min="0" placeholder="Selling Price">
 			            </td>
 			        </tr>
 
@@ -210,9 +230,9 @@
 			    	<tr>
 			        	<td class="td-left"><strong>Dimensions (L x W x H)</strong></td>
 			            <td class="td-right">
-			            	<input type="number" name="length" id="length" placeholder="Length">
-			            	<input type="number" name="width" id="width" placeholder="Width">
-			            	<input type="number" name="height" id="height" placeholder="Height">
+			            <input type="number" name="length" id="length" placeholder="Length" min="0" onpaste="preventPaste(event)">
+			            <input type="number" name="width" id="width" placeholder="Width" min="0" onpaste="preventPaste(event)">
+			            <input type="number" name="height" id="height" placeholder="Height" min="0" onpaste="preventPaste(event)">
 			            </td>
 			        </tr>
 
@@ -237,7 +257,9 @@
 
 			        <tr>
 			        	<td class="td-left"><strong>Weight</strong></td>
-			            <td class="td-right"><input type="text" name="weight" id="weight" placeholder="Weight"></td>
+			            <td class="td-right">
+			            <input type="number" name="weight" id="weight" placeholder="Weight" min="0" onpaste="preventPaste(event)">
+			            </td>
 			        </tr>
 			    </table>
 			</div>
@@ -321,7 +343,8 @@
 				</div>
 			</div>
 
-			<div id="map">
+			
+			<!--<div id="map">
 				<div>
 					<font class="star">
 						<strong>**This Size and Color Mapping System Preferable for Clothing, Jewelry and Accessories.**</strong>
@@ -368,7 +391,7 @@
 						</table>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
 			<div id="image">
 				<div>
@@ -579,8 +602,7 @@
 		</div>
 	</div>
 	
-	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>
-<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"  async></script>-->
+	<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"  async></script>-->
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/prevent.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}"></script>
 
@@ -591,7 +613,7 @@
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/option.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/single.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/nested.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/map.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('js/admin/catalog/product/map.js') }}"></script>-->
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/feature.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/discount.js') }}"></script>

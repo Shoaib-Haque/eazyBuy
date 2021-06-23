@@ -36,7 +36,7 @@ class BrandRepository implements IBrandRepository
         $data = Brands::where('name','LIKE','%'.$term.'%')
                         ->take(5)
                         ->get();
-
+        
         return $data;
     }
 }
