@@ -1,8 +1,18 @@
+/* 
+ck decouple editor
+div toolbar-container
 #toolbar-container {
     width: 98%;
 }
+div editor
 #editor {
     outline: 1px solid #DCDCDC;
     height: 250px;
     width: 98%;
+}
+*/ 
+
+/* ck classic editor height */ 
+.ck-editor__editable {
+	min-height: 200px;
 }

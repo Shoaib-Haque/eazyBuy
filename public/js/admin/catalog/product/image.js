@@ -15,17 +15,21 @@ function hideImgDivRemoveBtn(event, btnId) {
 }
 
 function removeImageDiv(slideDivId) {
-  var divObj = document.getElementById(slideDivId);
-  divObj.remove();
+  jQuery.noConflict()(function ($) { 
+    $(document).ready(function () {
+      var divObj = document.getElementById(slideDivId);
+      divObj.remove();
 
-  if($("#slider-container-div img").length <= 0) {
-    var sliderContainerDiv =  document.getElementById("slider-container-div");
-    sliderContainerDiv.style.display = "none";
-  }
-  if($("#slider-container-div img").length <= 5) {
-      document.getElementById('control-prev-div').style.visibility = 'hidden';
-      document.getElementById('control-next-div').style.visibility = 'hidden';
-  }
+      if($("#slider-container-div img").length <= 0) {
+        var sliderContainerDiv =  document.getElementById("slider-container-div");
+        sliderContainerDiv.style.display = "none";
+      }
+      if($("#slider-container-div img").length <= 5) {
+          document.getElementById('control-prev-div').style.visibility = 'hidden';
+          document.getElementById('control-next-div').style.visibility = 'hidden';
+      }
+    });
+  });
 }
 
 
@@ -41,13 +45,14 @@ function upImage(event) {
       var _size = event.target.files[0].size;
       var fileType = event.target.files[0].type;
 
-        //cheking format
+      //cheking format
       if (!event.target.files[0] || !fileType.includes('image')) {
         $('#sorryFileFormat').modal();
         return;
       } 
 
-        //Checking Size
+      //Checking Size
+      /*
       var i=0;
       while(_size>900) {
         _size /= 1024;
@@ -61,6 +66,7 @@ function upImage(event) {
         $('#sorryImageSizeLarge').modal();
         return;
       }
+      */
 
       var slideDiv = document.createElement('div');
       slideDiv.className = 'slide';
@@ -71,7 +77,9 @@ function upImage(event) {
 
       var slideImg = document.createElement("img");
       slideImg.setAttribute("src", file);
+
       //cheking resolution
+      /*
       slideImg.onload =  function () {
         if (this.naturalWidth < 500 || this.naturalHeight < 500) {
           this.remove();
@@ -84,6 +92,8 @@ function upImage(event) {
           return;
         }
       };
+      */
+
       slideImg.id = "img"+slideDivCount;
       slideImg.addEventListener('mouseover', function(e) {
         showImgDivRemoveBtn($(this).siblings('BUTTON').attr('id'));
