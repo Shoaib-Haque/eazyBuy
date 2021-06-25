@@ -72,6 +72,8 @@ function uploadImage(event, rowid) {
 
       var slideImg = document.createElement("img");
       slideImg.setAttribute("src", file);
+      slideImg.id = "slideimg"+slideDivCount+rowid;
+      slideImg.name = "slideimg"+slideDivCount+rowid;
 
       //cheking resolution
       /*

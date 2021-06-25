@@ -40,7 +40,8 @@ function addSingleOptionRow(tbody, DivId) {
 
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
-			dfault.setAttribute("name", "defaultOption"+DivId);
+			dfault.id = "dfault"+nestedRowCount+"div"+DivId;;
+			dfault.name = "dfault"+nestedRowCount+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
 			cell0.appendChild(dfault);
@@ -48,6 +49,8 @@ function addSingleOptionRow(tbody, DivId) {
 			var option = document.createElement('input');
 			option.setAttribute('type', 'text');
 			option.setAttribute('placeholder', "Option");
+			option.id = "option"+nestedRowCount+"div"+DivId;;
+			option.name = "option"+nestedRowCount+"div"+DivId;
 			cell1.appendChild(option);
 
 			//Image
@@ -151,7 +154,8 @@ function addOptionTableFoot(table){
 			button.title = "Add Row";
 			button.addEventListener("click", function() {
 		  		addSingleOptionRow(table.tBodies[0],
-		  			$(this).parent().parent().parent().parent().parent().parent().attr('id'));
+		  			$(this).parent().parent().parent().parent().parent().attr('id'));
+		  		    //$(this).parent().parent().parent().parent().parent().parent().attr('id'));
 		  			//button. cell.     row.    tfoot.   table.    div.     div.      id
 			});
 			//icon
@@ -229,6 +233,8 @@ function makeComboTable(list, DivId) {
 		var brow =  document.createElement('tr');
 		var cell0 =  document.createElement('td');
 		var hidden = document.createElement('input');
+		hidden.id = "hidden"+i+"div"+DivId;
+		hidden.name = "hidden"+i+"div"+DivId;
 		hidden.setAttribute('type', 'hidden');
 		var iLength = list[i].length;
 		for (var j = 0; j < iLength; j++) {
@@ -248,6 +254,8 @@ function makeComboTable(list, DivId) {
 		var sku = document.createElement('input');
 		sku.setAttribute('type', 'text');
 		sku.setAttribute('placeholder', "SKU");
+		sku.id = "sku"+i+"div"+DivId;
+		sku.name = "sku"+i+"div"+DivId;
 		cell1.appendChild(sku);
 		brow.appendChild(cell1);
 
@@ -256,6 +264,8 @@ function makeComboTable(list, DivId) {
 		quantity.setAttribute('type', 'number');
 		quantity.setAttribute("min", "0");
 		quantity.setAttribute('placeholder', "St.Qty.");
+		quantity.id = "quantity"+i+"div"+DivId;
+		quantity.name = "quantity"+i+"div"+DivId;
 		quantity.addEventListener('keydown',preventDot, false);
 		quantity.addEventListener('paste', preventPaste, false);
 		quantity.addEventListener('input', preventInput, false);
@@ -264,6 +274,8 @@ function makeComboTable(list, DivId) {
 
 		var cell3 =  document.createElement('td');
 		var selectVar = document.createElement('select');
+		selectVar.id = "selectVar"+i+"div"+DivId;
+		selectVar.name = "selectVar"+i+"div"+DivId;
 		selectVar.className = "price-select";
 		//Create and append the options
 		for (var k = 0; k < selectOptions.length; k++) {
@@ -278,6 +290,8 @@ function makeComboTable(list, DivId) {
 		price.setAttribute("min", "0");
 		price.setAttribute('placeholder', "Price");
 		price.className = "price";
+		price.id = "price"+i+"div"+DivId;
+		price.name = "price"+i+"div"+DivId;
 		price.addEventListener('paste', preventStringPaste, false);
 		cell3.appendChild(selectVar);
 		cell3.appendChild(price);

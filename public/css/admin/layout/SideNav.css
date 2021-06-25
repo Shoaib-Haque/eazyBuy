@@ -41,6 +41,7 @@
 }
 body {
   font-size: 0.9rem;
+  overflow-x: hidden;
 }
 .page-wrapper .sidebar-wrapper,
 .sidebar-wrapper .sidebar-brand > a,
@@ -88,6 +89,11 @@ body {
   }
 }
 
+
+
+
+
+
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
@@ -99,7 +105,19 @@ body {
   left: -300px;
   z-index: 999;
 }
-
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar-wrapper {
+      padding-top: 15px;
+    }
+    .sidebar-wrapper a {font-size: 18px;}
+}
+/* On smaller screens, where width is less than 450px, change the style of the sidenav (less width) */
+@media screen and (max-width: 450px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
 .sidebar-wrapper ul {
   list-style-type: none;
   padding: 0;
@@ -111,6 +129,52 @@ body {
   cursor: pointer;
 }
 
+
+
+a svg{
+  transition:all .5s ease;
+ 
+  &:hover{
+    #transform:rotate(180deg);
+  }
+}
+ 
+#ico{
+  display: none;
+}
+ 
+.menu{
+  background: #000;
+  display: none;
+  padding: 5px;
+  width: 320px;
+  @include border-radius(5px);
+ 
+  #transition: all 0.5s ease;
+ 
+  a{
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 10px 2px;
+    margin: 3px 0;
+    text-decoration: none;
+    background: #444;
+ 
+    &:nth-child(1){
+      margin-top: 0;
+      @include border-radius(3px 3px 0 0 );
+    }
+    &:nth-child(5){
+      margin-bottom: 0;
+      @include border-radius(0 0 3px 3px);
+    }
+ 
+    &:hover{
+      background: #555;
+    }
+  }
+}
 /*----------------sidebar-content----------------*/
 
 .sidebar-content {
@@ -382,4 +446,16 @@ body {
 
 .navbar {
   box-shadow : 0px 0px 3px 0px #888888;
+}
+
+
+/* Position and style the close button (top right corner) */
+.sidebar-wrapper .closebtn {
+    position: relative;
+    margin-left: 95px;
+    font-size: 30px;
+}
+
+#sidenav-button{
+  display: none;
 }

@@ -53,6 +53,8 @@ function addOptionRow(tbody, DivId) {
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
 			dfault.setAttribute("name", "default"+DivId);
+			dfault.id = "dfault"+singleRowCount+"div"+DivId;;
+			dfault.name = "dfault"+singleRowCount+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
 			cell0.appendChild(dfault);
@@ -60,17 +62,23 @@ function addOptionRow(tbody, DivId) {
 			var option = document.createElement('input');
 			option.setAttribute('type', 'text');
 			option.setAttribute('placeholder', "Option");
+			option.id = "option"+singleRowCount+"div"+DivId;;
+			option.name = "option"+singleRowCount+"div"+DivId;
 			cell1.appendChild(option);
 
 			var sku = document.createElement('input');
 			sku.setAttribute('type', 'text');
 			sku.setAttribute('placeholder', "SKU");
+			sku.id = "sku"+singleRowCount+"div"+DivId;;
+			sku.name = "sku"+singleRowCount+"div"+DivId;
 			cell2.appendChild(sku);
 
 			var quantity = document.createElement('input');
 			quantity.setAttribute('type', 'number');
 			quantity.setAttribute("min", "0");
 			quantity.setAttribute('placeholder', "St.Qty.");
+			quantity.id = "quantity"+singleRowCount+"div"+DivId;;
+			quantity.name = "quantity"+singleRowCount+"div"+DivId;
 			quantity.addEventListener('keydown',preventDot, false);
 			quantity.addEventListener('paste', preventPaste, false);
 			quantity.addEventListener('input', preventInput, false);
@@ -78,6 +86,8 @@ function addOptionRow(tbody, DivId) {
 
 			var selectVar = document.createElement('select');
 			selectVar.className = "price-select";
+			selectVar.id = "selectVar"+singleRowCount+"div"+DivId;;
+			selectVar.name = "selectVar"+singleRowCount+"div"+DivId;
 			//Create and append the options
 			
 			for (var i = 0; i < selectOptions.length; i++) {
@@ -92,6 +102,8 @@ function addOptionRow(tbody, DivId) {
 			price.setAttribute("min", "0");
 			price.setAttribute('placeholder', "Price");
 			price.className = "price";
+			price.id = "price"+singleRowCount+"div"+DivId;;
+			price.name = "price"+singleRowCount+"div"+DivId;
 			price.addEventListener('paste', preventStringPaste, false);
 
 			cell4.appendChild(selectVar);

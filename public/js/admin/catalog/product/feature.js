@@ -1,4 +1,4 @@
-var rowCount = 0;
+var featureRowCount = 0;
 
 function removeFeatureOptionRow(row) {
 	var rowObj = document.getElementById(row.id);
@@ -10,7 +10,7 @@ function addFeature() {
 		$(document).ready(function () {
 			var tbody = document.getElementById("featureBody");
 			var row = document.createElement("tr");
-			row.id = "row"+rowCount;
+			row.id = "row"+featureRowCount;
 
 			var cell1 = document.createElement("td");
 			var cell2 = document.createElement("td");
@@ -19,11 +19,15 @@ function addFeature() {
 			var name = document.createElement("input");
 			name.setAttribute("type", "text");
 			name.setAttribute('placeholder', "Future Name");
+			name.id = "name"+featureRowCount;
+			name.name = "name"+featureRowCount;
 			cell1.appendChild(name);
 
 			var value = document.createElement("input");
 			value.setAttribute("type", "text");
 			value.setAttribute('placeholder', "Future Value");
+			value.id = "value"+featureRowCount;
+			value.name = "value"+featureRowCount;
 			cell2.appendChild(value);
 
 			var button = document.createElement("button");
@@ -47,7 +51,7 @@ function addFeature() {
 			//adding row into tbody
 			tbody.appendChild(row);
 			
-			rowCount++;
+			featureRowCount++;
 		});
 	});
 }
