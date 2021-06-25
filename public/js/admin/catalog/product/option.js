@@ -12,8 +12,10 @@ function addTable1(optionTable) {
 	
 	var r1td2 = document.createElement('td');
 	var group = document.createElement('input');
-	group.setAttribute('placeholder', "Option Group");
 	group.setAttribute("type", "text");
+	group.setAttribute('placeholder', "Option Group");
+	group.id = "optionGroup"+optionTable.id;
+	group.name = "optionGroup"+optionTable.id;
 	r1td2.appendChild(group);
 
 	row1.appendChild(r1td1);
@@ -25,6 +27,8 @@ function addTable1(optionTable) {
 
 	var r2td2 = document.createElement('td');
 	var select = document.createElement('select');
+	select.id = "selectType"+optionTable.id;
+	select.name = "selectType"+optionTable.id;
 
 	//Create and append the options
 	for (var i = 0; i < typeOptions.length; i++) {

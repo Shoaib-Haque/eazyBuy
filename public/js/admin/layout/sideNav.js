@@ -45,3 +45,16 @@ if (currentLink[0].closest(".sidebar-submenu") != null) {
 	currentLink[0].closest(".sidebar-submenu").style.display="block";
 }
 //currentLink[0].closest(".sidebar-submenu").classList.add("active");
+
+//responsive
+function openNav() {
+    document.getElementById("sidebar").style.width = "260px";
+    document.getElementById("page-container").style.marginLeft = "260px";
+    document.getElementById("sidenav-button").style.display = "none";
+}
+ 
+function closeNav() {
+    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("page-container").style.marginLeft = "0";
+    document.getElementById("sidenav-button").style.display = "block";
+}

@@ -21,22 +21,30 @@ function addDiscount() {
 	var quantity = document.createElement("input");
 	quantity.setAttribute("type", "number");
 	quantity.setAttribute('placeholder', "Min Quantity");
+	quantity.id = "quantity"+discountRow;
+	quantity.name = "quantity"+discountRow;
 	cell1.appendChild(quantity);
 
 	var discount = document.createElement("input");
 	discount.setAttribute("type", "number");
 	discount.setAttribute('placeholder', "Discount");
+	discount.id = "discount"+discountRow;
+	discount.name = "discount"+discountRow;
 	cell2.appendChild(discount);
 
 	var startDate = document.createElement("input");
 	startDate.setAttribute("type", "date");
 	startDate.setAttribute("min", today);
+	startDate.id = "startDate"+discountRow;
+	startDate.name = "startDate"+discountRow;
 	cell3.appendChild(startDate);
 	cell3.setAttribute('style','text-align :center;');
 
 	var endDate = document.createElement("input");
 	endDate.setAttribute("type", "date");
 	endDate.setAttribute("min", today);
+	endDate.id = "endDate"+discountRow;
+	endDate.name = "endDate"+discountRow;
 	cell4.appendChild(endDate);
 	cell4.setAttribute('style','text-align :center;');
 

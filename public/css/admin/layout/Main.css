@@ -11,6 +11,16 @@
   background-color: #F5F5F5;
 }
 
+/* On smaller screens, where width is less than 450px, change the style of the page-container (full width) */
+@media screen and (max-width: 450px) {
+    #page-container {
+      margin-left: 10px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+}
+
 #content-wrap {
   padding-bottom: 2.5rem;    /* Footer height */
   overflow-x: auto;

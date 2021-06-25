@@ -22,7 +22,12 @@
 
   <body>
   @yield('header')
-    <nav class="navbar navbar-expand-sm bg-white navbar-dark position-fixed w-100 pt-0 pb-0">
+    <nav class="navbar navbar-expand-sm bg-white navbar-light  position-fixed w-100 pt-0 pb-0">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="home-link-img-div">
@@ -47,6 +52,7 @@
           </div>
         </div>
       </ul>
+      </div>
     </nav>
   
   @yield('sidebar')
@@ -55,6 +61,7 @@
         <div class="sidebar-content">
           <div class="sidebar-brand">
             <a><i class="fas fa-bars"></i><span>Navigation</span></a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close Navigation">&times;</a>
           </div>
 
           <div class="sidebar-menu mb-5">
@@ -130,12 +137,23 @@
         </div>
       </nav>
     </div>
+
+    
+
     <!-- sidebar-wrapper  -->
 
 
     <div id="page-container">
       <div id="content-wrap">
         <div class="body">
+          <a href="javascript:void(0)" onclick="openNav()" id="sidenav-button" title="Open Navigation">
+            <svg width="30" height="30" id="icoOpen">
+              <path d="M0,5 30,5" stroke="#ddd" stroke-width="5"/>
+              <path d="M0,14 30,14" stroke="#ddd" stroke-width="5"/>
+              <path d="M0,23 30,23" stroke="#ddd" stroke-width="5"/>
+            </svg>
+          </a>
+          
         <!-- all other page content -->
         @yield('index')
         @yield('departments')

@@ -77,7 +77,9 @@ function upImage(event) {
 
       var slideImg = document.createElement("img");
       slideImg.setAttribute("src", file);
-
+      slideImg.id = "slider-container-div"+"slideImg"+imageSlideDivCount;
+      slideImg.name = "slider-container-div"+"slideImg"+imageSlideDivCount;
+      
       //cheking resolution
       /*
       slideImg.onload =  function () {

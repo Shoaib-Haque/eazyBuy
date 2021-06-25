@@ -114,7 +114,7 @@
 			        			SKU<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
 			        		</strong>
 			        	</td>
-			            <td class="td-right"><input type="text" name="sku" id="sku" placeholder="SKU"></td>
+			            <td class="td-right"><input type="text" name="product_sku" id="product_sku" placeholder="SKU"></td>
 			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
@@ -602,7 +602,9 @@
 		</div>
 	</div>
 	
-	<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"  async></script>-->
+
+	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>
+	<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>-->
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/prevent.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}"></script>
 
