@@ -2,7 +2,7 @@ var selectOptions = ["+", "-"];
 var nestedDiv = 0;
 var nestedRowCount = 0;
 
-function addOptionTableHeading(table) {
+function addNestedOptionTableHeading(table) {
 	var thead =  document.createElement('thead');
 	thead.className = "thead-light";
 	var row =  document.createElement('tr');
@@ -40,8 +40,8 @@ function addSingleOptionRow(tbody, DivId) {
 
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
-			dfault.id = "dfault"+nestedRowCount+"div"+DivId;;
-			dfault.name = "dfault"+nestedRowCount+"div"+DivId;
+			dfault.id = "dfault"+"div"+DivId;;
+			dfault.name = "dfault"+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
 			cell0.appendChild(dfault);
@@ -85,6 +85,7 @@ function addSingleOptionRow(tbody, DivId) {
 			sliderContainerDiv.className = "slider";
 			sliderContainerDiv.id = "slider-container"+row.id;
 
+			/*
 			var prevBtnDiv = document.createElement("div");
 			prevBtnDiv.className = "control-prev-btn";
 			prevBtnDiv.id = "control-prev-btn"+row.id;
@@ -105,6 +106,7 @@ function addSingleOptionRow(tbody, DivId) {
 
 			sliderContainerDiv.appendChild(prevBtnDiv);		
 			sliderContainerDiv.appendChild(nextBtnDiv);
+			*/
 
 			cell2.appendChild(uploadBtnDiv);
 			cell2.appendChild(sliderContainerDiv);
@@ -137,7 +139,7 @@ function addSingleOptionRow(tbody, DivId) {
 	});
 }
 
-function addOptionTableFoot(table){
+function addNestedOptionTableFoot(table){
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			var tfoot =  document.createElement('tfoot');
@@ -147,7 +149,7 @@ function addOptionTableFoot(table){
 			//cell
 			cell.className = "option-add-td";
 			cell.colSpan = "4";
-			cell.align = "right";
+			cell.align = "left";
 			//button
 			var button =  document.createElement('button');
 			button.className = "btn btn-primary";
@@ -177,7 +179,7 @@ function addOptionTableFoot(table){
 	});
 }
 
-function addOptionTable(optionDiv) {
+function addNestedOptionTable(optionDiv) {
 	//table
 	var table = document.createElement('table');
 	table.className = "table nested-option-table table-bordered table-striped table-sm";
@@ -186,9 +188,9 @@ function addOptionTable(optionDiv) {
 	tbody.className = "singleOptionTableTbody";
 
 	//call 
-	addOptionTableHeading(table);
+	addNestedOptionTableHeading(table);
 	table.appendChild(tbody);
-	addOptionTableFoot(table);
+	addNestedOptionTableFoot(table);
 	
 	//adding table into div
 	optionDiv.appendChild(table);
@@ -213,7 +215,7 @@ function makeComboTable(list, DivId) {
 	var th1 = document.createElement('th');
 	th1.innerHTML = "SKU";
 	var th2 = document.createElement('th');
-	th2.innerHTML = "St.Qty";
+	th2.innerHTML = "Stock Qty";
 	var th3 = document.createElement('th');
 	th3.innerHTML = "Price";
 
@@ -263,7 +265,7 @@ function makeComboTable(list, DivId) {
 		var quantity = document.createElement('input');
 		quantity.setAttribute('type', 'number');
 		quantity.setAttribute("min", "0");
-		quantity.setAttribute('placeholder', "St.Qty.");
+		quantity.setAttribute('placeholder', "St.Qty");
 		quantity.id = "quantity"+i+"div"+DivId;
 		quantity.name = "quantity"+i+"div"+DivId;
 		quantity.addEventListener('keydown',preventDot, false);
@@ -362,22 +364,36 @@ function addNestedOptionGroup() {
 				return;
 			}
 
-			var nestedOption = document.createElement('div');
-			nestedOption.id = 'nestedOption'+nestedDiv;
-			nestedOption.className = 'nested-option';
+			var nestedOptionDiv = document.createElement('div');
+			nestedOptionDiv.id = 'nestedOption'+nestedDiv;
+			nestedOptionDiv.className = 'nested-option';
 
-			addRemoveDiv(nestedOption);
+			addRemoveDiv(nestedOptionDiv);
 
 			//nestedoption div
 			for (var i = 0; i < optionGroupNumber.value; i++) {
-				var option = document.createElement('div');
-				option.id = 'nestedOption'+nestedDiv+"option"+i;
-				option.className = "single-option";
-				//addOptionTypeTable(option);
-				addTable1(option);
-				addOptionTable(option);
+				//option type table div
+				var optionTypeDiv = document.createElement('div');
+				optionTypeDiv.id = 'nestedOptionType'+nestedDiv+"option"+i;
+				optionTypeDiv.className = "option-type-div";
 
-				nestedOption.appendChild(option);
+				//option table div
+				var optionTableDiv = document.createElement('div');
+				optionTableDiv.id = 'nestedOptionTable'+nestedDiv+"option"+i;
+				optionTableDiv.className = "option-table-div";
+
+				var optionDiv = document.createElement('div');
+				optionDiv.id = 'nestedOption'+nestedDiv+"option"+i;
+				optionDiv.className = "single-option";
+				
+				//addOptionTypeTable(option);
+				addTypeTable(optionTypeDiv);
+				addNestedOptionTable(optionTableDiv);
+
+				optionDiv.appendChild(optionTypeDiv);
+				optionDiv.appendChild(optionTableDiv);
+
+				nestedOptionDiv.appendChild(optionDiv);
 			}
 
 			var makeCombinationbutton = document.createElement('button');
@@ -386,15 +402,15 @@ function addNestedOptionGroup() {
 			makeCombinationbutton.className = "btn btn-success btn-sm make-combination";
 			makeCombinationbutton.addEventListener("click", function() {
 				makeList($(this).parent().attr('id'));
-				  			//button.  div.      id
+				  		//button.  div.      id
 				changeButton($(this).attr('id'));
 			});
 
-			nestedOption.appendChild(makeCombinationbutton);
+			nestedOptionDiv.appendChild(makeCombinationbutton);
 
 			//adding every nested option div into main option div
-			var optionDiv = document.getElementById("option-div");
-			optionDiv.appendChild(nestedOption);
+			var mainDiv = document.getElementById("main-div");
+			mainDiv.appendChild(nestedOptionDiv);
 
 			nestedDiv++;
 

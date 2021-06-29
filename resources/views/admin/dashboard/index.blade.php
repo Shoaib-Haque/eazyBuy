@@ -1,10 +1,11 @@
 @extends('layouts.adminlayout')
 @section('index') 
 	<div class="main">
-		<h1>
+		<h3>
 			<span class="normal">Dashboard</span>
-		</h1>
+		</h3>
 	</div>
+
 	<hr class="full">
 	<div class="main list">
 		<h1>Welcome</h1>

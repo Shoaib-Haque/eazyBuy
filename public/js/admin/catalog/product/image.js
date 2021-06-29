@@ -24,10 +24,12 @@ function removeImageDiv(slideDivId) {
         var sliderContainerDiv =  document.getElementById("slider-container-div");
         sliderContainerDiv.style.display = "none";
       }
+      /*
       if($("#slider-container-div img").length <= 5) {
           document.getElementById('control-prev-div').style.visibility = 'hidden';
           document.getElementById('control-next-div').style.visibility = 'hidden';
       }
+      */
     });
   });
 }
@@ -122,14 +124,17 @@ function upImage(event) {
       if($("#slider-container-div img").length >= 1) {
         sliderContainerDiv.style.display = "flex";
       }
+      /*
       if($("#slider-container-div img").length >= 6) {
         document.getElementById('control-prev-div').style.visibility = 'visible';
         document.getElementById('control-next-div').style.visibility = 'visible';
       }
+      */
     });
   });
 }
 
+/*
 function prevImage() {
     document.getElementById('slider-container-div').scrollLeft -= 270;
 }
@@ -137,3 +142,4 @@ function prevImage() {
 function nextImage() {
     document.getElementById('slider-container-div').scrollLeft += 270;
 }
+*/

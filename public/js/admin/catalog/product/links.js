@@ -35,6 +35,7 @@ jQuery.noConflict()(function ($) { // this was missing for me
 jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
 		$( "#brand" ).autocomplete({
+			appendTo: "#brand_container",
 			minLength: 0,
 		    source: function( request, response ) {
 		        $.ajax({
@@ -56,11 +57,17 @@ jQuery.noConflict()(function ($) {
 				    }
 		        });
 		    }
+		}).focus(function() {  //when focus, means there is no input.
+		    if ($(this).val().length == 0) {
+		        $(this).autocomplete("search", "");
+		    }
 		});
 	});
 });
 
-//when focus, means there is no char
+//when focus, means there is no input char. 
+//These creates problem with extra unwanted scrollbar! so better use upper solution.
+/*  
 jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
 		$("#brand").focus(function() {
@@ -70,3 +77,4 @@ jQuery.noConflict()(function ($) {
 		});
 	});
 });
+*/ 

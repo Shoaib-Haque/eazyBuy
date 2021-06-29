@@ -1,13 +1,20 @@
-.option {
+.optionDiv {
 	position: relative;
 	outline: 1px solid #DCDCDC;
 	margin-bottom: 10px;
-}
-.add-option-group-btn-div {
-	position: relative;
-}
-.option-table {
 	padding: 5px;
+}
+
+.option-table-div {
+	overflow-x: auto;
+}
+.option-table-div {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.option-table-div::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 .single-option-table > tbody > tr > td > .price-select {
@@ -17,12 +24,7 @@
   width: 70%;
 }
 
-table.option-group {table-layout:fixed; width:50%;}/*Setting the table width is important!*/
-table.option-group td {overflow:hidden;} /*Hide text outside the cell.*/
-table.option-group td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
-table.option-group td:nth-of-type(2) {width:65%;}/*Setting the width of column 2.*/
-
-table.single-option-table {table-layout:fixed; width:100%;}/*Setting the table width is important!*/
+table.single-option-table { table-layout:fixed; width:100%; /*Setting the table width is important!*/ }
 table.single-option-table th {overflow:hidden;} /*Hide text outside the cell.*/
 table.single-option-table th:nth-of-type(1) {width:3%;}/*Setting the width of heading 1.*/
 table.single-option-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
@@ -43,4 +45,66 @@ table.single-option-table td:nth-of-type(7) {width:5%; align-content: center;}/*
 
 .single-option-table > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: #C8C8C8;
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+   	table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) { 
+    table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+	table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+	table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+	table.single-option-table {
+		min-width: 1000px;
+	}
+}
+
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+    table.single-option-table th:nth-of-type(1) {width:4%;}/*Setting the width of heading 1.*/
+	table.single-option-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.single-option-table th:nth-of-type(3) {width:12%;}/*Setting the width of heading 3.*/
+	table.single-option-table th:nth-of-type(4) {width:9%;}/*Setting the width of heading 4.*/
+	table.single-option-table th:nth-of-type(5) {width:15%;}/*Setting the width of heading 5.*/
+	table.single-option-table th:nth-of-type(6) {width:39%;}/*Setting the width of heading 6.*/
+	table.single-option-table th:nth-of-type(7) {width:6%;align-content: center;}/*Setting the width of heading 7.*/
+
+	table.single-option-table td {overflow:hidden;} /*Hide text outside the cell.*/
+	table.single-option-table td:nth-of-type(1) {width:4%;}/*Setting the width of column 1.*/
+	table.single-option-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.single-option-table td:nth-of-type(3) {width:12%;}/*Setting the width of heading 3.*/
+	table.single-option-table td:nth-of-type(4) {width:9%;}/*Setting the width of column 4.*/
+	table.single-option-table td:nth-of-type(5) {width:15%;}/*Setting the width of column 5.*/
+	table.single-option-table td:nth-of-type(6) {width:39%;}/*Setting the width of column 6.*/
+	table.single-option-table td:nth-of-type(7) {width:6%; align-content: center;}/*Setting the width of column 7.*/
 }

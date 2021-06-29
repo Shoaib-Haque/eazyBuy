@@ -3,7 +3,7 @@ var typeOptions = ["Checkbox", "Select", "Radio Button"];
 var singleDiv = 0;
 var singleRowCount = 0;
 
-function addTable2Heading(table) {
+function addSingleOptionTableHeading(table) {
 	var thead =  document.createElement('thead');
 	thead.className = "thead-light";
 	var row =  document.createElement('tr');
@@ -53,8 +53,8 @@ function addOptionRow(tbody, DivId) {
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
 			dfault.setAttribute("name", "default"+DivId);
-			dfault.id = "dfault"+singleRowCount+"div"+DivId;;
-			dfault.name = "dfault"+singleRowCount+"div"+DivId;
+			dfault.id = "dfault"+"div"+DivId;;
+			dfault.name = "dfault"+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
 			cell0.appendChild(dfault);
@@ -141,6 +141,7 @@ function addOptionRow(tbody, DivId) {
 			sliderContainerDiv.className = "slider";
 			sliderContainerDiv.id = "slider-container"+row.id;
 
+			/*
 			var prevBtnDiv = document.createElement("div");
 			prevBtnDiv.className = "control-prev-btn";
 			prevBtnDiv.id = "control-prev-btn"+row.id;
@@ -162,6 +163,7 @@ function addOptionRow(tbody, DivId) {
 
 			sliderContainerDiv.appendChild(prevBtnDiv);
 			sliderContainerDiv.appendChild(nextBtnDiv);
+			*/
 
 			cell5.appendChild(uploadBtnDiv);
 			cell5.appendChild(sliderContainerDiv);
@@ -197,7 +199,7 @@ function addOptionRow(tbody, DivId) {
 	});
 }
 
-function addTable2Foot(table) {
+function addSingleOptionTableFoot(table) {
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			var tfoot =  document.createElement('tfoot');
@@ -206,7 +208,7 @@ function addTable2Foot(table) {
 
 			//cell
 			cell.colSpan = "7";
-			cell.align = "right";
+			cell.align = "left";
 			//button
 			var button =  document.createElement('button');
 			button.className = "btn btn-primary";
@@ -235,43 +237,48 @@ function addTable2Foot(table) {
 	});
 }
 
-function addTable2(optionTable) {
+function addSingleOptionTable(optionTableDiv) {
 	//table
-	var table2 = document.createElement('table');
-	table2.className = "table single-option-table table-bordered table-striped table-sm";
+	var table = document.createElement('table');
+	table.className = "table single-option-table table-bordered table-striped table-sm";
 
 	var tbody = document.createElement('tbody');
 
 	//call 
-	addTable2Heading(table2);
-	table2.appendChild(tbody);
-	addTable2Foot(table2);
+	addSingleOptionTableHeading(table);
+	table.appendChild(tbody);
+	addSingleOptionTableFoot(table);
 	
 	//adding table into div
-	optionTable.appendChild(table2);
+	optionTableDiv.appendChild(table);
 }
 
 function addOptionGroup() {
 	//option div
-	var option = document.createElement('div');
-	option.id = 'option'+singleDiv;
-	option.className = 'option';
+	var optionDiv = document.createElement('div');
+	optionDiv.id = 'option'+singleDiv;
+	optionDiv.className = 'optionDiv';
+
+	//option type table div
+	var optionTypeDiv = document.createElement('div');
+	optionTypeDiv.className = "option-type-div";
 
 	//option table div
-	var optionTable = document.createElement('div');
-	optionTable.className = "option-table";
+	var optionTableDiv = document.createElement('div');
+	optionTableDiv.className = "option-table-div";
 
-	addRemoveDiv(option);
+	addRemoveDiv(optionDiv);
 
-	addTable1(optionTable);
-	addTable2(optionTable);
+	addTypeTable(optionTypeDiv);
+	addSingleOptionTable(optionTableDiv);
 
 	//adding optionTable div into option div
-	option.appendChild(optionTable);
+	optionDiv.appendChild(optionTypeDiv);
+	optionDiv.appendChild(optionTableDiv);
 
 	//adding every option div into main option div
-	var optionDiv = document.getElementById("option-div");
-	optionDiv.appendChild(option);
+	var mainDiv = document.getElementById("main-div");
+	mainDiv.appendChild(optionDiv);
 
 	singleDiv++;
 }

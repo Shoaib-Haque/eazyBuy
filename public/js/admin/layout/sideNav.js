@@ -47,10 +47,24 @@ if (currentLink[0].closest(".sidebar-submenu") != null) {
 //currentLink[0].closest(".sidebar-submenu").classList.add("active");
 
 //responsive
+var sideNavFlag = false;
+function sideNavDisplay() {
+  if (!sideNavFlag) { //opening
+    document.getElementById("sidebar").style.width = "260px"; //sidebar
+    sideNavFlag = true;
+  }
+  else { //closing
+    document.getElementById("sidebar").style.width = "0px"; //sidebar
+    sideNavFlag = false;
+  }
+}
+
+
+/*  
 function openNav() {
-    document.getElementById("sidebar").style.width = "260px";
-    document.getElementById("page-container").style.marginLeft = "260px";
-    document.getElementById("sidenav-button").style.display = "none";
+    document.getElementById("sidebar").style.width = "260px"; //sidebar    
+    document.getElementById("page-container").style.marginLeft = "260px"; //main
+    document.getElementById("sidenav-button").style.display = "none"; //sidenav open button
 }
  
 function closeNav() {
@@ -58,3 +72,4 @@ function closeNav() {
     document.getElementById("page-container").style.marginLeft = "0";
     document.getElementById("sidenav-button").style.display = "block";
 }
+*/

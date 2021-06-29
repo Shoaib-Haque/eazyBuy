@@ -1,14 +1,58 @@
+#discount {
+	overflow: auto;
+	margin: 0 10px;
+}
+#discount {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+#discount::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
 table.discount {table-layout:fixed; width:100%;}/*Setting the table width is important!*/
 table.discount th {overflow:hidden;} /*Hide text outside the cell.*/
-table.discount th:nth-of-type(1) {width:15%;}/*Setting the width of heading 1.*/
+table.discount th:nth-of-type(1) {width:14%;}/*Setting the width of heading 1.*/
 table.discount th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
 table.discount th:nth-of-type(3) {width:30%;}/*Setting the width of heading 3.*/
 table.discount th:nth-of-type(4) {width:30%;}/*Setting the width of heading 4.*/
-table.discount th:nth-of-type(5) {width:5%;align-content: center;}/*Setting the width of heading 6.*/
+table.discount th:nth-of-type(5) {width:6%;align-content: center;}/*Setting the width of heading 6.*/
 
 table.discount td {overflow:hidden;} /*Hide text outside the cell.*/
-table.discount td:nth-of-type(1) {width:15%;}/*Setting the width of column 1.*/
+table.discount td:nth-of-type(1) {width:14%;}/*Setting the width of column 1.*/
 table.discount td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
 table.discount td:nth-of-type(3) {width:30%;}/*Setting the width of column 3.*/
 table.discount td:nth-of-type(4) {width:30%;}/*Setting the width of column 4.*/
-table.discount td:nth-of-type(5) {width:5%; align-content: center;}/*Setting the width of column 6.*/
+table.discount td:nth-of-type(5) {width:6%; align-content: center;}/*Setting the width of column 6.*/
+
+/*--- Mobile portrait ---*/
+@media only screen and (max-width : 710px) {
+	table.discount { min-width: 600px;}
+   	table.discount th:nth-of-type(1) {width:18%;}/*Setting the width of heading 1.*/
+	table.discount th:nth-of-type(2) {width:18%;}/*Setting the width of heading 2.*/
+	table.discount th:nth-of-type(3) {width:28%;}/*Setting the width of heading 3.*/
+	table.discount th:nth-of-type(4) {width:28%;}/*Setting the width of heading 4.*/
+	table.discount th:nth-of-type(5) {width:8%;align-content: center;}/*Setting the width of heading 6.*/
+
+	table.discount td:nth-of-type(1) {width:18%;}/*Setting the width of column 1.*/
+	table.discount td:nth-of-type(2) {width:18%;}/*Setting the width of column 2.*/
+	table.discount td:nth-of-type(3) {width:28%;}/*Setting the width of column 3.*/
+	table.discount td:nth-of-type(4) {width:28%;}/*Setting the width of column 4.*/
+	table.discount td:nth-of-type(5) {width:8%; align-content: center;}/*Setting the width of column 6.*/
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 711px) and (max-width : 1223px) {
+   	table.discount th:nth-of-type(1) {width:19%;}/*Setting the width of heading 1.*/
+	table.discount th:nth-of-type(2) {width:18%;}/*Setting the width of heading 2.*/
+	table.discount th:nth-of-type(3) {width:28%;}/*Setting the width of heading 3.*/
+	table.discount th:nth-of-type(4) {width:28%;}/*Setting the width of heading 4.*/
+	table.discount th:nth-of-type(5) {width:7%;align-content: center;}/*Setting the width of heading 6.*/
+
+	table.discount td:nth-of-type(1) {width:19%;}/*Setting the width of column 1.*/
+	table.discount td:nth-of-type(2) {width:18%;}/*Setting the width of column 2.*/
+	table.discount td:nth-of-type(3) {width:28%;}/*Setting the width of column 3.*/
+	table.discount td:nth-of-type(4) {width:28%;}/*Setting the width of column 4.*/
+	table.discount td:nth-of-type(5) {width:7%; align-content: center;}/*Setting the width of column 6.*/
+}

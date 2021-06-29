@@ -20,10 +20,13 @@ function removeImage(slideDivId, rowid) {
       var divObj = document.getElementById(slideDivId);
       divObj.remove();
 
+      /*
       if($("#slider-container"+rowid+" img").length <= 2) {
-        document.getElementById('control-prev-btn'+rowid).style.visibility = 'hidden';
-        document.getElementById('control-next-btn'+rowid).style.visibility = 'hidden';
+        document.getElementById('control-prev-btn'+rowid).style.display = 'none';
+        document.getElementById('control-next-btn'+rowid).style.display = 'none';
       }
+      */
+
       if($("#slider-container"+rowid+" img").length <= 0) {
         var sliderContainerDiv = document.getElementById("slider-container"+rowid);
         sliderContainerDiv.style.display = "none";
@@ -115,14 +118,17 @@ function uploadImage(event, rowid) {
       if($("#slider-container"+rowid+" img").length >= 1) {
         sliderContainerDiv.style.display = "flex";
       }
+      /*
       if($("#slider-container"+rowid+" img").length >= 3) {
-        document.getElementById('control-prev-btn'+rowid).style.visibility = 'visible';
-        document.getElementById('control-next-btn'+rowid).style.visibility = 'visible';
+        document.getElementById('control-prev-btn'+rowid).style.display = 'inline-block';
+        document.getElementById('control-next-btn'+rowid).style.display = 'inline-block';
       }
+      */
     });
   });
 }
 
+/*
 function prev(rowid) {
     document.getElementById('slider-container'+rowid).scrollLeft -= 270;
 }
@@ -130,6 +136,7 @@ function prev(rowid) {
 function next(rowid) {
     document.getElementById('slider-container'+rowid).scrollLeft += 270;
 }
+*/
 
 ///common for image.js
 jQuery.noConflict()(function ($) {
@@ -140,3 +147,4 @@ jQuery.noConflict()(function ($) {
     });
   });
 });
+

@@ -20,7 +20,7 @@ function addDiscount() {
 
 	var quantity = document.createElement("input");
 	quantity.setAttribute("type", "number");
-	quantity.setAttribute('placeholder', "Min Quantity");
+	quantity.setAttribute('placeholder', "Min Qty");
 	quantity.id = "quantity"+discountRow;
 	quantity.name = "quantity"+discountRow;
 	cell1.appendChild(quantity);

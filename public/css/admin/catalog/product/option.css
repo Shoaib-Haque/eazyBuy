@@ -1,6 +1,17 @@
+#options {
+  margin: 0 10px;
+}
+select#nested-group-count {
+  width: 150px;
+}
+.add-option-group-btn-div {
+  position: relative;
+}
+
 .remove-option {
 	position: relative;
 	background-color: #E6E6FA;
+  margin:-5px;
 	margin-bottom: 5px;
 	padding: 5px;
 	min-height: 35px;
@@ -11,6 +22,18 @@
 .remove-option-group-span {
 	cursor: pointer;
   float: right;
+}
+
+.option-table-div {
+  overflow-x: auto;
+}
+.option-table-div {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.option-table-div::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 input[type="radio"]{
@@ -33,9 +56,50 @@ input[type="radio"]:checked {
 }
 
 input[type="radio"]:checked::before{
-  position: absolute;
+  position: relative;
   color: green !important;
   content: "\00A0\2713\00A0" !important;
   font-weight: bolder;
   font-size: 10px;
+}
+
+table.option-group {table-layout:fixed; width:50%; }/*Setting the table width is important!*/
+table.option-group td {overflow:hidden;} /*Hide text outside the cell.*/
+table.option-group td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
+table.option-group td:nth-of-type(2) {width:65%;}/*Setting the width of column 2.*/
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    table.option-group {table-layout:fixed; width:100%; }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    table.option-group {table-layout:fixed; width:100%; }
+}
+
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+    table.option-group {table-layout:fixed; width:80%; } 
+}
+
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+  table.option-group {table-layout:fixed; width:70%; } 
+
+}
+
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+  table.option-group {table-layout:fixed; width:60%; } 
+}
+
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+  table.option-group {table-layout:fixed; width:60%; } 
+}
+
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+   
 }

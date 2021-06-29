@@ -22,12 +22,12 @@
 
   <body>
   @yield('header')
-    <nav class="navbar navbar-expand-sm bg-white navbar-light  position-fixed w-100 pt-0 pb-0">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-sm bg-white navbar-light position-fixed w-100 pt-0 pb-0">
+
+      <button class="btn btn-light" id="sidenav-button">
+        <a href="javascript:void(0)" onclick="sideNavDisplay()" title="Open Navigation"><i class="fas fa-bars fa-lg"></i></a>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="home-link-img-div">
@@ -35,24 +35,25 @@
           </div>
         </li>
 
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <div class="btn-group-div">
-            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
-          aria-haspopup="true" aria-expanded="false">
-            {{session('adminname')}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Your Profile</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+        <li class="nav-item">
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group-div">
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">{{session('adminname')}}</button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Your Profile</a>
+                <a class="dropdown-item" href="#">Another action</a>
+              </div>
+            </div>
+            
+            <div class="btn-group-div">
+              <button class="btn btn-light">
+                <a href="/logout"><i class="fas fa-sign-out-alt" title="logout"></i><span class="logout-text">Logout</span></a>
+              </button>
             </div>
           </div>
-          <div class="btn-group-div">
-            <button class="btn btn-light"><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></button>
-          </div>
-        </div>
+        </li>
       </ul>
-      </div>
     </nav>
   
   @yield('sidebar')
@@ -61,7 +62,6 @@
         <div class="sidebar-content">
           <div class="sidebar-brand">
             <a><i class="fas fa-bars"></i><span>Navigation</span></a>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close Navigation">&times;</a>
           </div>
 
           <div class="sidebar-menu mb-5">
@@ -146,13 +146,6 @@
     <div id="page-container">
       <div id="content-wrap">
         <div class="body">
-          <a href="javascript:void(0)" onclick="openNav()" id="sidenav-button" title="Open Navigation">
-            <svg width="30" height="30" id="icoOpen">
-              <path d="M0,5 30,5" stroke="#ddd" stroke-width="5"/>
-              <path d="M0,14 30,14" stroke="#ddd" stroke-width="5"/>
-              <path d="M0,23 30,23" stroke="#ddd" stroke-width="5"/>
-            </svg>
-          </a>
           
         <!-- all other page content -->
         @yield('index')
@@ -179,11 +172,6 @@
             <small>
               <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
             </small>
-          </div>
-          <div class="footer-div">
-            <a href="https://github.com/shoaib2018" target="_blank">
-              <img alt="GitHub followers" src="https://img.shields.io/github/followers/shoaib2018?label=github&style=social" />
-            </a>
           </div>
         </footer>
         </div>

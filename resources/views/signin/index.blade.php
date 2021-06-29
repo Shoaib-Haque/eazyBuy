@@ -16,11 +16,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"    ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    ></script>
   </head>
+
 <body>
   <div class="container">
     <div class="row">
       <div class="panel panel-primary">
         <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
+
         <div class="panel-body">
           <form method="POST">
             {{ csrf_field() }}
@@ -45,6 +47,7 @@
             <p class="form-group">By signing in you are agreeing to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
           </form>
         </div>
+        
         <div class="form-group divider">
             <hr class="left"><small>New to eazyBuy?</small><hr class="right">
         </div>
@@ -53,9 +56,11 @@
             <a href="/registration">Create your eazyBuy account</a>
           </button>
         </p>
+
       </div>
     </div>
   </div>
+
   <footer class="mt-5">
     <hr>
     <div class="footer-div mb-2">

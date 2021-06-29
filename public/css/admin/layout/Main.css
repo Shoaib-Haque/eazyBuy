@@ -3,22 +3,12 @@
   position: relative;
   top: 55px;
   min-height: 90vh;
-  max-height: 90vh;
+  /*max-height: 90vh;*/
   margin-left: 260px;
   padding-left: 0px;
   padding-bottom: 30px;
   overflow-x: hidden;
   background-color: #F5F5F5;
-}
-
-/* On smaller screens, where width is less than 450px, change the style of the page-container (full width) */
-@media screen and (max-width: 450px) {
-    #page-container {
-      margin-left: 10px;
-  }
-  #sidenav-button{
-    display: block;
-  }
 }
 
 #content-wrap {
@@ -58,7 +48,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
   border: 1px solid rgba(81, 203, 238, 1);
 }
 
-.full {
+hr.full {
   width: 100%;
 }
 .normal { 
@@ -70,8 +60,6 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 .button-group {
   float: right;
 }
-
-
 
 th {
   color: #6666ff;
@@ -92,7 +80,7 @@ tr > td {
   text-align: left;
 }
 tr.border_bottom td {
-  width: 1100px;
+  width: 100%;
   border-bottom: 1px solid #DCDCDC;
 }
 
@@ -109,4 +97,101 @@ tr.border_bottom td {
 }
 .btn-th, .btn-td {
   width: 10%;
+}
+
+.device-width {
+  border-collapse: collapse; 
+  mso-table-lspace: 0pt; 
+  mso-table-rspace: 0pt;
+  direction: ltr;
+  width: 100%;
+}
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+  #page-container {
+    margin-left: 0px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+
+  .full {
+        display:block;
+        width:100%;
+        text-align: left;
+  }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+  #page-container {
+    margin-left: 0px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+
+  .full {
+        display:block;
+        width:100%;
+        text-align: left;
+  }
+}
+
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+  #page-container {
+    margin-left: 0px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+
+  .full {
+        display:block;
+        width:100%;
+        text-align: left;
+  }
+}
+
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+  #page-container {
+    margin-left: 0px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+ 
+  .full {
+        display:block;
+        width:100%;
+        text-align: left;
+  }
+}
+
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+  #page-container {
+    margin-left: 0px;
+  }
+  #sidenav-button{
+    display: block;
+  }
+  
+  .full {
+        display:block;
+        width:100%;
+        text-align: left;
+  }
+}
+
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+
+}
+
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+    
 }
