@@ -9,13 +9,9 @@
 	padding-top: 5px;
 	padding-left: 5px; 
 }
-#submit {
-	margin-left: 840px;
-}
 
 #nav-tab {
-	margin-top: 0px;
-	margin-bottom: 20px;
+	margin: 0 10px 20px 10px;
 }
 
 .buttons a {
@@ -31,47 +27,6 @@
 	display: none;
 }
 
-.star {
-	color: red;
-}
-
-.td-left {
-	min-width: 150px;
-  	max-width: 150px;
-  	overflow: hidden;
-	padding-right: 5px;
-	text-align: right;
-}
-.td-right {
-	min-width: 700px;
-  	max-width: 700px;
- 	overflow: hidden;
-	padding-left: 5px;
-	text-align: left;
-}
-
-tr.border_bottom td {
-  width: 1100px;
-  border-bottom: 1px solid #DCDCDC;
-}
-
-#length, #width, #height {
-	width: 32%;
-	margin-right: 3px;
-}
-
-input[type=text], input[type=number], select {
-	width: 98%;
-	height: 35px;
-	border: 1px solid #DCDCDC;
-	border-radius: 5px;
-	font-family: FontAwesome, "Open Sans", 
-}
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  border: 1px solid rgba(81, 203, 238, 1);
-}
 textarea:focus {
   outline: none !important;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);

@@ -12,6 +12,7 @@
 			</div>
 		</h1>
 	</div>
+
 	<hr class="full">
 	<div class="main list">
 		<div class="">
@@ -20,7 +21,7 @@
 			</div>
 		</div>
 		<div class="table-div">
-			<table class="table table-hover">
+			<table class="table table-hover table-sm">
 				<thead>
 				    <tr>
 				    	<th class="name-th">Department Name</th>

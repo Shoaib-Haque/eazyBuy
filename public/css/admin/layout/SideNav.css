@@ -83,41 +83,18 @@ body {
   left: 0px;
 }
 
-@media screen and (min-width: 768px) {
-  .page-wrapper.toggled .page-content {
-    padding-left: 300px;
-  }
-}
-
-
-
-
-
-
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
   width: 260px;
-  height: 92%;
+  height: 100%;
   max-height: 100%;
   position: fixed;
   top: 53px;
   left: -300px;
   z-index: 999;
 }
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidebar-wrapper {
-      padding-top: 15px;
-    }
-    .sidebar-wrapper a {font-size: 18px;}
-}
-/* On smaller screens, where width is less than 450px, change the style of the sidenav (less width) */
-@media screen and (max-width: 450px) {
-    .sidebar-wrapper {
-      width: 0px;
-    }
-}
+
 .sidebar-wrapper ul {
   list-style-type: none;
   padding: 0;
@@ -458,4 +435,61 @@ a svg{
 
 #sidenav-button{
   display: none;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar-wrapper {
+      padding-top: 15px;
+    }
+    .sidebar-wrapper a {font-size: 18px;}
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+    .sidebar-wrapper {
+      width: 0px;
+    }
+}
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+    .sidebar-wrapper {
+      width: 260px;
+    }
+    .page-wrapper.toggled .page-content {
+      padding-left: 300px;
+    }
+}
+
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+    .sidebar-wrapper {
+      width: 260px;
+    }
 }

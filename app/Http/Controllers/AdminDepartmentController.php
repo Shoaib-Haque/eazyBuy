@@ -40,6 +40,7 @@ class AdminDepartmentController extends Controller
 
     function checkDuplicate(Request $req) {
         $name = $req->name;
+
         if (isset($this->department->checkDuplicate($name)->id)) {
             return "Has Duplicate";
         }

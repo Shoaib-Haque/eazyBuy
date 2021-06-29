@@ -5,9 +5,64 @@ footer {
   width: 100%;
   height: 2.5rem;            /* Footer height */
 }
-.footer-div {
-  margin-left: 400px;
-}
+
 hr {
   width: 90%;
+}
+
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .footer-div {
+  		margin: 0 auto;
+  		text-align: center;
+	}
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    .footer-div {
+  		margin: 0 auto;
+  		text-align: center;
+	}
+}
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+    .footer-div {
+    	margin: 0 auto;
+  		text-align: center;
+    	/*margin-left: 265px;*/
+	}
+}
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+    .footer-div {
+    	margin: 0 auto;
+  		text-align: center;
+  		/*margin-left: 330px;*/
+	}
+}
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+    .footer-div {
+    	margin: 0 auto;
+  		text-align: center;
+  		/*margin-left: 330px;*/
+	}
+}
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+    .footer-div {
+    	margin: 0 auto;
+  		text-align: center;
+  		/*margin-left: 400px;*/
+	}
+}
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+    .footer-div {
+    	margin: 0 auto;
+  		text-align: center;
+  		/*margin-left: 400px;*/
+	}
 }

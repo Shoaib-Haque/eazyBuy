@@ -1,3 +1,9 @@
+#brand_container {
+    display: block; 
+    min-width: 160px;
+    position:relative
+} 
+
 .ui-autocomplete {
   position: absolute;
   top: 100%;
@@ -44,7 +50,7 @@
   clip: rect(0 0 0 0);
   height: 1px;
   margin: -1px;
-  overflow: hidden;
+  overflow: hidden !important;
   padding: 0;
   position: absolute;
   width: 1px;

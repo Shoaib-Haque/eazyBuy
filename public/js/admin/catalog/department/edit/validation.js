@@ -1,3 +1,4 @@
+var result = false;
 //First Letter Checking.....
 function first_letter_check(name){
 		if(name.charCodeAt(0) == 32){
@@ -16,57 +17,76 @@ function special_character_check(name){
 	}
 }
 
-function checkDuplicate(name) {
-	var result;
-	$.ajax({
-		type:"get",
-		url: '/department/checkduplicate',
-		async: false, 
-		data:{
-			name:name,
-		},
-		datatype:'text',
-		success:function(data){
-			console.log(data);
-			if (data == "Has Duplicate") {
-				result = true;
-			}
-			else {
-				result = false;
-			}
-		},
+function checkDuplicate(name, callback) {
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			$.ajax({
+				type:"get",
+				url: '/department/checkduplicate',
+				data:{
+					name:name,
+				},
+				datatype:'text',
+				success:function(data){
+					if (data == "Has Duplicate") {
+						result = true;
+					}
+					callback();
+				},
+			});
+		});
 	});
-	return result;
 }
 
 function validation(){
 	var name = document.getElementById("name");
-	var flagname = false;
-
-	//Name 
-	if(name.value == ""){
-		document.getElementById("nameLabel").innerHTML = "Department Name must be between 1 and 100 characters!";
-	}
-	else if(first_letter_check(name.value)){
-		document.getElementById("nameLabel").innerHTML = "Department Name Cannot start with space!";
-	}
-	else if(special_character_check(name.value)){
-		document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
-	}
-	else if(checkDuplicate(name.value)) {
-		document.getElementById("nameLabel").innerHTML = "Department name already in use!";
-	}
-	else{
-		document.getElementById("nameLabel").innerHTML = "";
-		document.getElementById("name").innerHTML = name;
-		flagname = true;
-	}
-	
-	if (flagname == false) {
-		return false;
+	var same = document.getElementById("same");
+	if (name.value === same.value) {
+		jQuery.noConflict()(function ($) { 
+			$(document).ready(function () {
+				$('#form').submit();
+			});
+		});
 	}
 	else {
-		$('#confirmBox').modal();
-		//return true;
+		checkDuplicate(name.value, function () { 
+			finalValidation(); 
+		});
 	}
+}
+
+function finalValidation(){
+	var name = document.getElementById("name");
+	var flagname = false;
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			//Name 
+			if(name.value == ""){
+				document.getElementById("nameLabel").innerHTML = "Department Name must be between 1 and 100 characters!";
+			}
+			else if(first_letter_check(name.value)){
+				document.getElementById("nameLabel").innerHTML = "Department Name Cannot start with space!";
+			}
+			else if(special_character_check(name.value)){
+				document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
+			}
+			else if(result == true) {
+				document.getElementById("nameLabel").innerHTML = "Department name already in use!";
+				result = false;
+			}
+			else{
+				document.getElementById("nameLabel").innerHTML = "";
+				document.getElementById("name").innerHTML = name;
+				flagname = true;
+			}
+			
+			if (flagname == false) {
+				return false;
+			}
+			else {
+				$('#confirmBox').modal();
+				//return true;
+			}
+		});
+	});
 }

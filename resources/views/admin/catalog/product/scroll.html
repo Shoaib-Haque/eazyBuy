@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+</head>
+<style>
+.well{
+        position: static;
+      }
+      #row{
+        border: 5px solid rgb(4, 123, 13);
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+      }
+      #row img{
+        position: absolute;
+        visibility: hidden;
+      }
+      .dispBlocknext{
+        display: inline-block;
+        -o-animation-name: slideInLeft;
+        -ms-animation-name: slideInLeft;
+        -moz-animation-name: slideInLeft;
+        -webkit-animation-name: slideInLeft;
+        animation-name: slideInLeft;
+        -o-animation-duration: 1.5s;
+        -ms-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+        -o-animation-iteration-count: 1;
+        -ms-animation-iteration-count: 1;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+      }
+      .dispNone{
+        -o-animation-name: slideInRight;
+        -ms-animation-name: slideInRight;
+        -moz-animation-name: slideInRight;
+        -webkit-animation-name: slideInRight;
+        animation-name: slideInRight;
+        -o-animation-duration: 1.5s;
+        -ms-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+        -o-animation-iteration-count: 1;
+        -ms-animation-iteration-count: 1;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+      }
+      #row{
+        border-radius: 5px;
+      }
+      
+      @-webkit-keyframes slideInLeft {
+        from {
+          -o-transform: translate3d(-100%, 0, 0);
+          -ms-transform: translate3d(-100%, 0, 0);
+          -moz-transform: translate3d(-100%, 0, 0);
+          -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+          visibility: visible;
+        } 
+
+        to {
+          -o-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          -o-transform: translate3d(-100%, 0, 0);
+          -ms-transform: translate3d(-100%, 0, 0);
+          -moz-transform: translate3d(-100%, 0, 0);
+          -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+          visibility: visible;
+        }
+
+        to {
+          -o-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .slideInLeft {
+        -o-animation-name: slideInLeft;
+        -ms-animation-name: slideInLeft;
+        -moz-animation-name: slideInLeft;
+        -webkit-animation-name: slideInLeft;
+        animation-name: slideInLeft;
+      }
+
+      @-webkit-keyframes slideInRight {
+        from {
+          -o-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+
+        to {
+          -o-transform: translate3d(100%, 0, 0);
+          -mz-transform: translate3d(100%, 0, 0);
+          -moz-transform: translate3d(100%, 0, 0);
+          -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+          display: none;
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          -o-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+          -moz-transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+        
+        to {
+          -o-transform: translate3d(100%, 0, 0);
+          -ms-transform: translate3d(100%, 0, 0);
+          -moz-transform: translate3d(100%, 0, 0);
+          -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+          display: none;
+        }
+      }
+
+      .slideInRight {
+        -o-animation-name: slideInRight;
+        -ms-animation-name: slideInRight;
+        -moz-animation-name: slideInRight;
+        -webkit-animation-name: slideInRight;
+        animation-name: slideInRight;
+        display: none;
+      }
+      #left, #right{
+        position: absolute;
+        background: linear-gradient(rgba(89, 160, 84, 0.8), rgba(4, 123, 13, 0.9), rgba(4, 123, 13, 0.9), rgba(89, 160, 84, 0.8));
+        color: white;
+        text-align: center;
+        opacity: 0;
+        transition: all 1s;
+        cursor: pointer;
+      }
+      #left p, #right p{
+        position: relative;
+        top: 45%;
+      }
+      #row:hover #left, #row:hover #right{
+        display: block;
+        opacity: 1;
+      }
+      #left{
+        left: 0;
+      }
+      #right{
+        right: 0;
+      }
+</style>
+
+<body onload="ViewPort(); startSlider()" onresize="ViewPort()">        
+        <h3 class="text-center">Demo</h3>
+        <div id="row">
+          <img src="http://media1.santabanta.com/full5/Nature/Aquatic/aquatic-137a.jpg" class="imgSlide dispNone" />
+          <img src="http://media1.santabanta.com/full5/Nature/Aquatic/aquatic-138a.jpg" class="imgSlide dispNone" />
+          <img src="http://media1.santabanta.com/full5/Nature/Birds/birds-284a.jpg" class="imgSlide dispNone" />
+          <img src="http://media1.santabanta.com/full5/Nature/Birds/birds-283a.jpg" class="imgSlide dispNone" />
+          <img src="http://media1.santabanta.com/full5/Nature/Birds/birds-293a.jpg" class="imgSlide dispNone" />          
+          <div id="left" onclick="previous()"><p><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></p></div>
+          <div id="right" onclick="next()"><p><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></p></div>
+        </div>
+        <br/>
+        <div id="imageContainer">
+        </div>
+      </div>
+  </body>
+
+
+<script>
+var images = document.getElementsByClassName("imgSlide");
+    var index = 0; 
+    var stopLooping;
+    var length = images.length;
+    
+    var ViewPort = function ViewPort(){
+      var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      document.getElementById("row").style.height = (0.8*h)+"px";
+      document.getElementById("row").style.width = (0.8*w)+"px";
+
+document.getElementById("left").style.width = (0.05*w)+"px";
+      document.getElementById("right").style.width = (0.05*w)+"px";
+      document.getElementById("left").style.height = (0.8*h)+"px";
+      document.getElementById("right").style.height = (0.8*h)+"px";
+      
+      for(var i=0; i<length; i++){
+        images[i].style.height = (0.8*h)+"px";
+        images[i].style.width = (0.8*w)+"px";
+      }
+    }
+    
+    function startSlider(){
+      addShow(0);
+      imgSlider(0);
+    }
+    
+    function imgSlider(){
+      if(index < images.length){
+        stopLooping = setTimeout(function(){
+          addHide(index);
+          if(index+1 < images.length){
+            addShow(index+1);
+          }else{
+            addShow(0);
+          }
+          index++;
+          imgSlider();
+        },3000);
+      }
+      else {
+        index = 0;
+        imgSlider();
+      }
+    }
+    
+    
+    function next(){
+      clearInterval(stopLooping);
+      
+      if(index+1<images.length){
+        index=index+1;
+      }else{
+        index=0;
+      }
+      nextSlide(index);
+    }
+    
+    function previous(){
+      clearInterval(stopLooping);
+      
+      if(index-1 < 0){
+        index = length-1;
+      }else{
+        index = index-1;
+      }
+      prevSlide(index);
+    }
+    
+    function nextSlide(index){
+      if(index==0){
+        addHide(length-1);
+      }else{
+        addHide(index-1);
+      }
+      addShow(index);
+    }
+    
+    function prevSlide(index, newindex){
+      if(index==length-1){
+        addHide(0);
+      }else{
+        addHide(index+1);
+      }
+      addShow(index);
+    }
+      
+    function addShow(newIndex){
+      images[newIndex].classList.add("dispBlocknext");
+      images[newIndex].classList.remove("dispNone");
+      images[newIndex].style.visibility = 'visible';
+    }
+    
+    function addHide(newIndex){
+      images[newIndex].classList.add("dispNone");
+      images[newIndex].classList.remove("dispBlocknext");
+      images[newIndex].style.visibility = 'hidden';
+    }
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@media only screen and (max-width: 640px)  {
+    .full {
+        display:block;
+        width:100%;
+    }
+}
+</style>
+<title>Page Title</title>
+</head>
+<body>
+
+<table class="deviceWidth" dir="ltr"  width="100%" cellpadding="0" cellspacing="0" border="1" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; ">
+  <tr>
+    <td width="30%" dir="ltr"  class="full">
+      <p style="mso-table-lspace:0;mso-table-rspace:0; padding:0; margin:0;">
+        name
+      </p>                  
+    </td>
+    <td width="70%" dir="ltr" class="full">
+       input         
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+

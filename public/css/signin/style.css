@@ -44,7 +44,7 @@ h2 {
 
 button.sub {
   background-color: #febd69;
-  width: 350px;
+  width: 100%;
 }
 button.sub:hover {
   background-color: #fead3f;
@@ -54,7 +54,7 @@ button.sub:hover {
 	border: none;
 	outline: 1px solid black;
 	height: 40px;
-	width: 370px;
+	width: 100%;
 }
 .registration-button > a{
 	text-decoration: none;
@@ -66,14 +66,21 @@ button.sub:hover {
 
 footer {
   position: relative;
-  bottom: 0px;
-  width: 100%;
+  bottom: 20px;
   height: 2.5rem;            /* Footer height */
 }
 .footer-div {
-  margin-left: 560px;
-  padding-bottom: 15px;
+  	margin: 0 auto;
+  	text-align: center;
 }
 hr {
   width: 70%;
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .container { width: 90%; }
+    hr.left {
+    	width: 30%;
+    }
 }

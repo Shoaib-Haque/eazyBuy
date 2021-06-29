@@ -1,7 +1,7 @@
 @extends('layouts/adminlayout')
 @section('categories')
 	<div class="main">
-		<h1>
+		<h3>
 			<span class="normal">Categories</span>
 			<div class="button-group">
 				<a href="/admin/catalog/category/add">
@@ -10,17 +10,16 @@
 					</button>
 				</a>
 			</div>
-		</h1>
+		</h3>
 	</div>
+	
 	<hr class="full">
 	<div class="main list">
-		<div class="">
-			<div class="heading">
-				<i class="fas fa-list"></i> Category List
-			</div>
+		<div class="heading">
+			<i class="fas fa-list"></i> Category List
 		</div>
 		<div class="table-div ">
-			<table class="table table-hover">
+			<table class="table table-hover table-sm">
 				<thead>
 				    <tr>
 				    	<th>Department</th>
