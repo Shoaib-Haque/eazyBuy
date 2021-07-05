@@ -56,4 +56,15 @@ class AdminCategoryController extends Controller
             }
         }
     }
+
+    function checkDuplicate(Request $req) {
+        $name = $req->name;
+        $did =  $req->did;
+        if (isset($this->category->checkDuplicate($name, $did)->id)) {
+            return "Has Duplicate";
+        }
+        else {
+            return "No Duplicate";
+        }
+    }
 }

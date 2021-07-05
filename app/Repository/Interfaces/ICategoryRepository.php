@@ -13,5 +13,7 @@ interface ICategoryRepository
 
     //public function deleteUser($id);
     public function categoryByDepartment($did);
+
+    public function checkDuplicate( $name, $did );
 }
 ?>

@@ -51,4 +51,15 @@ class AdminBrandController extends Controller
         }
         return response()->json($results);
     }
+
+    function checkDuplicate(Request $req) {
+        $name = $req->name;
+
+        if (isset($this->brand->checkDuplicate($name)->id)) {
+            return "Has Duplicate";
+        }
+        else {
+            return "No Duplicate";
+        }
+    }
 }

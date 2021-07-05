@@ -5,26 +5,6 @@ h2 {
   margin-bottom: 2px;
 }
 
-.panel-body{
-	margin-top: 5px;
-	outline: 1px solid gray;
-}
-
-#home-link-img {
-    height: 40px;
-	width: 120px;
-	margin-left: 30%;
-	margin-top: 10px;
-}
-
-button.sub {
-  background-color: #febd69;
-  width: 350px;
-}
-button.sub:hover {
-  background-color: #fead3f;
-}
-
 .container { max-width: 360px; }
 
 .divider {
@@ -42,16 +22,67 @@ button.sub:hover {
 
 .right { float: right; }
 
+
+.form-control {
+  height: 35px;
+}
+.panel-body{
+  border-radius: 3px;
+  margin-top: 10px;
+  border: 1px solid #A9A9A9;
+}
+
+#home-link-img {
+    height: 40px;
+  width: 120px;
+  margin-left: 30%;
+  margin-top: 10px;
+}
+
+.btn-light {
+  background-color: gray;
+}
+
+button.sub {
+  background-color: #febd69;
+  width: 100%;
+  height: 35px;
+}
+button.sub:hover {
+  background-color: #fead3f;
+}
+
+.registration-button {
+  border: none;
+  outline: 1px solid black;
+  height: 40px;
+  width: 100%;
+}
+.registration-button > a{
+  text-decoration: none;
+  color: black;
+}
+.registration-button:hover {
+  background-color: #E8E8E8;
+}
+
 footer {
   position: relative;
-  bottom: 0px;
-  width: 100%;
+  bottom: 20px;
   height: 2.5rem;            /* Footer height */
 }
 .footer-div {
-  margin-left: 560px;
-  padding-bottom: 15px;
+    margin: 0 auto;
+    text-align: center;
 }
 hr {
   width: 70%;
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .container { width: 90%; }
+    hr.left {
+      width: 30%;
+    }
 }

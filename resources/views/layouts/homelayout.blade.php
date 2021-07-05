@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +9,128 @@
 
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutFirstNav.css')}}">
-	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutSecondNav.css')}}">
-	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutFooter.css')}}">
-	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/layoutSideNav.css')}}">
+	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/firstNav.css')}}">
+	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/secondNav.css')}}">
+	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/footer.css')}}">
+	  	<link rel="stylesheet" type="text/css" href="{{asset('css/home/sideNav.css')}}">
 
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"          ></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"    ></script>
 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    ></script>
 	</head>
+
 	<body>
+		@yield('header')
+		<div class="disable">
+			<nav class="navbar-first">
+			  	<ul>
+				    <li>
+				    	<div class="flex">
+					    	<a href="/home"><img src="{{asset('images/logo/eazyBuyLogo.ico')}}" alt=""></a>
+					  	</div>
+					</li>
+
+				    <li>
+				    	<a href="#">
+				    		<div class="flex">	
+						        <div class="white">
+						       		<i class="fa fa-map-marker" aria-hidden="true"></i>
+						       	</div>
+						       	<div>
+						       		<span class="grey smaller">Deliver to</span>
+						      		<span class="white"><b>Bangladesh</b></span>
+						        </div>
+					    	</div>
+						</a>
+				    </li>
+
+				    <li>
+				    	<div class="input-group flex">
+						    <div class="input-group-prepend">
+								<div class="dropdown">
+									<button class="btn btn-outline-light dropdown-toggle shadow-none" type="button" id="dropdownDepartment"
+								        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    	All
+								    	<span class="caret"></span>
+								  	</button>
+								  	<div class="dropdown-menu" name="selectDepartment" aria-labelledby="dropdownMenu">
+									    <a id="Mens" onclick="selectDepartment(this);">Mens</a>
+									    <a id="Women" onclick="selectDepartment(this);">Women</a>
+									    <a id="Tools & Home Improvement" onclick="selectDepartment(this);">
+									    	Tools & Home Improvement
+										</a>
+								  	</div>
+								</div>
+						    </div>
+						    <input type="text" class="form-control">
+							<div class="input-group-append">
+				            	<button type="button" class="sub btn btn-default">
+				             		<i class="fa fa-search"></i>
+				           		</button>				   	
+							</div>
+					    </div>
+				    </li>
+
+				    <li>
+				    	<div class="flex">
+					    	<a href="/signin">
+						    	<div class="dropdown">
+									<button class="dropbtn">
+									   	<div class="smaller">Hello, Sign in</div>
+									   	<span><b>Accounts & Lists</b></span>
+									</button>
+									<div class="dropdown-content dropdown-menu-right">
+										<a class="sign-in" href="/signin">Sign in</a>
+										<div id="start-here-div">
+									    	<span> New Customer?</span>
+									    	<span><a href="/registration"> Start here.</a></span>
+									   	</div>
+									</div>
+								</div>
+							</a>
+						</div>
+				    </li>
+
+				    <li>
+				    	<div class="flex">
+						    <div class="returns-orders">
+						    	<a href="#">
+								    <div class="white smaller">Returns</div>
+								    <div class="white"><b>& Orders</b></div>	
+								</a>
+							</div>
+						</div>
+				    </li>
+
+				    <li>
+				    	<div class="flex">
+							<a href="#"><img src="{{asset('images/logo/Cart.jpg')}}" alt=""></a>
+						</div>
+				    </li>
+			  	</ul>
+			</nav>
+
+			<nav class="navbar-second">
+			  	<ul>
+			  		<li>
+				    	<button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas">
+				    		<i class="fas fa-bars"></i> All
+				   		</button> 
+				    </li>
+				   	<li>
+				   		<a class="" href="#">Today's Deals</a>
+				    </li>
+				    <li>
+				        <a class="" href="#">Customer Service</a>
+				    </li>
+				    <li>
+				        <a class="" href="#">Gift Card</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
 		@yield('sidebar')
 		<!--sidenav-->
 		<div id="sidebar" class="sidebar">
@@ -75,173 +186,107 @@
 		  <a class="dropdown-item" href="#">About</a>
 		</div> 
 
-		@yield('header')
 		<div class="disable">
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="upnav">
-			<ul class="navbar-nav">
-			    <li class="nav-item active">
-			        <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
-			    </li>
-
-			    <li class="hidden-xs deli ml-3">
-	            	<a>
-	            		<span class="grey">Deliver to</span>
-	            		<div class="white bold"><i class="fas fa-map-marker-alt"></i>Bangladesh</div>
-	            	</a>
-	            </li>
-
-			    <div class="input-group ml-3">
-			    	<div class="input-group-prepend">
-			    		<button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
-			      		All
-			    		</button>
-						<div class="dropdown-menu">
-					        <a class="dropdown-item" href="#">Link 1</a>
-					    </div>
-			    	</div>
-
-			    	<input type="text" class="form-control" id="search-box">
-					<div class="input-group-append">
-	             		<button type="button" class="sub btn btn-default">
-	             			<i class="fa fa-search"></i>
-	            		</button>				   	
-					</div>
-			    </div>
-
-			    <div class="dropdown ml-3">
-				    <a href="/signin">
-				    	<button class="dropbtn btn-dark">Hello, Sign in</button>
-				    </a>
-				    <div class="dropdown-content">
-					   	<a class="sign-in" href="/signin">Sign in</a>
-					    <div id="start-here-div">
-				    		New Customer?<a id="start-here-link" href="/registration"> Start here.</a>
-				    	</div>
-				  	</div>
-				</div>
-			    
-			    <li class="nav-item ml-3">
-			    	<div class="cart-container" id="cart-link">
-						<a href="/home"><img src="{{asset('images/logo/Cart.jpg')}}" id="cart-link-img"></a>
-					  	<div class="centered">0</div>
-					</div>
-			    </li>
-			</ul>
-		</nav>
-
-		<!--second navbar-->
-		<nav class="navbar navbar-expand-sm navbar-second">
-		  <!-- Links -->
-		  	<ul class="navbar-nav">
-			    <li class="nav-item">
-			      <button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas"><i class="fas fa-bars"></i> All</button> 
-			    </li>
-
-			    <div class="dropdown dropdown-bh ml-3">
-				    <button class="dropbtn dropbtn-bh btn-dark dropdown-toggle">Browsing History</button>
-				    <div class="dropdown-content">
-				  	</div>
-				</div>
-
-			    <li class="nav-item nav-buy-again ml-3">
-			      <a class="" href="#">Buy Again</a>
-			    </li>
-		  	</ul>
-		</nav>
 	     
 		@yield('index')
 
 		<!--footer-->
 		@yield('footer')
+
 	    <footer>
-	      	<div class="bot container-fluid">
-	        	<a href="#top">
-	          		<h4 class="less white">Back to top</h4>
-	        	</a>
-	      	</div>
+	    	<a href="#top">
+	      		<div class="bot">
+	          		<h6 class="less white">Back to top</h6>
+	      		</div>
+	      	</a>
+	      	
 	      	<div class="container-fluid">
 	        	<div class="container">
 	          		<div class="row">
-	            	<div class="col-sm-3">
-	              		<h4 class="white">Get to Know Us</h4>
-		             	<div class="gap">
-		               		<a class="grey foot" href="#">About Us</a>
+		            	<div class="col">
+		              		<h4 class="white">Get to Know Us</h4>
+			             	<div class="gap">
+			               		<a class="grey foot" href="#">About Us</a>
+			            	</div>
+			              	<div class="gap">
+			               		<a class="grey foot" href="#">Careers</a>
+			            	</div>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Press Release</a>
+			              	</div>
+			            	<div class="gap">
+			               		<a class="grey foot" href="#">XYZ cares</a>
+			              	</div>
+			              	<div class="gap">
+			               		<a class="grey foot" href="#">Gift a Smile</a>
+			              	</div>
 		            	</div>
-		              	<div class="gap">
-		               		<a class="grey foot" href="#">Careers</a>
+		            	
+		            	<div class="col">
+		              		<h4 class="white">Connect with Us</h4>
+		              		<div class="gap">
+			                	<a class="grey foot" href="#">Facebook</a>
+			              	</div>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Twitter</a>
+			              	</div>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Instagram</a>
+			              	</div>
+			            </div>
+			            
+			            <div class="col">
+			              	<h4 class="white">Make Money with Us</h4>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Sell on XYZ</a>
+			              	</div>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Become an Affiliate</a>
+			              	</div>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Fulfilment by XYZ</a>
+			              	</div>
+		              		<div class="gap">
+		                		<a class="grey foot" href="#">Advertise Your Products</a>
+		              		</div>
+		              		<div class="gap">
+		                	<a class="grey foot" href="#">XYZ Pay on Merchants</a>
+		              		</div>
 		            	</div>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Press Release</a>
-		              	</div>
-		            	<div class="gap">
-		               		<a class="grey foot" href="#">XYZ cares</a>
-		              	</div>
-		              	<div class="gap">
-		               		<a class="grey foot" href="#">Gift a Smile</a>
-		              	</div>
-	            	</div>
-	            	
-	            	<div class="col-sm-3">
-	              		<h4 class="white">Connect with Us</h4>
-	              		<div class="gap">
-		                	<a class="grey foot" href="#">Facebook</a>
-		              	</div>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Twitter</a>
-		              	</div>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Instagram</a>
-		              	</div>
-		            	</div>
-		            
-		            <div class="col-sm-3">
-		              	<h4 class="white">Make Money with Us</h4>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Sell on XYZ</a>
-		              	</div>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Become an Affiliate</a>
-		              	</div>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Fulfilment by XYZ</a>
-		              	</div>
-	              		<div class="gap">
-	                		<a class="grey foot" href="#">Advertise Your Products</a>
-	              		</div>
-	              		<div class="gap">
-	                	<a class="grey foot" href="#">XYZ Pay on Merchants</a>
-	              		</div>
-	            	</div>
 
-		            <div class="col-sm-3">
-		              	<h4 class="white">Let Us Help You</h4>
-		              	<div class="gap">
-		                	<a class="grey foot" href="#">Your Account</a>
-		              	</div>
-			            <div class="gap">
-			                <a class="grey foot" href="#">Returns Centre</a>
+			            <div class="col">
+			              	<h4 class="white">Let Us Help You</h4>
+			              	<div class="gap">
+			                	<a class="grey foot" href="#">Your Account</a>
+			              	</div>
+				            <div class="gap">
+				                <a class="grey foot" href="#">Returns Centre</a>
+				            </div>
+				            <div class="gap">
+				                <a class="grey foot" href="#">100% Purchase Protection</a>
+				            </div>
+				            <div class="gap">
+				                <a class="grey foot" href="#">XYZ Assisstant</a>
+				            </div>
+				            <div class="gap">
+				                <a class="grey foot" href="#">Help</a>
+				            </div>
 			            </div>
-			            <div class="gap">
-			                <a class="grey foot" href="#">100% Purchase Protection</a>
-			            </div>
-			            <div class="gap">
-			                <a class="grey foot" href="#">XYZ Assisstant</a>
-			            </div>
-			            <div class="gap">
-			                <a class="grey foot" href="#">Help</a>
-			            </div>
-		            </div>
 	          		</div>
-	          		<div class="footer-license-div">
-	          			<small>
-		            		easyBuy © 2021-2021 All Rights Reserved. 
-		          		</small>
-		        	</div>
-		        </div>
+	          	</div>
 	        </div>
+	        <hr/>
+	        <div class="container-fluid">
+	          	<div class="footer-license-div">
+	          		<small>
+		           		easyBuy © 2021-2021 All Rights Reserved. 
+		        	</small>
+		        </div>
+		    </div>
 	    </footer>
 		</div>
 
 		<script type="text/javascript" src="{{ asset('js/home/layout/sideNav.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/home/layout/search.js') }}"></script>
 	</body>
 </html>

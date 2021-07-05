@@ -51,12 +51,13 @@
 				        <td class="td-right full">
 				        	<input type="text" name="title" maxlength="100" id="name" 
 				        	value="{{ old('title') ? old('title') : $department->title }}">
-				        	<input type="hidden" name="same" id="same" value="{{ $department->title }}">
+				        	<input type="hidden" name="" id="oldname" value="{{ $department->title }}">
 				        	<font color="red">
-				                <span id="nameLabel"></span>
-				                @if ($errors->has('title'))
-				                  {{ $errors->first('title') }}
-				                @endif
+				                <span id="nameLabel">
+					                @if ($errors->has('title'))
+					                  {{ $errors->first('title') }}
+					                @endif
+				                </span>
 		              		</font>
 				        </td>
 				    </tr>

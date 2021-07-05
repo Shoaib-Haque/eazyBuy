@@ -32,4 +32,15 @@ class RegistrationController extends Controller
     	$req->session()->put('customerid', $result->id);
         return redirect('/customerhome');
     }
+
+    function checkDuplicate(Request $req) {
+        $email = $req->email;
+
+        if (isset($this->customer->checkDuplicate($email)->id)) {
+            return "Has Duplicate";
+        }
+        else {
+            return "No Duplicate";
+        }
+    }
 }

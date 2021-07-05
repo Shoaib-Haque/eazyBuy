@@ -1,14 +1,14 @@
 @extends('layouts/adminlayout')
 @section('addcategory')
-	<form method="POST">
+	<form method="POST" id="form">
 		{{csrf_field()}}
 
 		<div class="main">
 			<h3>
 				<span class="normal">Categories</span>
 				<div class="button-group">
-					<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
-						onclick="return validation()">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
+						onclick="return validation();">
 						<i class="fas fa-save"></i>
 					</button>
 
@@ -35,10 +35,11 @@
 				        <td class="td-right full">
 				        	<input type="text" name="title" maxlength="100" id="name" value="{{ old('title') }}">
 				        	<font color="red">
-				                <span id="nameLabel"></span>
-				                @if ($errors->has('title'))
-				                  {{ $errors->first('title') }}
-				                @endif
+				                <span id="nameLabel">
+					                @if ($errors->has('title'))
+					                  {{ $errors->first('title') }}
+					                @endif
+				                </span>
 		              		</font>
 				        </td>
 				    </tr>
@@ -58,10 +59,11 @@
 				    			@endforeach
 				    		</select>
 				    		<font color="red">
-				                <span id="departmentLabel"></span>
-				                @if ($errors->has('department_id'))
-				                  {{ $errors->first('department_id') }}
-				                @endif
+				                <span id="departmentLabel">
+					                @if ($errors->has('department_id'))
+					                  {{ $errors->first('department_id') }}
+					                @endif
+					            </span>
 		              		</font>
 				    	</td>
 				    </tr>
@@ -71,5 +73,5 @@
 		
 	</form>
 
-	<script type="text/javascript" src="{{ asset('js/admin/catalog/category/validation.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/admin/catalog/category/add/validation.js') }}"></script>
 @endsection

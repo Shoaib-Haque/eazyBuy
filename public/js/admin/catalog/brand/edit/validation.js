@@ -22,7 +22,7 @@ function checkDuplicate(name, callback) {
 		$(document).ready(function () {
 			$.ajax({
 				type:"get",
-				url: '/department/checkduplicate',
+				url: '/brand/checkduplicate',
 				data:{
 					name:name,
 				},
@@ -40,28 +40,39 @@ function checkDuplicate(name, callback) {
 
 function validation(){
 	var name = document.getElementById("name");
-	checkDuplicate(name.value, function () { 
-		finalValidation(); 
-	});
+	var oldname = document.getElementById("oldname");
+	if (name.value === oldname.value) {
+		jQuery.noConflict()(function ($) { 
+			$(document).ready(function () {
+				$('#form').submit();
+			});
+		});
+	}
+	else {
+		checkDuplicate(name.value, function () { 
+			finalValidation(); 
+		});
+	}
 }
 
 function finalValidation(){
 	var name = document.getElementById("name");
 	var flagname = false;
+	
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			//Name 
 			if(name.value == ""){
-				document.getElementById("nameLabel").innerHTML = "Department Name must be between 1 and 100 characters!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name must be between 1 and 100 characters!";
 			}
 			else if(first_letter_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Department Name Cannot start with space!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name Cannot start with space!";
 			}
 			else if(special_character_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name cannot contain special character!";
 			}
 			else if(result == true) {
-				document.getElementById("nameLabel").innerHTML = "Department name already in use!";
+				document.getElementById("nameLabel").innerHTML = "Brand name already in use!";
 				result = false;
 			}
 			else{
@@ -69,12 +80,14 @@ function finalValidation(){
 				document.getElementById("name").innerHTML = name.value;
 				flagname = true;
 			}
-					
+			
+			
 			if (flagname == false) {
 				return false;
 			}
 			else {
-				$('#form').submit();
+				$('#confirmBox').modal();
+				//return true;
 			}
 		});
 	});

@@ -14,5 +14,7 @@ interface IBrandRepository
     //public function deleteUser($id);
 
     public function searchBrand($term);
+
+    public function checkDuplicate( $name );
 }
 ?>

@@ -39,5 +39,14 @@ class BrandRepository implements IBrandRepository
         
         return $data;
     }
+
+    public function checkDuplicate( $name ) {
+        $brand = Brands::where('name', '=', $name)->first();
+        if( count($brand) ){
+            return $brand;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

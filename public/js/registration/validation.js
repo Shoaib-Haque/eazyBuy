@@ -1,3 +1,5 @@
+var result = false;
+
 //First Letter Checking.....
 function first_letter_check(name){
 		if(name.charCodeAt(0) == 32){
@@ -98,8 +100,35 @@ function email_check(email){
 	}
 }
 
+function checkDuplicate(email, callback) {
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			$.ajax({
+				type:"get",
+				url: '/registration/checkduplicate',
+				data:{
+					email:email,
+				},
+				datatype:'text',
+				success:function(data){
+					if (data == "Has Duplicate") {
+						result = true;
+					}
+					callback();
+				},
+			});
+		});
+	});
+}
 
 function validation(){
+	var email = document.getElementById("email");
+	checkDuplicate(email.value, function () { 
+		finalValidation(); 
+	});
+}
+
+function finalValidation(){
 	var name = document.getElementById("name");
 	var email = document.getElementById("email");
 	var pass = document.getElementById("password");
@@ -109,76 +138,85 @@ function validation(){
 	var flagpassword = false;
 	var flagrepassword = false;
 
-	//Name 
-	if(name.value == ""){
-		document.getElementById("nameLabel").innerHTML = "! Enter your name.";
-	}
-	else if(first_letter_check(name.value)){
-		document.getElementById("nameLabel").innerHTML = "! Name Cannot start with space.";
-	}
-	else if(special_character_check(name.value)){
-		document.getElementById("nameLabel").innerHTML = "! Name cannot contain special character.";
-	}
-	else if(letter_check(name.value)){
-		document.getElementById("nameLabel").innerHTML = "! Name cannot contain number.";
-	}
-	else{
-		document.getElementById("nameLabel").innerHTML = "";
-		document.getElementById("name").innerHTML = name;
-		flagname = true;
-	}
-	
-	//Email
-	if(email.value == ""){
-		document.getElementById("emailLabel").innerHTML = "! Enter your email.";
-	}
-	else if(email_check(email.value)){
-		document.getElementById("emailLabel").innerHTML = "! Invalid email address.";
-	}
-	else{
-		document.getElementById("emailLabel").innerHTML = "";
-		document.getElementById("email").innerHTML = email;
-		flagemail = true;
-	}
-	
-	//Password validation
-	if(pass.value == "")
-	{
-		document.getElementById("passwordLabel").innerHTML = "! Enter your password.";
-	}
-	else if(pass.value.length<6)
-	{
-		document.getElementById("passwordLabel").innerHTML = "! Password must be at least 6 characters.";
-	}
-	else if(pass.value.length>20)
-	{
-		document.getElementById("passwordLabel").innerHTML = "! Password must be at most 20 characters.";
-	}
-	else{
-		document.getElementById("passwordLabel").innerHTML = "";
-		document.getElementById("password").innerHTML = pass;
-		flagpassword = true;
-	}
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			//Name 
+			if(name.value == ""){
+				document.getElementById("nameLabel").innerHTML = "! Enter your name.";
+			}
+			else if(first_letter_check(name.value)){
+				document.getElementById("nameLabel").innerHTML = "! Name Cannot start with space.";
+			}
+			else if(special_character_check(name.value)){
+				document.getElementById("nameLabel").innerHTML = "! Name cannot contain special character.";
+			}
+			else if(letter_check(name.value)){
+				document.getElementById("nameLabel").innerHTML = "! Name cannot contain number.";
+			}
+			else{
+				document.getElementById("nameLabel").innerHTML = "";
+				document.getElementById("name").innerHTML = name;
+				flagname = true;
+			}
+			
+			//Email
+			if(email.value == ""){
+				document.getElementById("emailLabel").innerHTML = "! Enter your email.";
+			}
+			else if(email_check(email.value)){
+				document.getElementById("emailLabel").innerHTML = "! Invalid email address.";
+			}
+			else if(result == true) {
+				document.getElementById("emailLabel").innerHTML = "! Email address already in use";
+				result = false;
+			}
+			else{
+				document.getElementById("emailLabel").innerHTML = "";
+				document.getElementById("email").innerHTML = email;
+				flagemail = true;
+			}
+			
+			//Password validation
+			if(pass.value == "")
+			{
+				document.getElementById("passwordLabel").innerHTML = "! Enter your password.";
+			}
+			else if(pass.value.length<6)
+			{
+				document.getElementById("passwordLabel").innerHTML = "! Password must be at least 6 characters.";
+			}
+			else if(pass.value.length>20)
+			{
+				document.getElementById("passwordLabel").innerHTML = "! Password must be at most 20 characters.";
+			}
+			else{
+				document.getElementById("passwordLabel").innerHTML = "";
+				document.getElementById("password").innerHTML = pass;
+				flagpassword = true;
+			}
 
-	//Confirm Password Validation
-	if(repassword.value == "")
-	{
-		document.getElementById("repasswordLabel").innerHTML = "! Type your password again.";
-	}
-	else if(pass.value != repassword.value)
-	{
-		document.getElementById("repasswordLabel").innerHTML = "! Passwords must match.";
-	}
-	else{
-		document.getElementById("repasswordLabel").innerHTML = "";
-		document.getElementById("repassword").innerHTML = repassword;
-		flagrepassword = true;
-	}
+			//Confirm Password Validation
+			if(repassword.value == "")
+			{
+				document.getElementById("repasswordLabel").innerHTML = "! Type your password again.";
+			}
+			else if(pass.value != repassword.value)
+			{
+				document.getElementById("repasswordLabel").innerHTML = "! Passwords must match.";
+			}
+			else{
+				document.getElementById("repasswordLabel").innerHTML = "";
+				document.getElementById("repassword").innerHTML = repassword;
+				flagrepassword = true;
+			}
 
-	if (flagname == false || flagemail == false || flagpassword == false || flagrepassword == false) {
-		return false;
-	}
-	else {
-		return true;
-	}
+			if (flagname == false || flagemail == false || flagpassword == false || flagrepassword == false) {
+				return false;
+			}
+			else {
+				$('#form').submit();
+				//return true;
+			}
+		});
+	})
 }

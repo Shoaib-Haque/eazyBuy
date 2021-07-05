@@ -21,30 +21,33 @@
     <div class="row">
       <div class="panel panel-primary">
         <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
+
         <div class="panel-body">
-          <form method="POST" role="form">
+          <form method="POST" role="form" id="form">
             {{ csrf_field() }}
             <div class="form-group">
-              <h2>Create account</h2>
+              <h4>Create account</h4>
             </div>
             <div class="form-group">
               <label class="control-label" for="name"><strong>Your name</strong></label>
               <input id="name" type="text" name="name" maxlength="100" class="form-control" value="{{ old('name') }}">
               <font color="red">
-                <span id="nameLabel"></span>
-                @if ($errors->has('name'))
-                  {{ $errors->first('name') }}
-                @endif
+                <span id="nameLabel">
+                  @if ($errors->has('name'))
+                    {{ $errors->first('name') }}
+                  @endif
+                </span>
               </font>
             </div>
             <div class="form-group">
               <label class="control-label" for="email"><strong>Email</strong></label>
               <input id="email" type="email" name="email" maxlength="50" class="form-control" value="{{ old('email') }}">
               <font color="red">
-                <span id="emailLabel"></span>
-                @if ($errors->has('email'))
-                  {{ $errors->first('email') }}
-                @endif
+                <span id="emailLabel">
+                  @if ($errors->has('email'))
+                    {{ $errors->first('email') }}
+                  @endif
+                </span>
               </font>
             </div>
             <div class="form-group">
@@ -52,10 +55,11 @@
               <input id="password" type="password" name="password" maxlength="20" value="{{ old('password') }}" 
               class="form-control" placeholder="at least 6 characters">
               <font color="red">
-                <span id="passwordLabel"></span>
-                @if ($errors->has('password'))
-                  {{ $errors->first('password') }}
-                @endif
+                <span id="passwordLabel">
+                  @if ($errors->has('password'))
+                    {{ $errors->first('password') }}
+                  @endif
+                </span>
               </font>
             </div>
             <div class="form-group">
@@ -63,14 +67,15 @@
               <input id="repassword" type="password" name="password_confirmation" maxlength="20" class="form-control" 
               value="{{ old('password_confirmation') }}">
               <font color="red">
-                <span id="repasswordLabel"></span>
-                @if ($errors->has('password_confirmation'))
-                  {{ $errors->first('password_confirmation') }}
-                @endif
+                <span id="repasswordLabel">
+                  @if ($errors->has('password_confirmation'))
+                    {{ $errors->first('password_confirmation') }}
+                  @endif
+                </span>
               </font>
             </div>
             <div class="form-group">
-              <button id="signupSubmit" type="submit" class="sub btn btn-default" onclick="return validation()">
+              <button id="signupSubmit" type="button" class="sub btn btn-default" onclick="return validation();">
                 Create your easyBuy account
               </button>
             </div>
@@ -82,6 +87,7 @@
       </div>
     </div>
   </div>
+  
   <footer class="mt-5">
     <hr>
     <div class="footer-div mb-2">

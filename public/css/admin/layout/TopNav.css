@@ -82,6 +82,7 @@ button#sidenav-button > a > i {
 
 .btn-group-div > .dropdown-menu {
   position: absolute;
+  left: -20%;
 }
 
 .btn-group-div > .dropdown-menu > .dropdown-item{

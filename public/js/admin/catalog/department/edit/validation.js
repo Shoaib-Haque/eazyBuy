@@ -40,8 +40,8 @@ function checkDuplicate(name, callback) {
 
 function validation(){
 	var name = document.getElementById("name");
-	var same = document.getElementById("same");
-	if (name.value === same.value) {
+	var oldname = document.getElementById("oldname");
+	if (name.value === oldname.value) {
 		jQuery.noConflict()(function ($) { 
 			$(document).ready(function () {
 				$('#form').submit();
@@ -58,6 +58,7 @@ function validation(){
 function finalValidation(){
 	var name = document.getElementById("name");
 	var flagname = false;
+	
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			//Name 
@@ -76,7 +77,7 @@ function finalValidation(){
 			}
 			else{
 				document.getElementById("nameLabel").innerHTML = "";
-				document.getElementById("name").innerHTML = name;
+				document.getElementById("name").innerHTML = name.value;
 				flagname = true;
 			}
 			
