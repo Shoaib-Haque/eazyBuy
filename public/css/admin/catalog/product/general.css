@@ -12,7 +12,16 @@ div editor
 }
 */ 
 
-/* ck classic editor height */ 
+/* ck classic editor toolbar width */ 
+.ck-editor__top { width: 98% !important; }
+/* ck classic editor heigth and width */ 
 .ck-editor__editable {
 	min-height: 200px;
+	width: 98%;
+}
+
+.ck-editor__focus #editor {
+  outline: none !important;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
 }

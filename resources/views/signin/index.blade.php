@@ -21,13 +21,15 @@
   <div class="container">
     <div class="row">
       <div class="panel panel-primary">
-        <a href="/home"><img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}"></a>
+        <a href="/home">
+          <img id="home-link-img" src="{{asset('images/logo/eazyBuyLogo.ico')}}">
+        </a>
 
         <div class="panel-body">
           <form method="POST">
             {{ csrf_field() }}
             <div class="form-group">
-              <h2>Sign-In</h2>
+              <h4>Sign-In</h4>
             </div>
             <div class="form-group">
               <font color="red"><strong><span>{{session('msg')}}</span></strong></font>

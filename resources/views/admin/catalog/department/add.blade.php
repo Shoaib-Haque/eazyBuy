@@ -32,12 +32,14 @@
 				<table class="table-sm device-width">
 					<tr>
 				      	<td class="td-left full"><strong><font class="star">*</font>Department Name</strong></td>
-				        <td class="td-right full"><input type="text" name="title" maxlength="100" id="name">
+				        <td class="td-right full">
+				        	<input type="text" name="title" maxlength="100" id="name" value="{{ old('title') }}">
 				        	<font color="red">
-				                <span id="nameLabel"></span>
-				                @if ($errors->has('title'))
-				                  {{ $errors->first('title') }}
-				                @endif
+				                <span id="nameLabel">
+					                @if ($errors->has('title'))
+					                  {{ $errors->first('title') }}
+					                @endif
+				                </span>
 		              		</font>
 				        </td>
 				    </tr>

@@ -1,6 +1,6 @@
 @extends('layouts/adminlayout')
 @section('addbrand')
-	<form method="POST">
+	<form method="POST" id="form">
 		{{csrf_field()}}
 
 		<div class="main">
@@ -8,10 +8,11 @@
 				<span class="normal">Brands</span>
 				<div class="button-group">
 					
-					<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
-						onclick="return validation()">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
+						onclick="return validation();">
 						<i class="fas fa-save"></i>
 					</button>
+
 					<a href="/admin/catalog/brand">
 						<button type="button" class="btn btn-light border" 
 						data-toggle="tooltip" data-placement="top" title="Cancel">
@@ -33,10 +34,11 @@
 				      	<td class="td-left full"><strong><font class="star">*</font>Brand Name</strong></td>
 				        <td class="td-right full"><input type="text" name="name" maxlength="100" id="name">
 				        	<font color="red">
-				                <span id="nameLabel"></span>
-				                @if ($errors->has('name'))
-				                  {{ $errors->first('name') }}
-				                @endif
+				                <span id="nameLabel">
+					                @if ($errors->has('name'))
+					                  {{ $errors->first('name') }}
+					                @endif
+				                </span>
 		              		</font>
 				        </td>
 				    </tr>
@@ -46,5 +48,5 @@
 
 	</form>
 
-	<script type="text/javascript" src="{{ asset('js/admin/catalog/brand/validation.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/admin/catalog/brand/add/validation.js') }}"></script>
 @endsection

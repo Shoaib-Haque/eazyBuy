@@ -36,6 +36,15 @@ class CustomerRepository implements ICustomerRepository
         return $customer;
     }
 
+    public function checkDuplicate( $email ) {
+        $customer = CustomerProfiles::where('email', '=', $email)->first();
+        if( count($customer) ){
+            return $customer;
+        } else {
+            return false;
+        }
+    }
+
     /* 
 	public function getAllUsers()
     {

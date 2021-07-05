@@ -2,7 +2,7 @@
 /*sidebar*/
 .sidebar {
   height: 100%;
-  width: 0;
+  width: 330px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -12,6 +12,7 @@
   transition: 0.5s;
   padding-top: 0px;
   padding-bottom: 60px;
+  display: none;
 }
 .sidebar a {
   padding: 8px 8px 8px 32px;
@@ -55,8 +56,8 @@
   border: none;
   background: none;
   width: 100%;
-    text-align: left;
-    padding:0px;
+  text-align: left;
+  padding:0px;
 }
 
 /*go back main menu*/
@@ -93,6 +94,15 @@ h5 {
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 12px;}
+}
+
+
+/* On smaller screens, where width is less*/
+@media screen and (max-width: 479px) {
+  .sidebar {
+    max-width: 90%;
+    display: none;
+  }
 }
 
 .disabledbutton {

@@ -1,0 +1,279 @@
+/*second navbar*/
+.navbar-second {
+    width: 100%;
+    background-color: #37475A;
+    height: 40px;
+    padding: 5px 5px!important;
+}
+.navbar-second ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.navbar-second ul li {
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 1%;
+    vertical-align: middle;
+    display: inline-block;
+    white-space: nowrap;
+}
+.navbar-second ul li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+.navbar-second li a:hover {
+  outline: 1px solid white;
+}
+.navbar-second ul li:nth-child(1):hover {
+  outline: 1px solid white;
+}
+
+.navbar-second ul li:nth-child(1) {
+  max-width:4%;
+}
+.navbar-second ul li:nth-child(1) button{
+  border: 0;
+  outline: none;
+}
+.navbar-second ul li:nth-child(2) {
+  max-width:12%;
+}
+.navbar-second ul li:nth-child(3) {
+  max-width:10%;
+}
+
+.white {
+  color: white;
+}
+.grey {
+  color: #ccc;
+}
+
+/*all button*/
+.navbar-second .openbtn {
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #37475A;
+  color: white;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 1px; 
+}
+
+
+/*dropdown browsing history*/
+.navbar-second .dropbtn {
+  color: white;
+  background-color: #37475A;
+  font-size: 16px;
+  height: 30px;
+  border: 0;
+  outline: 0;
+}
+
+.navbar-second ul li:nth-child(2) .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  margin-top: 0px;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  min-height: 100px;
+  left:0%;
+  top:100%;
+}
+
+.navbar-second ul li:nth-child(2) .dropdown:hover .dropdown-content {
+    display: block;
+    width: 200%;
+    height: 150px;
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .navbar-second {
+      padding: 4px 1px !important;
+      height: 20px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 7px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:23%;
+      font-size: 8px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:13%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 7px;
+      height: 7px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 8px;
+      height: 10px;
+    }
+    .navbar-second ul li a {
+      font-size: 8px; 
+      padding: 0 1px;       
+    }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 25px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 10px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:20%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:10%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 10px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 10px;
+      height: 10px;
+    }
+    .navbar-second ul li a {
+      font-size: 10px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 30px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 12px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:20%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:12%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 12px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 12px;
+      height: 12px;
+    }
+    .navbar-second ul li a {
+      font-size: 12px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 30px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 14px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:20%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:12%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 14px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 16px;
+      height: 16px;
+    }
+    .navbar-second ul li a {
+      font-size: 16px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 35px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 14px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:20%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:12%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 14px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 16px;
+      height: 16px;
+    }
+    .navbar-second ul li a {
+      font-size: 16px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+    .navbar-second {
+      padding: 4px 1px !important;
+      height: 40px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:5%;
+      font-size: 18px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:20%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:10%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 18px;
+    }
+    .navbar-second ul li:nth-child(2) .dropbtn {
+      font-size: 18px;
+      height: 16px;
+    }
+    .navbar-second ul li a {
+      font-size: 18px; 
+      padding: 0 1px;       
+    }
+}
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+
+}

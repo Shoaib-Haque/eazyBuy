@@ -49,5 +49,14 @@ class CategoryRepository implements ICategoryRepository
                         ->select('c.title as title', 'c.id as id')
                         ->get();
     }
+
+    public function checkDuplicate( $name, $did ) {
+        $category = Categories::where('title', '=', $name, 'and')->where('department_id', '=', $did)->first();
+        if( count($category) ){
+            return $category;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

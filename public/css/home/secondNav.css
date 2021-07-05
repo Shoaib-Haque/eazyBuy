@@ -1,0 +1,244 @@
+/*second navbar*/
+.navbar-second {
+    width: 100%;
+    background-color: #37475A;
+    height: 40px;
+    padding: 5px 5px!important;
+}
+.navbar-second ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.navbar-second ul li {
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 1%;
+    vertical-align: middle;
+    display: inline-block;
+    white-space: nowrap;
+}
+.navbar-second ul li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+.navbar-second li a:hover {
+  outline: 1px solid white;
+}
+.navbar-second ul li:nth-child(1):hover {
+  outline: 1px solid white;
+}
+
+.navbar-second ul li:nth-child(1) {
+  max-width:4%;
+}
+.navbar-second ul li:nth-child(1) button{
+  border: 0;
+  outline: none;
+}
+.navbar-second ul li:nth-child(2) {
+  max-width:8%;
+}
+.navbar-second ul li:nth-child(3) {
+  max-width:10%;
+}
+.navbar-second ul li:nth-child(4) {
+  max-width:6%;
+}
+.white {
+  color: white;
+}
+.grey {
+  color: #ccc;
+}
+
+/*all button*/
+.openbtn {
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #37475A;
+  color: white;
+  border: none;
+  outline: 0;
+  text-align: center;
+  padding: 1px;
+  
+  
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 320px) and (max-width : 479px) {
+    .navbar-second {
+      padding: 4px 1px !important;
+      height: 20px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 5px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:10%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:12%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:8%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 5px;
+    }
+    .navbar-second ul li a {
+      font-size: 5px; 
+      padding: 0 1px;       
+    }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 594px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 25px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 10px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:15%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:18%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:11%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 10px;
+    }
+    .navbar-second ul li a {
+      font-size: 10px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Small tablet portrait ---*/
+@media only screen and (min-width : 595px) and (max-width : 689px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 30px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 12px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:15%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:18%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:11%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 12px;
+    }
+    .navbar-second ul li a {
+      font-size: 12px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 690px) and (max-width : 799px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 30px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 13px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:15%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:18%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:11%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 13px;
+    }
+    .navbar-second ul li a {
+      font-size: 16px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Small tablet landscape ---*/
+@media only screen and (min-width : 800px) and (max-width : 1023px) {
+    .navbar-second {
+      padding: 3px 1px !important;
+      height: 35px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:6%;
+      font-size: 14px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:15%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:18%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:11%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 14px;
+    }
+    .navbar-second ul li a {
+      font-size: 16px; 
+      padding: 0 1px;       
+    }
+}
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1223px) {
+    .navbar-second {
+      padding: 4px 1px !important;
+      height: 40px;
+    }
+    .navbar-second ul li:nth-child(1) {
+      max-width:4%;
+      font-size: 18px;
+      margin-right: 0px;
+    }
+    .navbar-second ul li:nth-child(2) {
+      max-width:12%;
+    }
+    .navbar-second ul li:nth-child(3) {
+      max-width:15%;
+    }
+    .navbar-second ul li:nth-child(4) {
+      max-width:8%;
+    }
+    .navbar-second ul li:nth-child(1) .openbtn {
+      font-size: 18px;
+    }
+    .navbar-second ul li a {
+      font-size: 18px; 
+      padding: 0 1px;       
+    }
+}
+/*--- LAPTOP/ PC/ WIDER SCREEN --- */
+@media only screen and (min-width : 1224px) {
+
+}

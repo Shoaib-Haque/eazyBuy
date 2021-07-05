@@ -9,10 +9,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/TopNav.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/SideNav.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/Footer.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/Main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/topNav.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/sideNav.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/footer.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/layout/main.css')}}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"          ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
@@ -166,14 +166,14 @@
           
         </div>
         <div class="footer-outer-div">
-        <footer class="mt-5">
-          <hr>
-          <div class="footer-div mb-2">
-            <small>
-              <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
-            </small>
-          </div>
-        </footer>
+          <footer class="mt-5">
+            <hr>
+            <div class="footer-div mb-2">
+              <small>
+                <a>easyBuy</a> © 2021-2021 All Rights Reserved. 
+              </small>
+            </div>
+          </footer>
         </div>
       </div>
     </div>

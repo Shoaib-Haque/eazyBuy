@@ -21,6 +21,7 @@ Route::group(['middleware'=>['beforelogin']], function(){
 	Route::post('/signin','SigninController@signin');
 	Route::get('/registration','RegistrationController@index')->name('registration.index');
 	Route::post('/registration','RegistrationController@registration');
+	Route::get('/registration/checkduplicate','RegistrationController@checkDuplicate')->name('registration.checkduplicate');
 });
 
 Route::group(['middleware'=>['sess']], function(){
@@ -40,6 +41,7 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::get('/admin/catalog/category/edit/{cid}','AdminCategoryController@edit')->name('admincategory.edit');
 		Route::post('/admin/catalog/category/edit/{cid}','AdminCategoryController@editCategory');
 		Route::get('/department/category','AdminCategoryController@categoryByDepartment')->name('category.by.department');
+		Route::get('/category/checkduplicate','AdminCategoryController@checkDuplicate')->name('admincategory.checkduplicate');
 
 		Route::get('/admin/catalog/product','AdminProductController@index')->name('adminproduct.index');
 		Route::get('/admin/catalog/product/add','AdminProductController@add')->name('adminproduct.add');
@@ -51,6 +53,7 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::get('/admin/catalog/brand/edit/{bid}','AdminBrandController@edit')->name('adminbrand.edit');
 		Route::post('/admin/catalog/brand/edit/{bid}','AdminBrandController@editBrand');
 		Route::get('/brand/search','AdminBrandController@searchBrand')->name('searchbrand');
+		Route::get('/brand/checkduplicate','AdminBrandController@checkDuplicate')->name('adminbrand.checkduplicate');
 
 		Route::get('/sizetype/size','AdminSizeController@sizeBySizeType')->name('sizetype.size');
 	});

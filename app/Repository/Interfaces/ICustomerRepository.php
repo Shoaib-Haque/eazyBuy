@@ -11,6 +11,8 @@ interface ICustomerRepository
 
     public function create( $collection = [] );
 
+    public function checkDuplicate( $email );
+
     //public function createOrUpdate( $id = null, $collection = [] );
 
     //public function deleteUser($id);

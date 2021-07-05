@@ -22,7 +22,7 @@ function checkDuplicate(name, callback) {
 		$(document).ready(function () {
 			$.ajax({
 				type:"get",
-				url: '/department/checkduplicate',
+				url: '/brand/checkduplicate',
 				data:{
 					name:name,
 				},
@@ -52,16 +52,16 @@ function finalValidation(){
 		$(document).ready(function () {
 			//Name 
 			if(name.value == ""){
-				document.getElementById("nameLabel").innerHTML = "Department Name must be between 1 and 100 characters!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name must be between 1 and 100 characters!";
 			}
 			else if(first_letter_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Department Name Cannot start with space!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name Cannot start with space!";
 			}
 			else if(special_character_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
+				document.getElementById("nameLabel").innerHTML = "Brand Name cannot contain special character!";
 			}
 			else if(result == true) {
-				document.getElementById("nameLabel").innerHTML = "Department name already in use!";
+				document.getElementById("nameLabel").innerHTML = "Brand name already in use!";
 				result = false;
 			}
 			else{
