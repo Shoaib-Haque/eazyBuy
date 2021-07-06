@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,12 @@ class CreateDepartmentTable extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->increments('id')->start_from(20001);
+            $table->increments('id');
             //$table->timestamps();
             $table->string('title', 100);
         });
+
+        \DB::statement('ALTER TABLE departments AUTO_INCREMENT = 101;');
     }
 
     /**

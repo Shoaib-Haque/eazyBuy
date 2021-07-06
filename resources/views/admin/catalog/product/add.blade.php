@@ -13,6 +13,7 @@
 	<!--<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/map.css')}}">-->
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/image.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/feature.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/additional.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/discount.css')}}">
 
 	<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
@@ -54,6 +55,9 @@
 				<a onclick="divVisibility('image');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">Image</a>
 				<a onclick="divVisibility('feature');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Feature</a>
+				<a onclick="divVisibility('additional_information');" class="nav-item nav-link" 
+				data-toggle="tab" aria-selected="false">
+				Additional Information</a>
 				<a onclick="divVisibility('discount');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Discount</a>
 			</div>
@@ -71,10 +75,10 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left full"><strong>About this item</strong></td>
+			        	<td class="td-left full"><strong><font class="star">*</font>About this item</strong></td>
 			        	<td class="td-right full">
 			        		<!--<ck classic editor!-->
-			        		<textarea name="about_this_item" id="editor"></textarea>
+			        		<textarea name="description" id="description" placeholder="Description"></textarea>
 							<div id="count"></div>
 			            </td>
 			        </tr>
@@ -108,7 +112,8 @@
 			        <tr>
 			        	<td class="td-left full">
 			        		<strong title="Stock-Keeping Unit">
-			        			SKU<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
+			        			<font class="star">*</font>SKU
+			        			<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
 			        		</strong>
 			        	</td>
 			            <td class="td-right full"><input type="text" name="product_sku" id="product_sku" placeholder="SKU"></td>
@@ -119,8 +124,9 @@
 
 			        <tr>
 			        	<td class="td-left full"><strong>Shipping Required</strong></td>
-			        	<td class="td-right full"><input type="checkbox" value="Shipping Required" 
-			        		id="shipping_required" name="shipping_required">
+			        	<td class="td-right full">
+			        		<input type="radio" name="shipping" value="Yes" checked="checked">Yes
+  							<input type="radio" name="shipping" value="No">No
 			        	</td>
 			        </tr>
 			        
@@ -135,19 +141,6 @@
 				           	placeholder="Maximum Days Needs To Arrive">
 				        </td>
 			        </tr>-->
-
-			        <tr class="border_bottom full"><td colspan="2"></td></tr>
-			        <tr><td colspan="2"></td></tr>
-
-			        <tr>
-			        	<td class="td-left full"><strong>Stock Status</strong></td>
-			            <td class="td-right full">
-			            	<select name="stock_status" id="stock_status">
-			            		<option value="InStock">In Stock</option>
-			            		<option value="OutOfStock">Out of Stock</option>
-			            	</select>
-			            </td>
-			        </tr>
 
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
 			        <tr><td colspan="2"></td></tr>
@@ -165,10 +158,10 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left full"><strong>Minimum Quantity</strong></td>
+			        	<td class="td-left full"><strong>Min Order Quantity</strong></td>
 			        	<td class="td-right full">
-			        		<input type="number" name="minimum_quantity" id="minimum_quantity" 
-			        		value="1" min="1" placeholder="Minimum Quantity"
+			        		<input type="number" name="minimum_order_quantity" id="minimum_order_quantity" 
+			        		value="1" min="1" placeholder="Minimum Order Quantity"
 			        		onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
 			        	</td>
 			        </tr>
@@ -190,10 +183,22 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left full"><strong><font class="star">*</font>Selling Price</strong></td>
+			        	<td class="td-left full"><strong>Number of Items</strong></td>
 			            <td class="td-right full">
-			            	<input type="number" name="selling_price" id="selling_price" 
-			            	onpaste="preventPaste(event)" min="0" placeholder="Selling Price">
+			            	<input type="number" name="number_of_items" id="number_of_items" 
+			            	min="1" value="1" placeholder="Number of Items" 
+			            	onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left full"><strong><font class="star">*</font>Unit Price</strong></td>
+			            <td class="td-right full">
+			            	<input type="number" name="unit_price" id="unit_price" 
+			            	onpaste="preventPaste(event)" min="0" placeholder="Unit Price">
 			            </td>
 			        </tr>
 
@@ -208,6 +213,17 @@
 			            		<option value="taxable_goods">Taxable Goods</option>
 			            		<option value="downloadable_products">Downloadable Products</option>
 			            	</select>
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left full"><strong>Tax (%)</strong></td>
+			            <td class="td-right full">
+			            	<input type="number" name="tax_parcentage" id="tax_parcentage" 
+			            	onpaste="preventPaste(event)" min="0" placeholder="Tax Parcentage">
 			            </td>
 			        </tr>
 
@@ -332,18 +348,14 @@
 				<div id="main-div">
 					
 				</div>
-
 				<div class="add-option-group-btn-div">
-					<button type="button" onclick="addOptionGroup()" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Single Option Group">Single Option Group</button>
-					<strong>OR</strong><br><br>
-					<select id="nested-group-count">
-						<option value="">#Nested option</option>
-						@for($i = 2; $i <= 15; $i++)
+					<select id="group-count" title="How Many Option Group?">
+						@for($i = 1; $i <= 15; $i++)
 							<option value="{{$i}}">{{$i}}</option>
 						@endfor
 					</select>
-					<button type="button" onclick="addNestedOptionGroup()" class="btn btn-info btn-sm" data-toggle="tooltip" 
-					data-placement="top" title="Add Nested Option Group">Nested Option Group</button>
+					<button type="button" onclick="addOptionGroup();" class="btn btn-info btn-sm" data-toggle="tooltip" 
+					data-placement="top" title="Add Option Group">Add Option Group</button>
 				</div>
 			</div>
 
@@ -412,11 +424,11 @@
 			</div>
 
 			<div id="feature">
-				<table class="table feature table-bordered table-striped table-sm">
+				<table class="table feature table-sm">
 					<thead class="thead-light">
 						<tr>
-							<th align="center">Future Name</th>
-							<th align="center">Future Value</th>
+							<th align="center">Tag</th>
+							<th align="center">Future</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -435,12 +447,37 @@
 				</table>
 			</div>
 
+			<div id="additional_information">
+				<table class="table additionalInformation table-sm">
+					<thead>
+						<tr>
+							<th>Tag</th>
+							<th>Information</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="additionalInformationBody">
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3">
+								<button type="button" class="btn btn-primary" onclick="addAdditionalInformation()" 
+								title="Add Additional Information">
+									<i class="fas fa-plus"></i>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
 			<div id="discount">
-				<table class="table discount table-bordered table-striped table-sm">
+				<table class="table discount table-sm">
 					<thead class="thead-light">
 						<tr>
 							<th>Min Quantity</th>
-							<th>Discount</th>
+							<th>Discount (%)</th>
 							<th>Start Date</th>
 							<th>End Date</th>
 							<th></th>
@@ -584,24 +621,20 @@
 				  </div>
 				</div>
 
-				<div class="modal fade" id="selectOptionNumber" tabindex="-1" role="dialog" 
-				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLongTitle"><font class="star">Select Number!</font></h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				        <h6>Please select number of nested option group.</h6>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				      </div>
-				    </div>
-				  </div>
+				<div class="modal fade" id="confirmRemoveOption" tabindex="-1" role="dialog" 
+					aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					    	<div class="modal-body">
+					    		<h6>Are you sure you want to remove this option?</h6>
+					      	</div>
+					      	<div class="mb-2">
+					        	<button type="button" class="btn btn-success btn-sm ml-3" data-dismiss="modal">Cancel</button>
+					        	<button type="button" class="btn btn-danger btn-sm" id="confirmBtn"
+					        	data-dismiss="modal">Yes</button>
+					      	</div>
+					    </div>
+					</div>
 				</div>
 		</div>
 	</div>
@@ -619,5 +652,6 @@
     <!--<script type="text/javascript" src="{{ asset('js/admin/catalog/product/map.js') }}"></script>-->
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/image.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/feature.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/additional.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/discount.js') }}"></script>
 @endsection

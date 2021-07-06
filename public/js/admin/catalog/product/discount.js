@@ -25,12 +25,12 @@ function addDiscount() {
 	quantity.name = "quantity"+discountRow;
 	cell1.appendChild(quantity);
 
-	var discount = document.createElement("input");
-	discount.setAttribute("type", "number");
-	discount.setAttribute('placeholder', "Discount");
-	discount.id = "discount"+discountRow;
-	discount.name = "discount"+discountRow;
-	cell2.appendChild(discount);
+	var discountParcentage = document.createElement("input");
+	discountParcentage.setAttribute("type", "number");
+	discountParcentage.setAttribute('placeholder', "Discount %");
+	discountParcentage.id = "discount_parcentage"+discountRow;
+	discountParcentage.name = "discount_parcentage"+discountRow;
+	cell2.appendChild(discountParcentage);
 
 	var startDate = document.createElement("input");
 	startDate.setAttribute("type", "date");

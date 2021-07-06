@@ -14,14 +14,15 @@ class CreateAdminProfilesTable extends Migration
     public function up()
     {
         Schema::create('admin_profiles', function (Blueprint $table) {
-            $table->string('id', 11)->unique()->primary();
-            //$table->timestamps();
+            $table->increments('id');
             $table->string('firstname', 50);
             $table->string('lastname', 50);
-            $table->string('email', 250)->unique();
+            $table->string('email', 50)->unique();
             $table->text('image');
             $table->char('password', 20);
         });
+
+        \DB::statement('ALTER TABLE admin_profiles AUTO_INCREMENT = 1001;');
     }
 
     /**

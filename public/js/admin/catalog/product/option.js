@@ -1,3 +1,17 @@
+function addOptionGroup() {
+	var optionGroup = document.getElementById("group-count");
+	var optionGroupNumber = optionGroup.value;
+	console.log(optionGroupNumber);
+	if (optionGroupNumber == 1) {
+		addSingleOptionGroup();
+	}
+	else {
+		addNestedOptionGroup(optionGroupNumber);
+	}
+
+	optionGroup.selectedIndex = 0; 
+}
+
 function addTypeTable(optionTypeDiv) {
 	//table
 	var table = document.createElement('table');
@@ -48,10 +62,24 @@ function addTypeTable(optionTypeDiv) {
 	//adding table into div
 	optionTypeDiv.appendChild(table);
 }
+//divObj.remove();
+//$("#modal-body").html(myHeading + x);
+
+function removeConfirm(optionId) {
+	var divObj = document.getElementById(optionId);
+	divObj.remove();
+}
 
 function removeOptionDiv(option) {
-	var divObj = document.getElementById(option.id);
-	divObj.remove();
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			$('#confirmRemoveOption #confirmBtn').unbind('click');
+			$('#confirmRemoveOption #confirmBtn').click(function(){
+			    removeConfirm(option.id);
+			});
+			$('#confirmRemoveOption').modal();
+		});
+	});
 }
 
 function addRemoveDiv(optionDiv) {

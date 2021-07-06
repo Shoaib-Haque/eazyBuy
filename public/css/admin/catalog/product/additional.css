@@ -1,0 +1,58 @@
+#additional_information {
+	overflow: auto;
+	margin: 0 10px;
+}
+#additional_information {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+#additional_information::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+table.additionalInformation tr:hover {
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    cursor: pointer;
+}
+
+table.additionalInformation {table-layout:fixed; width:100%; border:1px solid #DCDCDC;}/*Setting the table width is important!*/
+table.additionalInformation th {overflow:hidden;} /*Hide text outside the cell.*/
+table.additionalInformation th:nth-of-type(1) {width:30%;}/*Setting the width of heading 1.*/
+table.additionalInformation th:nth-of-type(2) {width:64%;}/*Setting the width of heading 2.*/
+table.additionalInformation th:nth-of-type(3) {width:6%; align-content: center;}/*Setting the width of heading 3.*/
+
+table.additionalInformation td {overflow:hidden;} /*Hide text outside the cell.*/
+table.additionalInformation td:nth-of-type(1) {width:30%;}/*Setting the width of column 1.*/
+table.additionalInformation td:nth-of-type(2) {width:64%;}/*Setting the width of column 2.*/
+table.additionalInformation td:nth-of-type(3) {width:6%; align-content: center;}/*Setting the width of column 3.*/
+
+
+/*--- Mobile portrait ---*/
+@media only screen and (max-width : 710px) {
+	table.additionalInformation {min-width: 500px;}/*Setting the table width is important!*/
+	table.additionalInformation th {overflow:hidden;} /*Hide text outside the cell.*/
+	table.additionalInformation th:nth-of-type(1) {width:30%;}/*Setting the width of heading 1.*/
+	table.additionalInformation th:nth-of-type(2) {width:60%;}/*Setting the width of heading 2.*/
+	table.additionalInformation th:nth-of-type(3) {width:10%; align-content: center;}/*Setting the width of heading 3.*/
+
+	table.additionalInformation td {overflow:hidden;} /*Hide text outside the cell.*/
+	table.additionalInformation td:nth-of-type(1) {width:30%;}/*Setting the width of column 1.*/
+	table.additionalInformation td:nth-of-type(2) {width:60%;}/*Setting the width of column 2.*/
+	table.additionalInformation td:nth-of-type(3) {width:10%; align-content: center;}/*Setting the width of column 3.*/
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 711px) and (max-width : 1223px) {
+	table.additionalInformation th {overflow:hidden;} /*Hide text outside the cell.*/
+	table.additionalInformation th:nth-of-type(1) {width:30%;}/*Setting the width of heading 1.*/
+	table.additionalInformation th:nth-of-type(2) {width:62%;}/*Setting the width of heading 2.*/
+	table.additionalInformation th:nth-of-type(3) {width:8%; align-content: center;}/*Setting the width of heading 3.*/
+
+	table.additionalInformation td {overflow:hidden;} /*Hide text outside the cell.*/
+	table.additionalInformation td:nth-of-type(1) {width:30%;}/*Setting the width of column 1.*/
+	table.additionalInformation td:nth-of-type(2) {width:62%;}/*Setting the width of column 2.*/
+	table.additionalInformation td:nth-of-type(3) {width:8%; align-content: center;}/*Setting the width of column 3.*/
+}

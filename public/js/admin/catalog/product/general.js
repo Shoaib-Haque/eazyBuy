@@ -1,6 +1,6 @@
 //ck classic editor
 ClassicEditor
-    .create( document.querySelector( '#editor' ), {
+    .create( document.querySelector( '#description' ), {
         toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'undo', 'redo' ]
     } )
     .then( editor => {

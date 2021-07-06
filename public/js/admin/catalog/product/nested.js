@@ -40,7 +40,7 @@ function addSingleOptionRow(tbody, DivId) {
 
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
-			dfault.id = "dfault"+"div"+DivId;;
+			dfault.className = "dfault-radio";
 			dfault.name = "dfault"+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
@@ -355,15 +355,9 @@ function changeButton(id) {
 	makeCombinationbutton.appendChild(redo);
 }
 
-function addNestedOptionGroup() {
+function addNestedOptionGroup(optionGroupNumber) {
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
-			var optionGroupNumber = document.getElementById("nested-group-count");
-			if (optionGroupNumber.value == "") {
-				$('#selectOptionNumber').modal();
-				return;
-			}
-
 			var nestedOptionDiv = document.createElement('div');
 			nestedOptionDiv.id = 'nestedOption'+nestedDiv;
 			nestedOptionDiv.className = 'nested-option';
@@ -371,7 +365,7 @@ function addNestedOptionGroup() {
 			addRemoveDiv(nestedOptionDiv);
 
 			//nestedoption div
-			for (var i = 0; i < optionGroupNumber.value; i++) {
+			for (var i = 0; i < optionGroupNumber; i++) {
 				//option type table div
 				var optionTypeDiv = document.createElement('div');
 				optionTypeDiv.id = 'nestedOptionType'+nestedDiv+"option"+i;
@@ -413,8 +407,6 @@ function addNestedOptionGroup() {
 			mainDiv.appendChild(nestedOptionDiv);
 
 			nestedDiv++;
-
-			optionGroupNumber.selectedIndex = 0; 
 		});
 	});
 }

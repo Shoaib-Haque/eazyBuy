@@ -20,7 +20,7 @@ div editor
 	width: 98%;
 }
 
-.ck-editor__focus #editor {
+.ck-editor__focus #description {
   outline: none !important;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   border: 1px solid rgba(81, 203, 238, 1);

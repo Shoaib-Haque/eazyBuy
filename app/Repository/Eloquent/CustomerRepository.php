@@ -27,11 +27,12 @@ class CustomerRepository implements ICustomerRepository
     public function create($collection = [] )
     {   
         $customer = new CustomerProfiles;
-        $customer->id = $collection['id'];
         $customer->name = $collection['name'];
         $customer->email = $collection['email'];
         $customer->password = Hash::make($collection['password']);
         $customer->save();
+
+        $customer = CustomerProfiles::where('email', '=', $collection['email'])->first();
 
         return $customer;
     }
