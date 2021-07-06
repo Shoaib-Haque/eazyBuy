@@ -1,7 +1,9 @@
 .nested-option {
 	position: relative;
-	outline: 1px solid #DCDCDC;
-	margin-bottom: 10px;
+	border: 1px solid #DCDCDC;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+	margin-bottom: 15px;
 	padding: 5px;
 }
 
@@ -52,7 +54,14 @@
 	width: 230px;
 }
 
-table.nested-option-table {table-layout:fixed; width:100%;}/*Setting the table width is important!*/
+table.nested-option-table tr:hover {
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    cursor: pointer;
+}
+
+table.nested-option-table {table-layout:fixed; width:100%; border:1px solid #DCDCDC;}/*Setting the table width is important!*/
 table.nested-option-table th {overflow:hidden;} /*Hide text outside the cell.*/
 table.nested-option-table th:nth-of-type(1) {width:3%;}/*Setting the width of heading 1.*/
 table.nested-option-table th:nth-of-type(2) {width:52%;}/*Setting the width of heading 2.*/
@@ -69,7 +78,14 @@ table.nested-option-table td:nth-of-type(4) {width:5%;}/*Setting the width of co
    background-color: #C8C8C8;
 }
 
-table.combination-table {table-layout:fixed; width:100%;}/*Setting the table width is important!*/
+table.combination-table tr:hover {
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    cursor: pointer;
+}
+
+table.combination-table {table-layout:fixed; width:100%; border:1px solid #DCDCDC;}/*Setting the table width is important!*/
 table.combination-table th {overflow:hidden;} /*Hide text outside the cell.*/
 table.combination-table th:nth-of-type(1) {width:60%;}/*Setting the width of heading 1.*/
 table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/

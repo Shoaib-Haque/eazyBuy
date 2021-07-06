@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,14 @@ class CreateCategoryTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id')->start_from(30001);;
+            $table->increments('id');
             //$table->timestamps();
             $table->string('title', 100);
             $table->integer('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments');
         });
+
+        \DB::statement('ALTER TABLE categories AUTO_INCREMENT = 201;');
     }
 
     /**

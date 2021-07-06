@@ -1,8 +1,8 @@
 #options {
   margin: 0 10px;
 }
-select#nested-group-count {
-  width: 150px;
+select#group-count {
+  width: auto;
 }
 .add-option-group-btn-div {
   position: relative;
@@ -36,7 +36,7 @@ select#nested-group-count {
     height: 0;
 }
 
-input[type="radio"]{
+input[type="radio"].dfault-radio{
    appearance: none;
    border: 1px solid #d3d3d3;
    width: 20px;
@@ -47,7 +47,7 @@ input[type="radio"]{
    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-input[type="radio"]:checked {
+input[type="radio"].dfault-radio:checked {
   appearance: none;
   outline: none;
   padding: 0;
@@ -55,7 +55,7 @@ input[type="radio"]:checked {
   border: none;
 }
 
-input[type="radio"]:checked::before{
+input[type="radio"].dfault-radio:checked::before{
   position: relative;
   color: green !important;
   content: "\00A0\2713\00A0" !important;

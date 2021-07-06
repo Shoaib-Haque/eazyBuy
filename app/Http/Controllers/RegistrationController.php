@@ -18,19 +18,15 @@ class RegistrationController extends Controller
     {
         $this->customer = $customer;
     }
-    //onclick="return validation()"
-
-    function unique_id($limit)
-	{
-	  return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $limit);
-	}
 
     function registration(RegistrationRequest $req) {
-    	$id = $this->unique_id(11);
-    	$result = $this->customer->create(array('id' => $id, 'name' => $req->name, 'email' => $req->email, 
+    	$result = $this->customer->create(array('name' => $req->name, 'email' => $req->email, 
     		                                    'password' => $req->password));
-    	$req->session()->put('customerid', $result->id);
-        return redirect('/customerhome');
+        if ($result->id) {
+            $req->session()->put('customerid', $result->id);
+            $req->session()->put('customername', $result->name);
+            return redirect()->route('customer.index');
+        }
     }
 
     function checkDuplicate(Request $req) {

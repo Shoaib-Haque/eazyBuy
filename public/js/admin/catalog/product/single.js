@@ -52,8 +52,7 @@ function addOptionRow(tbody, DivId) {
 
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "radio");
-			dfault.setAttribute("name", "default"+DivId);
-			dfault.id = "dfault"+"div"+DivId;;
+			dfault.className = "dfault-radio";
 			dfault.name = "dfault"+"div"+DivId;
 			dfault.title = "Make Default";
 			cell0.align = "center";
@@ -253,7 +252,7 @@ function addSingleOptionTable(optionTableDiv) {
 	optionTableDiv.appendChild(table);
 }
 
-function addOptionGroup() {
+function addSingleOptionGroup() {
 	//option div
 	var optionDiv = document.createElement('div');
 	optionDiv.id = 'option'+singleDiv;

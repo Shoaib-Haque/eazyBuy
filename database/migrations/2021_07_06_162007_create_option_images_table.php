@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShippingMethodsTable extends Migration
+class CreateOptionImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateShippingMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipping_methods', function (Blueprint $table) {
+        Schema::create('option_images', function (Blueprint $table) {
             $table->increments('id');
-            //$table->timestamps();
-            $table->float('charge', 6, 2);
-            $table->string('method', 50);
+            $table->integer('option_id')->unsigned();
+            $table->foreign('option_id')->references('id')->on('options');
+            $table->string('img_name', 20);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateShippingMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipping_methods');
+        Schema::dropIfExists('option_images');
     }
 }

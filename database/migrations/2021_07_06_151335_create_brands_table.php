@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandTable extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,12 @@ class CreateBrandTable extends Migration
     public function up()
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->increments('id')->start_from(40001);
+            $table->increments('id');
             //$table->timestamps();
             $table->string('name', 200);
         });
+
+        \DB::statement('ALTER TABLE brands AUTO_INCREMENT = 10001;');
     }
 
     /**

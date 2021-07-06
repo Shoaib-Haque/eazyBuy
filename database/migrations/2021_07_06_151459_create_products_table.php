@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerProfilesTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_profiles', function (Blueprint $table) {
-            $table->string('id', 11)->unique()->primary();
+        Schema::create('products', function (Blueprint $table) {
+            $table->increments('id');
             //$table->timestamps();
-            $table->string('name', 50);
-            $table->string('email', 250)->unique();
-            $table->char('password', 20);
+            $table->string('name', 255);
+            $table->text('description');
+            $table->string('status', 15);
         });
+
+        \DB::statement('ALTER TABLE products AUTO_INCREMENT = 100001;');
     }
 
     /**
@@ -29,6 +31,6 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_profiles');
+        Schema::dropIfExists('products');
     }
 }
