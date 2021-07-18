@@ -1,0 +1,22 @@
+table tr:hover {
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    cursor: pointer;
+}
+
+tr {
+	display: none;
+}
+tr.header {
+	display: table-row;
+}
+
+td.td-cat {
+	padding-left: 5%;
+}
+
+button.btn-collapse {
+	border: 1px solid #DCDCDC;
+	outline: none;
+}

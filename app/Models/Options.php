@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SizeTypes extends Model
+class Options extends Model
 {
-    protected $table = 'size_types';
+    protected $table = 'options';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 }

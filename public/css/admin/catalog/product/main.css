@@ -23,7 +23,7 @@
   color: #A8A8A8;
 }
 
-#data, #links, #price, #image, #options, #map, #feature, #discount, #additional_information{
+#data, #links, #price, #image, #options, #map, #feature, #discount, #additional_information, #seo{
 	display: none;
 }
 

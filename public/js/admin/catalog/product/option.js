@@ -1,7 +1,7 @@
 function addOptionGroup() {
 	var optionGroup = document.getElementById("group-count");
 	var optionGroupNumber = optionGroup.value;
-	console.log(optionGroupNumber);
+
 	if (optionGroupNumber == 1) {
 		addSingleOptionGroup();
 	}
@@ -11,59 +11,6 @@ function addOptionGroup() {
 
 	optionGroup.selectedIndex = 0; 
 }
-
-function addTypeTable(optionTypeDiv) {
-	//table
-	var table = document.createElement('table');
-	table.className = "table option-group table-borderless table-sm";
-
-	var row1 = document.createElement('tr');
-	var row2 = document.createElement('tr');
-
-	//row1
-	var r1td1 = document.createElement('td');
-	r1td1.innerHTML = "<strong><font class = 'star'>*</font>"+"Option Group/Type</strong>";
-	
-	var r1td2 = document.createElement('td');
-	var group = document.createElement('input');
-	group.setAttribute("type", "text");
-	group.setAttribute('placeholder', "Option Group");
-	group.id = "optionGroup"+optionTypeDiv.id;
-	group.name = "optionGroup"+optionTypeDiv.id;
-	r1td2.appendChild(group);
-
-	row1.appendChild(r1td1);
-	row1.appendChild(r1td2);
-
-	//row2
-	var r2td1 = document.createElement('td');
-	r2td1.innerHTML = "<strong><font class = 'star'>*</font>"+"Input Type</strong>";
-
-	var r2td2 = document.createElement('td');
-	var select = document.createElement('select');
-	select.id = "selectType"+optionTypeDiv.id;
-	select.name = "selectType"+optionTypeDiv.id;
-
-	//Create and append the options
-	for (var i = 0; i < typeOptions.length; i++) {
-	    var typeOption = document.createElement("option");
-	    typeOption.value = typeOptions[i];
-	    typeOption.text = typeOptions[i];
-	    select.appendChild(typeOption);
-	}
-	r2td2.appendChild(select);
-
-	row2.appendChild(r2td1);
-	row2.appendChild(r2td2);
-
-	table.appendChild(row1);
-	table.appendChild(row2);
-	
-	//adding table into div
-	optionTypeDiv.appendChild(table);
-}
-//divObj.remove();
-//$("#modal-body").html(myHeading + x);
 
 function removeConfirm(optionId) {
 	var divObj = document.getElementById(optionId);
@@ -112,4 +59,27 @@ function addRemoveDiv(optionDiv) {
 function removeOptionRow(row) {
 	var rowObj = document.getElementById(row.id);
 	rowObj.remove();
+}
+
+// the selector will match all input controls of type :checkbox
+// and attach a click event handler 
+function checkboxClick(obj) {
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+		  	// in the handler, 'this' refers to the box clicked on
+			var $box = obj;
+		  	if ($box.is(":checked")) {
+		    	// the name of the box is retrieved using the .attr() method
+		    	// as it is assumed and expected to be immutable
+			    var group = obj.closest('tbody').find('input:checkbox') ;
+		    	// the checked state of the group/box on the other hand will change
+		    	// and the current value is retrieved using .prop() method
+		    	$(group).prop("checked", false);
+		    	$box.prop("checked", true);
+		  	} 
+		  	else {
+		    	$box.prop("checked", false);
+		  	}
+		});
+	});
 }

@@ -1,5 +1,5 @@
 //Select Category after Selecting Department
-jQuery.noConflict()(function ($) { // this was missing for me
+jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
 		var category_tbody = $("#category_tbody")[0];
 	    $("#department_id").change(function () {
@@ -17,15 +17,49 @@ jQuery.noConflict()(function ($) { // this was missing for me
 					datatype:'html',
 					success:function(response){
 						category_tbody.style.display = "table-row-group";
-						console.log(response);
+						//console.log(response);
 						category_id.html(response);
 					}
 				});
 	        } 
 	        else {
 	        	category_tbody.style.display = "none";
-	        	//category_id.remove();
 	        	category_id.find('option').remove().end().append('<option value="">Select Department First</option>').val('');
+	        	//category_id.remove();
+	        	subcategory_tbody.style.display = "none";
+	        	subcategory_id.find('option').remove().end().append('<option value="">Select Category First</option>').val('');
+	        }
+	    });
+	});
+});
+
+//Select Subcategory after Selecting Category
+jQuery.noConflict()(function ($) {
+	$(document).ready(function () {
+		var subcategory_tbody = $("#subcategory_tbody")[0];
+	    $("#category_id").change(function () {
+	        var category_id = $(this).val();
+	        var subcategory_id = $("#subcategory_id");
+
+	        if (category_id != "") {
+	        	$.ajax({
+					type:"get",
+					url: '/category/subcategory',
+					data:{
+						category_id:category_id,
+						_token:$("#token").data('token'),
+						},
+					datatype:'html',
+					success:function(response){
+						subcategory_tbody.style.display = "table-row-group";
+						//console.log(response);
+						subcategory_id.html(response);
+					}
+				});
+	        } 
+	        else {
+	        	subcategory_tbody.style.display = "none";
+	        	subcategory_id.find('option').remove().end().append('<option value="">Select Category First</option>').val('');
 	        }
 	    });
 	});

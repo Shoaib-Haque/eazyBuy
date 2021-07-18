@@ -1,7 +1,60 @@
 var selectOptions = ["+", "-"];
 var typeOptions = ["Checkbox", "Select", "Radio Button"];
-var singleDiv = 0;
+var singleDiv = 1;
 var singleRowCount = 0;
+
+function addSingleOptionTypeTable(optionTypeDiv) {
+	var iIndex = parseInt(optionTypeDiv.id.match(/\d/g).join(""));
+	//table
+	var table = document.createElement('table');
+	table.className = "table option-group table-borderless table-sm";
+
+	var row1 = document.createElement('tr');
+	var row2 = document.createElement('tr');
+
+	//row1
+	var r1td1 = document.createElement('td');
+	r1td1.innerHTML = "<strong><font class = 'star'>*</font>"+"Option Group/Type</strong>";
+	
+	var r1td2 = document.createElement('td');
+	var group = document.createElement('input');
+	group.setAttribute("name", "singleOptionGroup["+iIndex+"]");
+	//console.log(group.name);
+	group.setAttribute("type", "text");
+	group.setAttribute('placeholder', "Option Group");
+	group.id = "optionGroup"+optionTypeDiv.id;
+	r1td2.appendChild(group);
+
+	row1.appendChild(r1td1);
+	row1.appendChild(r1td2);
+
+	//row2
+	var r2td1 = document.createElement('td');
+	r2td1.innerHTML = "<strong><font class = 'star'>*</font>"+"Input Type</strong>";
+
+	var r2td2 = document.createElement('td');
+	var select = document.createElement('select');
+	select.id = "selectType"+optionTypeDiv.id;
+	select.setAttribute("name", "singleSelectType["+iIndex+"]");
+
+	//Create and append the options
+	for (var i = 0; i < typeOptions.length; i++) {
+	    var typeOption = document.createElement("option");
+	    typeOption.value = typeOptions[i];
+	    typeOption.text = typeOptions[i];
+	    select.appendChild(typeOption);
+	}
+	r2td2.appendChild(select);
+
+	row2.appendChild(r2td1);
+	row2.appendChild(r2td2);
+
+	table.appendChild(row1);
+	table.appendChild(row2);
+	
+	//adding table into div
+	optionTypeDiv.appendChild(table);
+}
 
 function addSingleOptionTableHeading(table) {
 	var thead =  document.createElement('thead');
@@ -36,11 +89,56 @@ function addSingleOptionTableHeading(table) {
 	table.appendChild(thead);
 }
 
+function singleMultiFileUpload(e, obj, divid, name, iIndex, jIndex) {
+	jQuery.noConflict()(function ($) { 
+		$(document).ready(function () {
+			if (obj.get(0).files.length == 0) {
+		        return;
+		    }
+			else if($("#slider-container"+obj.parent().parent().parent().parent().attr('id')+" img").length + 
+				obj.get(0).files.length > 10) {
+				$('#sorryImageCount').modal();
+				return;
+			}
+			else {
+				singleUploadImage(e, obj.parent().parent().parent().parent().attr('id'), iIndex, jIndex);
+				  	//fileinput.    label.    div.    cell.     tr.      id
+				$(obj).parent().hide();
+
+				var uploadBtnLabel = document.createElement("label");
+				uploadBtnLabel.for = "uploadFile";
+				uploadBtnLabel.className = "btn btn-light btn-sm rounded-label";
+				uploadBtnLabel.title = "Upload Image";
+
+				var uploadIcon = document.createElement("i");
+				uploadIcon.className = "fas fa-camera";
+
+				var fileInput = document.createElement('input');
+				fileInput.setAttribute('type', 'file');
+				fileInput.setAttribute("multiple", "multiple");
+				fileInput.setAttribute("name", name);
+				
+	        	fileInput.addEventListener("change", function(e) {
+	        		singleMultiFileUpload(e, $(this), $(this).parent().parent().attr('id'), $(this).attr('name'), iIndex, jIndex)
+				});
+
+				uploadBtnLabel.appendChild(uploadIcon);
+				uploadBtnLabel.appendChild(fileInput);
+
+				$("#"+divid).append(uploadBtnLabel);
+			}
+	  	});
+	});
+}
+
 function addOptionRow(tbody, DivId) {
 	jQuery.noConflict()(function ($) { 
 		$(document).ready(function () {
 			var row =  document.createElement('tr');
 			row.id = "row"+singleRowCount+"div"+DivId;
+
+			var iIndex = parseInt(DivId.match(/\d/g).join(""));
+			var jIndex = parseInt(document.getElementById("hiddenSingleRowCount"+DivId).value);
 			
 			var cell0 = document.createElement('td');
 			var cell1 = document.createElement('td');
@@ -51,33 +149,35 @@ function addOptionRow(tbody, DivId) {
 			var cell6 = document.createElement('td');
 
 			var dfault = document.createElement('input');
-			dfault.setAttribute("type", "radio");
-			dfault.className = "dfault-radio";
-			dfault.name = "dfault"+"div"+DivId;
+			dfault.setAttribute("type", "checkbox");
+			dfault.setAttribute("name", "singleDefault["+iIndex+"]["+jIndex+"]");
 			dfault.title = "Make Default";
+			dfault.addEventListener("click", function(e) {
+        		checkboxClick($(this));
+			});
 			cell0.align = "center";
 			cell0.appendChild(dfault);
 
 			var option = document.createElement('input');
 			option.setAttribute('type', 'text');
 			option.setAttribute('placeholder', "Option");
+			option.setAttribute("name", "singleOption["+iIndex+"]["+jIndex+"]");
 			option.id = "option"+singleRowCount+"div"+DivId;;
-			option.name = "option"+singleRowCount+"div"+DivId;
 			cell1.appendChild(option);
 
 			var sku = document.createElement('input');
 			sku.setAttribute('type', 'text');
 			sku.setAttribute('placeholder', "SKU");
+			sku.setAttribute("name", "singleSKU["+iIndex+"]["+jIndex+"]");
 			sku.id = "sku"+singleRowCount+"div"+DivId;;
-			sku.name = "sku"+singleRowCount+"div"+DivId;
 			cell2.appendChild(sku);
 
 			var quantity = document.createElement('input');
 			quantity.setAttribute('type', 'number');
 			quantity.setAttribute("min", "0");
 			quantity.setAttribute('placeholder', "St.Qty.");
+			quantity.setAttribute("name", "singleQuantity["+iIndex+"]["+jIndex+"]");
 			quantity.id = "quantity"+singleRowCount+"div"+DivId;;
-			quantity.name = "quantity"+singleRowCount+"div"+DivId;
 			quantity.addEventListener('keydown',preventDot, false);
 			quantity.addEventListener('paste', preventPaste, false);
 			quantity.addEventListener('input', preventInput, false);
@@ -86,7 +186,7 @@ function addOptionRow(tbody, DivId) {
 			var selectVar = document.createElement('select');
 			selectVar.className = "price-select";
 			selectVar.id = "selectVar"+singleRowCount+"div"+DivId;;
-			selectVar.name = "selectVar"+singleRowCount+"div"+DivId;
+			selectVar.setAttribute("name", "singleSelectVar["+iIndex+"]["+jIndex+"]");
 			//Create and append the options
 			
 			for (var i = 0; i < selectOptions.length; i++) {
@@ -100,9 +200,9 @@ function addOptionRow(tbody, DivId) {
 			price.setAttribute('type', 'number');
 			price.setAttribute("min", "0");
 			price.setAttribute('placeholder', "Price");
+			price.setAttribute("name", "singlePrice["+iIndex+"]["+jIndex+"]");
 			price.className = "price";
 			price.id = "price"+singleRowCount+"div"+DivId;;
-			price.name = "price"+singleRowCount+"div"+DivId;
 			price.addEventListener('paste', preventStringPaste, false);
 
 			cell4.appendChild(selectVar);
@@ -110,6 +210,7 @@ function addOptionRow(tbody, DivId) {
 
 			//Image
 			var uploadBtnDiv = document.createElement("div");
+			uploadBtnDiv.id = "uploadBtnDiv"+row.id;
 
 			var uploadBtnLabel = document.createElement("label");
 			uploadBtnLabel.for = "uploadFile";
@@ -121,20 +222,22 @@ function addOptionRow(tbody, DivId) {
 
 			var fileInput = document.createElement('input');
 			fileInput.setAttribute('type', 'file');
-			fileInput.addEventListener("change", function(e) {
-				if($("#slider-container"+$(this).parent().parent().parent().parent().attr('id')+" img").length >= 10) {
-		      		$('#sorryImageCount').modal();
-		      		return;
-		    	}
-		    	else {
-		  			uploadImage(e, $(this).parent().parent().parent().parent().attr('id'));
-		  				    //fileinput.    label.    div.    cell.     tr.      id
-		    	}
+			fileInput.setAttribute("multiple", "multiple");
+			fileInput.setAttribute("name", "singleFile["+iIndex+"]["+jIndex+"][]");
+			
+        	fileInput.addEventListener("change", function(e) {
+        		singleMultiFileUpload(e, $(this), $(this).parent().parent().attr('id'), $(this).attr('name'), 
+        			iIndex, jIndex)
 			});
 
 			uploadBtnLabel.appendChild(uploadIcon);
 			uploadBtnLabel.appendChild(fileInput);
 			uploadBtnDiv.appendChild(uploadBtnLabel);
+
+			var slideCount = document.createElement('input');
+			slideCount.setAttribute('type', 'hidden');
+			slideCount.id = "slideCount"+row.id;
+          	slideCount.value = 0;
 
 			var sliderContainerDiv = document.createElement("div");
 			sliderContainerDiv.className = "slider";
@@ -166,6 +269,7 @@ function addOptionRow(tbody, DivId) {
 
 			cell5.appendChild(uploadBtnDiv);
 			cell5.appendChild(sliderContainerDiv);
+			cell5.appendChild(slideCount);
 			
 			///
 			var removeBtn = document.createElement("button");
@@ -192,6 +296,8 @@ function addOptionRow(tbody, DivId) {
 			row.appendChild(cell6);
 			//adding row into tbody
 			tbody.appendChild(row);
+
+			document.getElementById("hiddenSingleRowCount"+DivId).value = jIndex+1;
 			
 			singleRowCount++;
 		});
@@ -210,6 +316,7 @@ function addSingleOptionTableFoot(table) {
 			cell.align = "left";
 			//button
 			var button =  document.createElement('button');
+			button.setAttribute('type',"button");
 			button.className = "btn btn-primary";
 			button.title = "Add Row";
 			button.addEventListener("click", function() {
@@ -260,6 +367,7 @@ function addSingleOptionGroup() {
 
 	//option type table div
 	var optionTypeDiv = document.createElement('div');
+	optionTypeDiv.id = "optionTypeDiv"+singleDiv;
 	optionTypeDiv.className = "option-type-div";
 
 	//option table div
@@ -268,16 +376,27 @@ function addSingleOptionGroup() {
 
 	addRemoveDiv(optionDiv);
 
-	addTypeTable(optionTypeDiv);
+	addSingleOptionTypeTable(optionTypeDiv);
 	addSingleOptionTable(optionTableDiv);
 
 	//adding optionTable div into option div
+	var hiddenRowCount = document.createElement('input');
+	hiddenRowCount.setAttribute('type', 'hidden');
+	hiddenRowCount.setAttribute("value", "0");
+	hiddenRowCount.setAttribute("name", "hiddenSingleRowCount["+singleDiv+"]");
+	hiddenRowCount.id = "hiddenSingleRowCount"+optionDiv.id;
+
 	optionDiv.appendChild(optionTypeDiv);
 	optionDiv.appendChild(optionTableDiv);
+	optionDiv.appendChild(hiddenRowCount);
 
 	//adding every option div into main option div
 	var mainDiv = document.getElementById("main-div");
 	mainDiv.appendChild(optionDiv);
+
+	var hiddenSingleGroupCount = document.getElementById("hiddenSingleGroupCount");
+	hiddenSingleGroupCount.value = singleDiv;
+	//console.log(hiddenSingleGroupCount.value);
 
 	singleDiv++;
 }
