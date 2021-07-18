@@ -15,19 +15,20 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/feature.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/additional.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/discount.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/product/seo.css')}}">
 
 	<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
 	<!--<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>-->
 	<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>-->
-
+	<form method="POST" enctype="multipart/form-data">
+	{{csrf_field()}}
 	<div class="main">
+
 		<h3>
 			<span class="normal">Products</span>
 			<div class="button-group">
-				<form method="POST" id="token">
-				{{csrf_field()}}
-				<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save"
-						onclick="return validation()">
+				
+				<button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Save">
 					<i class="fas fa-save"></i>
 				</button>
 				<a href="/admin/catalog/product">
@@ -57,9 +58,10 @@
 				Feature</a>
 				<a onclick="divVisibility('additional_information');" class="nav-item nav-link" 
 				data-toggle="tab" aria-selected="false">
-				Additional Information</a>
+				Additional</a>
 				<a onclick="divVisibility('discount');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">
 				Discount</a>
+				<a onclick="divVisibility('seo');" class="nav-item nav-link" data-toggle="tab" aria-selected="false">SEO</a>
 			</div>
 
 			<div id="general">
@@ -206,6 +208,16 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
+			        	<td class="td-left full"><strong>Unit of Measure</strong></td>
+			            <td class="td-right full">
+			            	<input type="text" name="unit_of_measure" id="unit_of_measure"  placeholder="Unit of Measure">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
 			        	<td class="td-left full"><strong>Tax Class</strong></td>
 			            <td class="td-right full">
 			            	<select name="tax_class" id="tax_class">
@@ -310,6 +322,20 @@
 				            </td>
 				        </tr>
 			        </tbody>
+
+			        <tbody id="subcategory_tbody">
+			        	<tr class="border_bottom"><td colspan="2"></td></tr>
+				        <tr><td colspan="2"></td></tr>
+
+				        <tr>
+				        	<td class="td-left full"><strong><font class="star">*</font>Subcategory</strong></td>
+				            <td class="td-right full">
+				            	<select name="subcategory_id" id="subcategory_id">
+				            		<option value="">Select Category First</option>
+				            	</select>
+				            </td>
+				        </tr>
+			        </tbody>
 			    	
 			        <tr class="border_bottom"><td colspan="2"></td></tr>
 			        <tr><td colspan="2"></td></tr>
@@ -345,6 +371,8 @@
 			</div>
 
 			<div id="options">
+				<input type="hidden" name="hiddenSingleGroupCount" id="hiddenSingleGroupCount" value="0">
+				<input type="hidden" name="hiddenNestedGroupCount" id="hiddenNestedGroupCount" value="0">
 				<div id="main-div">
 					
 				</div>
@@ -370,9 +398,6 @@
 					<div class="mb-2 mt-2">
 						<select id="size_type_id" name="size_type_id">
 							<option value="">Select Size Type</option>
-							@foreach($sizetypelist as $key => $value)
-				        	    <option value="{{$value->id}}">{{$value->type}}</option>
-				       		@endforeach
 						</select>
 					</div>
 					<div id="sizes_div" class="mb-2">
@@ -410,10 +435,11 @@
 			</div>-->
 
 			<div id="image">
-				<div>
-					<label class="btn btn-light btn-sm" for="uploadFile"  title="Upload Image">
+				<div class="btn btn-light btn-sm" for="uploadFile"  title="Upload Image" id="filediv">
+					<input type="hidden" name="" id="fileCount" value="0">
+					<label>
 						<i class="fas fa-camera"></i>
-						<input type="file" name="" id="uploadFile" onchange="upImage(event);">
+						<input type="file" name="file[]" id="uploadFile" multiple="multiple">
 					</label>
 				</div>
 				<div id="slider-container-div" class="slider-container">
@@ -449,7 +475,7 @@
 
 			<div id="additional_information">
 				<table class="table additionalInformation table-sm">
-					<thead>
+					<thead class="thead-light">
 						<tr>
 							<th>Tag</th>
 							<th>Information</th>
@@ -489,8 +515,7 @@
 					<tfoot>
 						<tr>
 							<td colspan="5" align="left">
-								<button type="button" class="btn btn-primary" 
-								onclick="addDiscount()" title="Add Discount">
+								<button type="button" class="btn btn-primary" onclick="addDiscount()" title="Add Discount">
 									<i class="fas fa-plus"></i>
 								</button>
 							</td>
@@ -498,10 +523,37 @@
 					</tfoot>
 				</table>
 			</div>
-	
-	</form>
 
-			<div class="modal fade" id="sorryImageCount" tabindex="-1" role="dialog" 
+			<div id="seo">
+				<table class="table seo table-sm table-bordered">
+					<div class="alert alert-info">
+						<i class="fa fa-info-circle"></i> 
+						Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.
+					</div>
+
+					<thead class="thead-light">
+						<tr>
+							<th>Stores</th>
+							<th>Key Word</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Default</td>
+							<td>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<img src="{{asset('images/logo/en.png')}}" title="English">
+									</span> 
+									<input type="text" name="seo" id="" placeholder="Key Word" class="form-control" />
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+				<div class="modal fade" id="sorryImageCount" tabindex="-1" role="dialog" 
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered" role="document">
 				    <div class="modal-content">
@@ -639,8 +691,11 @@
 		</div>
 	</div>
 
+	</form>
+
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/prevent.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/slider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/singleSlider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/catalog/product/nestedSlider.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/main.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin/catalog/product/general.js') }}"></script>

@@ -20,17 +20,18 @@ function addAdditionalInformation() {
 			tag.setAttribute("type", "text");
 			tag.setAttribute('placeholder', "Tag");
 			tag.id = "tag"+additionalInformationRowCount;
-			tag.name = "tag"+additionalInformationRowCount;
+			tag.name = "additionalTag[]";
 			cell1.appendChild(tag);
 
 			var information = document.createElement("input");
 			information.setAttribute("type", "text");
 			information.setAttribute('placeholder', "Information");
 			information.id = "information"+additionalInformationRowCount;
-			information.name = "information"+additionalInformationRowCount;
+			information.name = "information[]";
 			cell2.appendChild(information);
 
 			var button = document.createElement("button");
+			button.setAttribute("type", "button");
 			button.className = "btn btn-danger";
 			button.title = "Remove";
 

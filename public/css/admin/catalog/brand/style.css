@@ -1,0 +1,6 @@
+table tr:hover {
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    box-shadow: 0px 0px 12px 5px rgba(233,233,233,1);
+    cursor: pointer;
+}

@@ -17,7 +17,6 @@ class CreateProductAdditionalInformationTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('tag', 64)->nullable()->change();
             $table->string('information', 200);
         });
     }

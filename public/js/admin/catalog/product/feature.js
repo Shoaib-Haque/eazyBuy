@@ -20,17 +20,18 @@ function addFeature() {
 			tag.setAttribute("type", "text");
 			tag.setAttribute('placeholder', "Tag");
 			tag.id = "tag"+featureRowCount;
-			tag.name = "tag"+featureRowCount;
+			tag.name = "featureTag[]";
 			cell1.appendChild(tag);
 
 			var feature = document.createElement("input");
 			feature.setAttribute("type", "text");
 			feature.setAttribute('placeholder', "Feature");
 			feature.id = "feature"+featureRowCount;
-			feature.name = "feature"+featureRowCount;
+			feature.name = "feature[]";
 			cell2.appendChild(feature);
 
 			var button = document.createElement("button");
+			button.setAttribute("type", "button");
 			button.className = "btn btn-danger";
 			button.title = "Remove";
 

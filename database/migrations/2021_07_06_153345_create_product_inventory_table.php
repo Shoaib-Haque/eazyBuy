@@ -17,9 +17,7 @@ class CreateProductInventoryTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            //$table->timestamps();
             $table->string('SKU', 20);
-            $table->smallInteger('stock_quantity')->nullable()->change();;
             $table->float('unit_price', 8, 2);
         });
     }

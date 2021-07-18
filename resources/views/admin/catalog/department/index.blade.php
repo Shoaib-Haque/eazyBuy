@@ -1,5 +1,6 @@
 @extends('layouts/adminlayout')
 @section('departments')
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/department/style.css')}}">
 	<div class="main">
 		<h1>
 			<span class="normal">Departments</span>
@@ -21,7 +22,7 @@
 			</div>
 		</div>
 		<div class="table-div">
-			<table class="table table-hover table-sm">
+			<table class="table table-sm">
 				<thead>
 				    <tr>
 				    	<th class="name-th">Department Name</th>

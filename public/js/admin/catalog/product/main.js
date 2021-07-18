@@ -1,5 +1,5 @@
 ///toolbar
-var divs = ["general", "data", "links", "options", "image", "feature", "discount", "additional_information"]; //"map"
+var divs = ["general", "data", "links", "options", "image", "feature", "additional_information", "discount", "seo"]; //"map"
 
 function divVisibility(divId) {
   visibleDivId = divId;

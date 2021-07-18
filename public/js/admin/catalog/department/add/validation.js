@@ -57,9 +57,9 @@ function finalValidation(){
 			else if(first_letter_check(name.value)){
 				document.getElementById("nameLabel").innerHTML = "Department Name Cannot start with space!";
 			}
-			else if(special_character_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
-			}
+			//else if(special_character_check(name.value)){
+			//	document.getElementById("nameLabel").innerHTML = "Department Name cannot contain special character!";
+			//}
 			else if(result == true) {
 				document.getElementById("nameLabel").innerHTML = "Department name already in use!";
 				result = false;

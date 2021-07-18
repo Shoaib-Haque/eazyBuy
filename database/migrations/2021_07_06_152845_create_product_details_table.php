@@ -17,8 +17,6 @@ class CreateProductDetailsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            //$table->timestamps();
-            $table->string('model', 100)->nullable()->change();
             $table->smallInteger('minimum_order_quantity');
             $table->string('substract_stock', 3);
             $table->smallInteger('number_of_items');

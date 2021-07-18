@@ -1,5 +1,6 @@
 @extends('layouts/adminlayout')
 @section('brands')
+	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/catalog/brand/style.css')}}">
 	<div class="main">
 		<h3>
 			<span class="normal">Brands</span>
@@ -20,7 +21,7 @@
 		</div>
 
 		<div class="table-div">
-			<table class="table table-hover table-sm">
+			<table class="table table-sm">
 				<thead>
 				    <tr>
 				    	<th class="name-th">Brand Name</th>

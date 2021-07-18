@@ -43,9 +43,18 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::get('/department/category','AdminCategoryController@categoryByDepartment')->name('category.by.department');
 		Route::get('/category/checkduplicate','AdminCategoryController@checkDuplicate')->name('admincategory.checkduplicate');
 
+		Route::get('/admin/catalog/subcategory','AdminSubCategoryController@index')->name('adminsubcategory.index');
+		Route::get('/admin/catalog/subcategory/add','AdminSubCategoryController@add')->name('adminsubcategory.add');
+		Route::post('/admin/catalog/subcategory/add','AdminSubCategoryController@addSubCategory');
+		Route::get('/admin/catalog/subcategory/edit/{cid}','AdminSubCategoryController@edit')->name('adminsubcategory.edit');
+		Route::post('/admin/catalog/subcategory/edit/{cid}','AdminSubCategoryController@editSubCategory');
+		Route::get('/category/subcategory','AdminSubCategoryController@subcategoryByCategory')->name('subcategory.by.category');
+		Route::get('/subcategory/checkduplicate','AdminSubCategoryController@checkDuplicate')
+		->name('adminsubcategory.checkduplicate');
+
 		Route::get('/admin/catalog/product','AdminProductController@index')->name('adminproduct.index');
 		Route::get('/admin/catalog/product/add','AdminProductController@add')->name('adminproduct.add');
-		Route::post('/admin/catalog/product/add','AdminProductController@addproduct');
+		Route::post('/admin/catalog/product/add','AdminProductController@addProduct');
 
 		Route::get('/admin/catalog/brand','AdminBrandController@index')->name('adminbrand.index');
 		Route::get('/admin/catalog/brand/add','AdminBrandController@add')->name('adminbrand.add');
@@ -54,8 +63,6 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::post('/admin/catalog/brand/edit/{bid}','AdminBrandController@editBrand');
 		Route::get('/brand/search','AdminBrandController@searchBrand')->name('searchbrand');
 		Route::get('/brand/checkduplicate','AdminBrandController@checkDuplicate')->name('adminbrand.checkduplicate');
-
-		Route::get('/sizetype/size','AdminSizeController@sizeBySizeType')->name('sizetype.size');
 	});
 
 	Route::group(['middleware'=>['customersess']], function(){

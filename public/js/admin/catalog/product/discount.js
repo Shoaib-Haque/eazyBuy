@@ -22,21 +22,21 @@ function addDiscount() {
 	quantity.setAttribute("type", "number");
 	quantity.setAttribute('placeholder', "Min Qty");
 	quantity.id = "quantity"+discountRow;
-	quantity.name = "quantity"+discountRow;
+	quantity.name = "discountMinQuantity[]";
 	cell1.appendChild(quantity);
 
 	var discountParcentage = document.createElement("input");
 	discountParcentage.setAttribute("type", "number");
 	discountParcentage.setAttribute('placeholder', "Discount %");
 	discountParcentage.id = "discount_parcentage"+discountRow;
-	discountParcentage.name = "discount_parcentage"+discountRow;
+	discountParcentage.name = "discountParcentage[]";
 	cell2.appendChild(discountParcentage);
 
 	var startDate = document.createElement("input");
 	startDate.setAttribute("type", "date");
 	startDate.setAttribute("min", today);
 	startDate.id = "startDate"+discountRow;
-	startDate.name = "startDate"+discountRow;
+	startDate.name = "discountStartDate[]";
 	cell3.appendChild(startDate);
 	cell3.setAttribute('style','text-align :center;');
 
@@ -44,11 +44,12 @@ function addDiscount() {
 	endDate.setAttribute("type", "date");
 	endDate.setAttribute("min", today);
 	endDate.id = "endDate"+discountRow;
-	endDate.name = "endDate"+discountRow;
+	endDate.name = "discountEndDate[]";
 	cell4.appendChild(endDate);
 	cell4.setAttribute('style','text-align :center;');
 
 	var button = document.createElement("button");
+	button.setAttribute("type", "button");
 	button.className = "btn btn-danger";
 	button.title = "Remove";
 
