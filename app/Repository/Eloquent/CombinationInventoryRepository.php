@@ -8,7 +8,7 @@ class CombinationInventoryRepository implements ICombinationInventoryRepository
 {   
     protected $combination_inventory = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $combination_inventory = new CombinationInventory;

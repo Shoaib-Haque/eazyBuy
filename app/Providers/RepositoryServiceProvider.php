@@ -19,7 +19,7 @@ use App\Repository\Eloquent\BrandRepository;
 use App\Repository\Interfaces\IProductRepository;
 use App\Repository\Eloquent\ProductRepository;
 use App\Repository\Interfaces\IProductDetailRepository;
-use App\Repository\Eloquent\ProductDetailRepository; 
+use App\Repository\Eloquent\ProductDetailsRepository; 
 use App\Repository\Interfaces\IProductAdditionalInformationRepository;
 use App\Repository\Eloquent\ProductAdditionalInformationRepository;
 use App\Repository\Interfaces\IProductDimensionRepository;
@@ -81,7 +81,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IBrandRepository::class, BrandRepository::class);
 
         $this->app->bind(IProductRepository::class, ProductRepository::class);
-        $this->app->bind(IProductDetailRepository::class, ProductDetailRepository::class);
+        $this->app->bind(IProductDetailRepository::class, ProductDetailsRepository::class);
         $this->app->bind(IProductAdditionalInformationRepository::class, ProductAdditionalInformationRepository::class);
         $this->app->bind(IProductDimensionRepository::class, ProductDimensionRepository::class);
         $this->app->bind(IProductDiscountRepository::class, ProductDiscountRepository::class);

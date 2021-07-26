@@ -8,7 +8,7 @@ class ProductWeightRepository implements IProductWeightRepository
 {   
     protected $productweight = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $productweight = new Productweights;

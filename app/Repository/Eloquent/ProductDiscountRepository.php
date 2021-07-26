@@ -8,7 +8,7 @@ class ProductDiscountRepository implements IProductDiscountRepository
 {   
     protected $productdiscount = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $productdiscount = new ProductDiscounts;
