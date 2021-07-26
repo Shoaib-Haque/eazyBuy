@@ -4,7 +4,7 @@ namespace App\Repository\Eloquent;
 use App\Models\ProductDetails;
 use App\Repository\Interfaces\IProductDetailRepository;
 
-class ProductDetailRepository implements IProductDetailRepository
+class ProductDetailsRepository implements IProductDetailRepository
 {   
     protected $productdetail = null;
 
@@ -14,8 +14,9 @@ class ProductDetailRepository implements IProductDetailRepository
             $productdetail = new ProductDetails;
             $productdetail->product_id = $collection['product_id'];
             $productdetail->model = $collection['model'];
+            $productdetail->shipping_required = $collection['shipping_required'];
             $productdetail->minimum_order_quantity = $collection['minimum_order_quantity'];
-            $productdetail->substract_stock = $collection['substract_stock'];
+            $productdetail->subtract_stock = $collection['subtract_stock'];
             $productdetail->number_of_items = $collection['number_of_items'];
             $productdetail->tax_class = $collection['tax_class'];
             $productdetail->tax_parcentage = $collection['tax_parcentage'];
@@ -28,8 +29,9 @@ class ProductDetailRepository implements IProductDetailRepository
         $productdetail = ProductDetails::find($id);
         $productdetail->product_id = $collection['product_id'];
         $productdetail->model = $collection['model'];
+        $productdetail->shipping_required = $collection['shipping_required'];
         $productdetail->minimum_order_quantity = $collection['minimum_order_quantity'];
-        $productdetail->substract_stock = $collection['substract_stock'];
+        $productdetail->subtract_stock = $collection['subtract_stock'];
         $productdetail->number_of_items = $collection['number_of_items'];
         $productdetail->tax_class = $collection['tax_class'];
         $productdetail->tax_parcentage = $collection['tax_parcentage'];

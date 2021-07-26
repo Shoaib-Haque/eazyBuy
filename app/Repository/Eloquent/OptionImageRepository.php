@@ -8,7 +8,7 @@ class OptionImageRepository implements IOptionImageRepository
 {   
     protected $optionimage = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $optionimage = new OptionImages;

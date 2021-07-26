@@ -84,7 +84,7 @@ function nestedUploadImage(event, rowid, iIndex, jIndex, rowIndex) {
 
         var slideDiv = document.createElement('div');
         slideDiv.className = 'slide';
-        slideDiv.id = "slideDiv"+slideDivCount+rowid;
+        slideDiv.id = "slideDiv"+nestedSlideDivCount+rowid;
         slideDiv.addEventListener('mouseout', function(e) {
           hideImgRemoveBtn(e, $(this).children('BUTTON').attr('id'));
         });
@@ -110,7 +110,7 @@ function nestedUploadImage(event, rowid, iIndex, jIndex, rowIndex) {
         };
         */
         
-        slideImg.id = "img"+slideDivCount+rowid;
+        slideImg.id = "img"+nestedSlideDivCount+rowid;
         slideImg.addEventListener('mouseover', function(e) {
           showImgRemoveBtn($(this).siblings('BUTTON').attr('id'));
         });

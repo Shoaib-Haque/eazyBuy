@@ -8,7 +8,7 @@ class ProductAdditionalInformationRepository implements IProductAdditionalInform
 {   
     protected $product_additional_information = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $product_additional_information = new ProductAdditionalInformation;

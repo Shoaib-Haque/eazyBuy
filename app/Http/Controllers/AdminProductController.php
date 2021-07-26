@@ -2,17 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\Interfaces\IDepartmentRepository;
-use App\Repository\Interfaces\ISizeTypeRepository;
+use App\Repository\Interfaces\IProductRepository;
+use App\Repository\Interfaces\IProductDetailRepository;
+use App\Repository\Interfaces\IProductDimensionRepository;
+use App\Repository\Interfaces\IProductWeightRepository;
+use App\Repository\Interfaces\IProductSeoRepository;
+use App\Repository\Interfaces\IProductInventoryRepository;
+use App\Repository\Interfaces\IProductLinkRepository;
+use App\Repository\Interfaces\IProductImageRepository;
+use App\Repository\Interfaces\IProductFeatureRepository;
+use App\Repository\Interfaces\IProductAdditionalInformationRepository;
+use App\Repository\Interfaces\IProductDiscountRepository;
+
+use App\Repository\Interfaces\IOptionTypeRepository;
+use App\Repository\Interfaces\IOptionRepository;
+use App\Repository\Interfaces\IOptionImageRepository;
+
+use App\Repository\Interfaces\ICombinationRepository;
+use App\Repository\Interfaces\ICombinationInventoryRepository;
 
 class AdminProductController extends Controller
 {
-    public $department;
+    public $department, $product, $productDetails, $productDimension, $productWeight, $productSeo, $productInventory, $productLink,
+           $productImage, $productFeature, $productAdditionalInformation, $productDiscount, $optionType, $option, $optionImage,
+           $combination, $combinationInventory;
 
-    public function __construct(IDepartmentRepository $department) {
+    public function __construct(IDepartmentRepository $department, IProductRepository $product, 
+                                IProductDetailRepository $productDetails, IProductDimensionRepository $productDimension,
+                                IProductWeightRepository $productWeight, IProductSeoRepository $productSeo, 
+                                IProductInventoryRepository $productInventory, IProductLinkRepository $productLink,
+                                IProductImageRepository $productImage, IProductFeatureRepository $productFeature,
+                                IProductAdditionalInformationRepository $productAdditionalInformation,
+                                IProductDiscountRepository $productDiscount, IOptionTypeRepository $optionType, 
+                                IOptionRepository $option, IOptionImageRepository $optionImage, 
+                                ICombinationRepository $combination, ICombinationInventoryRepository $combinationInventory) {
         $this->department = $department;
+        $this->product = $product;
+        $this->productDetails = $productDetails;
+        $this->productDimension = $productDimension;
+        $this->productWeight = $productWeight;
+        $this->productSeo = $productSeo;
+        $this->productInventory = $productInventory;
+        $this->productLink = $productLink;
+        $this->productImage = $productImage;
+        $this->productFeature = $productFeature;
+        $this->productAdditionalInformation = $productAdditionalInformation;
+        $this->productDiscount = $productDiscount;
+
+        $this->optionType = $optionType;
+        $this->option = $option;
+        $this->optionImage = $optionImage;
+
+        $this->combination = $combination;
+        $this->combinationInventory = $combinationInventory;
     }
     
     function index() {
@@ -26,40 +72,108 @@ class AdminProductController extends Controller
 
 
     function addProduct(Request $req) {
+        $destinationPath = 'images/product';
+        //General
+        $description = trim($req->description);
+        $description = stripslashes($description);
+        $description = htmlspecialchars($description);
+
+        $proId = $this->product->createOrUpdate(null, array('name' => $req->product_name, 'description' => $description, 
+                                                                'status' => 'Enabled'))['id'];
+        
+        //Details
+        $proDetails = $this->productDetails->createOrUpdate(null, array('product_id' => $proId, 'model' => $req->model, 
+                    'shipping_required' => $req->shipping_required, 'minimum_order_quantity' => $req->minimum_order_quantity, 
+                    'subtract_stock' => $req->subtract_stock, 'number_of_items' => $req->number_of_items, 
+                    'tax_class' => $req->tax_class, 'tax_parcentage' => $req->tax_parcentage, 
+                    'unit_of_measure' => $req->unit_of_measure, 
+                    'created_at' => Carbon::now()->toDateString(), 'updated_at' => Carbon::now()->toDateString()));
+
+        //Dimension
+        $proDimension = $this->productDimension->createOrUpdate(array('product_id' => $proId, 
+            'length_class' => $req->length_class, 'length' => $req->length, 'width' => $req->width, 'height' => $req->height));
+
+        //Weight
+        $proWeight = $this->productWeight->createOrUpdate(array('product_id' => $proId, 'weight_class' => $req->weight_class,
+                                                                'weight' => $req->weight));
+
+        //SEO
+        $proSeo = $this->productSeo->createOrUpdate(array('product_id' => $proId, 'seo' => $req->seo));
+
+        //Inventory
+        $proInventory = $this->productInventory->createOrUpdate(array('product_id' => $proId, 'sku' => $req->product_sku, 
+                                                    'stock_quantity' => $req->stock_quantity, 'unit_price' => $req->unit_price));
+
+
+        //Link
+        $proLink = $this->productLink->createOrUpdate(array('product_id' => $proId, 'brand_id' => $req->brand_id, 
+                                                            'sub_category_id' => $req->subcategory_id));
+
+        //Image
+        if (isset($req->file)) { // Check if there is file
+            $fCount = count($req->file);  
+            for ($i=0; $i < $fCount; $i++) { 
+                $combine = $i;
+                if (!isset($req->{"fileStatus".$combine})) {
+                    $file = $req->file[$i];
+                    //$oldName = $file->getClientOriginalName();
+                    //$realPath = $file->getRealPath();
+                    //$fileOriginalName = preg_replace('/\..+$/', '', $file->getClientOriginalName());
+                    $fileExtension = $file->getClientOriginalExtension();
+
+                    $newName = (string)$proId.(string)$i. '.' .$fileExtension;
+                    $file->move($destinationPath, $newName);
+                    $proImage = $this->productImage->createOrUpdate(array('product_id' => $proId, 'img_name' => $newName));
+                }
+            }
+        }
+
         //option
         //single
         $singleGroupCount = $req->hiddenSingleGroupCount;
         for($i=0; $i <= $singleGroupCount; $i++) { //Div loop
             if (isset($req->singleOptionGroup[$i])) { // Is the Div exist?
-                echo $req->singleOptionGroup[$i].", ".$req->singleSelectType[$i]."<br>";
+                $optTypeId = $this->optionType->createOrUpdate(array('product_id' => $proId,'type' => $req->singleOptionGroup[$i],
+                                                        'input_type' => $req->singleSelectType[$i], 'status' => 'Enabled'))['id'];
 
                 $optionRowCount = intval($req->hiddenSingleRowCount[$i]); // Row Count of each option type
                 for ($j=0; $j < $optionRowCount; $j++) { // Row loop of each Div
                     if (isset($req->singleOption[$i][$j])) { // Is the Row exist?
-                        echo $req->singleOption[$i][$j].", ".$req->singleSKU[$i][$j].", ".
-                        $req->singleQuantity[$i][$j].", ".$req->singleSelectVar[$i][$j].", ".$req->singlePrice[$i][$j];
+                        $optArray = array('option_type_id' => $optTypeId, 'option' => $req->singleOption[$i][$j], 
+                                        'status' => 'Enabled');
                         if (isset($req->singleDefault[$i][$j])) {
-                            echo ", Checked";
+                            $optArray['is_default'] = "Yes";
                         }
-                        
-                        echo "<br>";
+                        else {
+                            $optArray['is_default'] = "No";
+                        }
+
+                        $optId = $this->option->createOrUpdate($optArray)['id'];
+
+                        $comId = $this->combination->createOrUpdate(array('product_id' => $proId, 
+                                            'combination' => $req->singleOption[$i][$j], 'status' => 'Enabled'))['id'];
+
+                        $comInventory = $this->combinationInventory->createOrUpdate(array('combination_id' => $comId, 
+                            'sku' => $req->singleSKU[$i][$j], 'stock_quantity' => $req->singleQuantity[$i][$j], 
+                            'operator' => $req->singleSelectVar[$i][$j], 'amount' => $req->singlePrice[$i][$j]));
 
                         if (isset($req->singleFile[$i][$j])) { // Check if there is file
                             $fCount = count($req->singleFile[$i][$j]);  
                             for ($k=0; $k < $fCount; $k++) { 
                                 $combine = $i.$j.$k;
                                 if (!isset($req->{"singleFileStatus".$combine})) {
-                                    echo $req->singleFile[$i][$j][$k]->getClientOriginalName().", ";
-                                    echo $req->singleFile[$i][$j][$k]->getRealPath().", ";
-                                    echo preg_replace('/\..+$/', '', $req->singleFile[$i][$j][$k]->getClientOriginalName()).", ";
-                                    echo $req->singleFile[$i][$j][$k]->getClientOriginalExtension().", ";
-                                    echo "<br>";
+                                    $file = $req->singleFile[$i][$j][$k];
+                                    $fileExtension = $file->getClientOriginalExtension();
+
+                                    $newName = (string)$optId.(string)$k. '.' .$fileExtension;
+                                    $file->move($destinationPath, $newName);
+                                    $optImage = $this->optionImage->createOrUpdate(array('option_id' => $optId, 
+                                                                                          'img_name' => $newName));
                                 }
                             }
                         }
                     }
                 }
-                echo "<br>";
             }
         }
 
@@ -70,27 +184,34 @@ class AdminProductController extends Controller
                 $gorupCount = $req->hiddenOptionGroupNumber[$i];
                 for ($j=0; $j < $gorupCount; $j++) { // Group Div loop
                     if (isset($req->nestedOptionGroup[$i][$j])) { // Is the Div exist?
-                        echo $req->nestedOptionGroup[$i][$j].", ".$req->nestedSelectType[$i][$j]."<br>";
+                        $optTypeId = $this->optionType->createOrUpdate(array('product_id' => $proId, 
+                                        'type' => $req->nestedOptionGroup[$i][$j], 'input_type' => $req->nestedSelectType[$i][$j], 'status' => 'Enabled'))['id'];
                         $optionCount = $req->hiddenNestedRowCount[$i][$j];
                         for ($k=0; $k < $optionCount; $k++) { //Row Loop
                             if (isset($req->nestedOption[$i][$j][$k])) { // Is the row exist?
-                                echo $req->nestedOption[$i][$j][$k];
+                                $optArray = array('option_type_id' => $optTypeId, 'option' => $req->nestedOption[$i][$j][$k], 
+                                        'status' => 'Enabled');
                                 if (isset($req->nestedDefault[$i][$j][$k])) {
-                                    echo ", Checked";
+                                    $optArray['is_default'] = "Yes";
+                                }
+                                else {
+                                    $optArray['is_default'] = "No";
                                 }
 
-                                echo "<br>";
+                                $optId = $this->option->createOrUpdate($optArray)['id'];
 
                                 if (isset($req->nestedFile[$i][$j][$k])) { // Check if there is file
                                     $fCount = count($req->nestedFile[$i][$j][$k]);  
                                     for ($l=0; $l < $fCount; $l++) { 
                                         $combine = $i.$j.$k.$l;
                                         if (!isset($req->{"nestedFileStatus".$combine})) {
-                                            echo $req->nestedFile[$i][$j][$k][$l]->getClientOriginalName().", ";
-                                            echo $req->nestedFile[$i][$j][$k][$l]->getRealPath().", ";
-                                            echo preg_replace('/\..+$/', '', 
-                                                $req->nestedFile[$i][$j][$k][$l]->getClientOriginalName()).", ";
-                                            echo $req->nestedFile[$i][$j][$k][$l]->getClientOriginalExtension().", ";
+                                            $file = $req->nestedFile[$i][$j][$k][$l];
+                                            $fileExtension = $file->getClientOriginalExtension();
+
+                                            $newName = (string)$optId.(string)$l. '.' .$fileExtension;
+                                            $file->move($destinationPath, $newName);
+                                            $optImage = $this->optionImage->createOrUpdate(array('option_id' => $optId, 
+                                                                                                  'img_name' => $newName));
                                         }
                                     }
                                 }
@@ -105,49 +226,39 @@ class AdminProductController extends Controller
                 $comboRow = count($req->comboOption[$i]);
                 for ($j=0; $j < $comboRow; $j++) { 
                     if (isset($req->comboOption[$i][$j])) {
-                        echo $req->comboOption[$i][$j].", ".$req->comboSKU[$i][$j].", ".$req->comboQuantity[$i][$j].", ".
-                             $req->comboSelect[$i][$j].", ".$req->comboPrice[$i][$j]."<br>";
+                        $comId = $this->combination->createOrUpdate(array('product_id' => $proId, 
+                                            'combination' => $req->comboOption[$i][$j], 'status' => 'Enabled'))['id'];
+
+                        $comInventory = $this->combinationInventory->createOrUpdate(array('combination_id' => $comId, 
+                            'sku' => $req->comboSKU[$i][$j], 'stock_quantity' => $req->comboQuantity[$i][$j], 
+                            'operator' => $req->comboSelect[$i][$j], 'amount' => $req->comboPrice[$i][$j]));
                     }
                 }
             }
             echo("<br>");
         }
 
-        echo "<br>";
-        if (isset($req->file)) { // Check if there is file
-            $fCount = count($req->file);  
-            for ($i=0; $i < $fCount; $i++) { 
-                $combine = $i;
-                if (!isset($req->{"fileStatus".$combine})) {
-                    echo $req->file[$i]->getClientOriginalName().", ";
-                    echo $req->file[$i]->getRealPath().", ";
-                    echo preg_replace('/\..+$/', '', $req->file[$i]->getClientOriginalName()).", ";
-                    echo $req->file[$i]->getClientOriginalExtension().", ";
-                    echo "<br>";
-                }
-            }
-        }
-
+        //Feature
         $featureCount = count($req->featureTag);
         for ($i=0; $i < $featureCount; $i++) { 
-            echo $req->featureTag[$i].": ".$req->feature[$i]."<br>";
+            $proFeature = $this->productFeature->createOrUpdate(array('product_id' => $proId, 'tag' => $req->featureTag[$i],
+                                                                      'feature' => $req->feature[$i]));
         }
 
+        //Additional Information
         $additionalCount = count($req->additionalTag);
         for ($i=0; $i < $additionalCount; $i++) { 
-            echo $req->additionalTag[$i].": ".$req->information[$i]."<br>";
+            $proAdditionalInformation = $this->productAdditionalInformation->createOrUpdate(array('product_id' => $proId, 
+                                                        'tag' => $req->additionalTag[$i], 'information' => $req->information[$i]));
         }
 
+        //Discount
         $discountCount = count($req->discountMinQuantity);
         for ($i=0; $i < $discountCount; $i++) { 
-            echo $req->discountMinQuantity[$i].", ".$req->discountParcentage[$i].", ".
-                 $req->discountStartDate[$i].", ".$req->discountEndDate[$i]."<br>";
+            $proDiscount = $this->productDiscount->createOrUpdate(array('product_id' => $proId, 
+                'discount_parcentage' => $req->discountParcentage[$i], 'minimum_order_quantity' => $req->discountMinQuantity[$i], 
+                'start_date' => $req->discountStartDate[$i], 'end_date' => $req->discountEndDate[$i]));
         }
-
-        /*General
-        $description = trim($req->description);
-        $description = stripslashes($description);
-        $description = htmlspecialchars($description);*/
     }
 
     /* 

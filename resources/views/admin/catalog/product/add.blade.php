@@ -20,7 +20,7 @@
 	<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
 	<!--<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>-->
 	<!--<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>-->
-	<form method="POST" enctype="multipart/form-data">
+	<form method="POST" enctype="multipart/form-data" novalidate>
 	{{csrf_field()}}
 	<div class="main">
 
@@ -127,8 +127,8 @@
 			        <tr>
 			        	<td class="td-left full"><strong>Shipping Required</strong></td>
 			        	<td class="td-right full">
-			        		<input type="radio" name="shipping" value="Yes" checked="checked">Yes
-  							<input type="radio" name="shipping" value="No">No
+			        		<input type="radio" name="shipping_required" value="Yes" checked="checked">Yes
+  							<input type="radio" name="shipping_required" value="No">No
 			        	</td>
 			        </tr>
 			        
@@ -151,7 +151,7 @@
 			        	<td class="td-left full"><strong>Stock Quantity</strong></td>
 			        	<td class="td-right full">
 			        		<input type="number" name="stock_quantity" id="stock_quantity" 
-			        		min="0" placeholder="Stock Quantity"
+			        		value="0" min="0" placeholder="Stock Quantity"
 			        		onkeydown="preventDot(event)" onpaste="preventPaste(event)"  oninput="preventInput(event)">
 			        	</td>
 			        </tr>
@@ -175,8 +175,8 @@
 			        	<td class="td-left full"><strong>Subtract Stock</strong></td>
 			            <td class="td-right full">
 			            	<select name="subtract_stock" id="subtract_stock">
-			            		<option value="yes">Yes</option>
-			            		<option value="no">No</option>
+			            		<option value="Yes">Yes</option>
+			            		<option value="No">No</option>
 			            	</select>
 			            </td>
 			        </tr>
@@ -221,9 +221,9 @@
 			        	<td class="td-left full"><strong>Tax Class</strong></td>
 			            <td class="td-right full">
 			            	<select name="tax_class" id="tax_class">
-			            		<option value="none">---None---</option>
-			            		<option value="taxable_goods">Taxable Goods</option>
-			            		<option value="downloadable_products">Downloadable Products</option>
+			            		<option value="None">---None---</option>
+			            		<option value="Taxable Goods">Taxable Goods</option>
+			            		<option value="Downloadable Products">Downloadable Products</option>
 			            	</select>
 			            </td>
 			        </tr>
@@ -235,7 +235,7 @@
 			        	<td class="td-left full"><strong>Tax (%)</strong></td>
 			            <td class="td-right full">
 			            	<input type="number" name="tax_parcentage" id="tax_parcentage" 
-			            	onpaste="preventPaste(event)" min="0" placeholder="Tax Parcentage">
+			            	onpaste="preventPaste(event)" value="0" min="0" placeholder="Tax Parcentage">
 			            </td>
 			        </tr>
 
@@ -247,9 +247,9 @@
 			            <td class="td-right full">
 			            	<select name="length_class" id="length_class">
 			            		<option value="">Select Length Class</option>
-			            		<option value="centimeter">Centimeter</option>
-			            		<option value="millimeter">Millimeter</option>
-			            		<option value="inch">Inch</option>
+			            		<option value="Centimeter">Centimeter</option>
+			            		<option value="Millimeter">Millimeter</option>
+			            		<option value="Inch">Inch</option>
 			            	</select>
 			            </td>
 			        </tr>
@@ -274,10 +274,10 @@
 			            <td class="td-right full">
 			            	<select name="weight_class" id="weight_class">
 			            		<option value="">Select Weight Class</option>
-			            		<option value="kiligram">Kiligram</option>
-			            		<option value="gram">Gram</option>
-			            		<option value="pound">Pound</option>
-			            		<option value="ounch">Ounch</option>
+			            		<option value="Kiligram">Kiligram</option>
+			            		<option value="Gram">Gram</option>
+			            		<option value="Pound">Pound</option>
+			            		<option value="Ounch">Ounch</option>
 			            	</select>
 			            </td>
 			        </tr>
@@ -348,7 +348,8 @@
 			        		</strong>
 			        	</td>
 			            <td class="td-right full">
-			            	<input type="text" name="brand" id="brand" class="fas fa-sm" placeholder=" &#xf002; Search Brand...">
+			            	<input type="text" name="brand" id="brand" 
+			            	class="fas fa-sm" placeholder=" &#xf002; Search Brand...">
 			            	<div id="brand_container"></div>
 			            	<input type="hidden" name="brand_id" id="brand_id">
 			            </td>

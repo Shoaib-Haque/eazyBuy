@@ -45,8 +45,7 @@ class AdminBrandController extends Controller
         $queries = $this->brand->searchBrand($term);
         $results = array();
 
-        foreach ($queries as $query)
-        {
+        foreach ($queries as $query) {
             $results[] = ['id' => $query->id, 'value' => $query->name]; //you can take custom values as you want
         }
         return response()->json($results);

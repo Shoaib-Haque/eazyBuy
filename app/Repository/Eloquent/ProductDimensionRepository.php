@@ -8,7 +8,7 @@ class ProductDimensionRepository implements IProductDimensionRepository
 {   
     protected $productdimension = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $productdimension = new ProductDimensions;

@@ -79,18 +79,18 @@ jQuery.noConflict()(function ($) {
 		        		term : request.term,
 		        		_token:$("#token").data('token'),
 		          	},
+		          	autoFocus: true,
 		        	success: function(data) {
 		                response(data);
 		                //console.log(data);
-		            },
-		        	
-		        	autoFocus: true,
-				    select: function( event, ui ) {
-				    	$('#brand').val(ui.item.value);
-				    	$('#brand_id').val(ui.item.id);
-				    }
+		            },    
 		        });
-		    }
+		    },
+		    select: function( event, ui ) {
+				$("#brand").val(ui.item.value);
+				$("#brand_id").val(ui.item.id);
+				return false;
+			}
 		}).focus(function() {  //when focus, means there is no input.
 		    if ($(this).val().length == 0) {
 		        $(this).autocomplete("search", "");

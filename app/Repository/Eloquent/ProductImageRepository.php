@@ -4,11 +4,11 @@ namespace App\Repository\Eloquent;
 use App\Models\ProductImages;
 use App\Repository\Interfaces\IProductImageRepository;
 
-class ProductImageRepository implements IOptionImageRepository
+class ProductImageRepository implements IProductImageRepository
 {   
     protected $productimage = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $productimage = new ProductImages;

@@ -8,7 +8,7 @@ class OptionRepository implements IOptionRepository
 {   
     protected $option = null;
 
-    public function createOrUpdate( $id = null, $collection = [] )
+    public function createOrUpdate( $collection = [], $id = null )
     {   
         if(is_null($id)) {
             $option = new Options;
