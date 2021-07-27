@@ -12,19 +12,17 @@
 }
 
 .input-group-addon {
-	width: 20px;
+	width: 25px;
 	height: 35px;
 	background-color: #DCDCDC;
 	text-align: center;
+	display: grid;
+  	place-items: center;
 }
+
 .input-group-addon img{
-	max-width: 10px;
+	max-width: 15px;
 	height: 15px;
-	margin: 0;
-	position: absolute;
-    top: 50%;
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
 }
 
 table.seo tr:hover {

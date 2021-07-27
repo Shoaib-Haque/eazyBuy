@@ -215,6 +215,7 @@ function addSingleOptionRow(tbody, DivId, nestedDiv, i) {
 			
 			///remove
 			var removeBtn = document.createElement("button");
+			removeBtn.type = "button";
 			removeBtn.className = "btn btn-danger";
 			removeBtn.title = "Remove";
 
@@ -321,15 +322,18 @@ function makeComboTable(list, DivId) {
 	var th1 = document.createElement('th');
 	th1.innerHTML = "SKU";
 	var th2 = document.createElement('th');
-	th2.innerHTML = "Stock Qty";
+	th2.innerHTML = "St.Qty";
 	var th3 = document.createElement('th');
-	th3.innerHTML = "Price";
+	th3.innerHTML = "Buying Price";
+	var th4 = document.createElement('th');
+	th4.innerHTML = "Selling Price";
 
 	//adding ths into heading row
 	hrow.appendChild(th0);
 	hrow.appendChild(th1);
 	hrow.appendChild(th2);
 	hrow.appendChild(th3);
+	hrow.appendChild(th4);
 
 	//adding row into thead
 	thead.appendChild(hrow);
@@ -382,29 +386,54 @@ function makeComboTable(list, DivId) {
 		brow.appendChild(cell2);
 
 		var cell3 =  document.createElement('td');
-		var selectVar = document.createElement('select');
-		selectVar.id = "selectVar"+i+"div"+DivId;
-		selectVar.name = "comboSelect["+iIndex+"][]";
-		selectVar.className = "price-select";
+		var selectBuyVar = document.createElement('select');
+		selectBuyVar.id = "selectBuyVar"+i+"div"+DivId;
+		selectBuyVar.name = "comboSelectBuy["+iIndex+"][]";
+		selectBuyVar.className = "price-select";
 		//Create and append the options
 		for (var k = 0; k < selectOptions.length; k++) {
 		    var selectOption = document.createElement("option");
 		    selectOption.value = selectOptions[k];
 		    selectOption.text = selectOptions[k];
-		    selectVar.appendChild(selectOption);
+		    selectBuyVar.appendChild(selectOption);
 		}
 
-		var price = document.createElement('input');
-		price.setAttribute('type', 'number');
-		price.setAttribute("min", "0");
-		price.setAttribute('placeholder', "Price");
-		price.className = "price";
-		price.id = "price"+i+"div"+DivId;
-		price.name = "comboPrice["+iIndex+"][]";
-		price.addEventListener('paste', preventStringPaste, false);
-		cell3.appendChild(selectVar);
-		cell3.appendChild(price);
+		var buyingPrice = document.createElement('input');
+		buyingPrice.setAttribute('type', 'number');
+		buyingPrice.setAttribute("min", "0");
+		buyingPrice.setAttribute('placeholder', "Amount");
+		buyingPrice.className = "price";
+		buyingPrice.id = "buyingPrice"+i+"div"+DivId;
+		buyingPrice.name = "comboBuyingPrice["+iIndex+"][]";
+		buyingPrice.addEventListener('paste', preventStringPaste, false);
+		cell3.appendChild(selectBuyVar);
+		cell3.appendChild(buyingPrice);
 		brow.appendChild(cell3);
+
+		var cell4 =  document.createElement('td');
+		var selectSellVar = document.createElement('select');
+		selectSellVar.id = "selectSellVar"+i+"div"+DivId;
+		selectSellVar.name = "comboSelectSell["+iIndex+"][]";
+		selectSellVar.className = "price-select";
+		//Create and append the options
+		for (var k = 0; k < selectOptions.length; k++) {
+		    var selectOption = document.createElement("option");
+		    selectOption.value = selectOptions[k];
+		    selectOption.text = selectOptions[k];
+		    selectSellVar.appendChild(selectOption);
+		}
+
+		var sellingPrice = document.createElement('input');
+		sellingPrice.setAttribute('type', 'number');
+		sellingPrice.setAttribute("min", "0");
+		sellingPrice.setAttribute('placeholder', "Amount");
+		sellingPrice.className = "price";
+		sellingPrice.id = "sellingPrice"+i+"div"+DivId;
+		sellingPrice.name = "comboSellingPrice["+iIndex+"][]";
+		sellingPrice.addEventListener('paste', preventStringPaste, false);
+		cell4.appendChild(selectSellVar);
+		cell4.appendChild(sellingPrice);
+		brow.appendChild(cell4);
 
 		tbody.appendChild(brow);
 	}

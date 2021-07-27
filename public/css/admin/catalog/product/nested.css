@@ -87,16 +87,18 @@ table.combination-table tr:hover {
 
 table.combination-table {table-layout:fixed; width:100%; border:1px solid #DCDCDC;}/*Setting the table width is important!*/
 table.combination-table th {overflow:hidden;} /*Hide text outside the cell.*/
-table.combination-table th:nth-of-type(1) {width:60%;}/*Setting the width of heading 1.*/
+table.combination-table th:nth-of-type(1) {width:45%;}/*Setting the width of heading 1.*/
 table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
 table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
 table.combination-table th:nth-of-type(4) {width:15%;}/*Setting the width of heading 4.*/
+table.combination-table th:nth-of-type(5) {width:15%;}/*Setting the width of heading 5.*/
 
 table.combination-table td {overflow:hidden;} /*Hide text outside the cell.*/
-table.combination-table td:nth-of-type(1) {width:60%;}/*Setting the width of column 1.*/
+table.combination-table td:nth-of-type(1) {width:45%;}/*Setting the width of column 1.*/
 table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
 table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
 table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of column 4.*/
+table.combination-table td:nth-of-type(5) {width:15%;}/*Setting the width of column 5.*/
 
 
 /*--- Mobile portrait ---*/
@@ -113,15 +115,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(4) {width:8%;}/*Setting the width of column 4.*/
 
 	table.combination-table { min-width: 600px; }
-	table.combination-table th:nth-of-type(1) {width:40%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
-	table.combination-table th:nth-of-type(4) {width:25%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(1) {width:35%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(4) {width:20%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:20%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
-	table.combination-table td:nth-of-type(4) {width:25%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(1) {width:35%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(4) {width:20%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:20%;}/*Setting the width of column 5.*/
 }
 
 /*--- Mobile landscape ---*/
@@ -138,15 +142,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(4) {width:8%;}/*Setting the width of column 4.*/
 
 	table.combination-table { min-width: 600px; }
-	table.combination-table th:nth-of-type(1) {width:40%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
-	table.combination-table th:nth-of-type(4) {width:25%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(1) {width:35%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(4) {width:20%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:20%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
-	table.combination-table td:nth-of-type(4) {width:25%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(1) {width:35%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(4) {width:20%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:20%;}/*Setting the width of column 5.*/
 }
 
 /*--- Small tablet portrait ---*/
@@ -161,15 +167,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(3) {width:57%;}/*Setting the width of column 3.*/
 	table.nested-option-table td:nth-of-type(4) {width:10%;}/*Setting the width of column 4.*/
 
-	table.combination-table th:nth-of-type(1) {width:37%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
-	table.combination-table th:nth-of-type(4) {width:28%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(1) {width:29%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(4) {width:23%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:23%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:37%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
-	table.combination-table td:nth-of-type(4) {width:28%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(1) {width:29%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(4) {width:23%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:23%;}/*Setting the width of column 5.*/
 }
 
 /*--- Tablet portrait ---*/
@@ -184,15 +192,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(3) {width:57%;}/*Setting the width of column 3.*/
 	table.nested-option-table td:nth-of-type(4) {width:8%;}/*Setting the width of column 4.*/
 
-	table.combination-table th:nth-of-type(1) {width:40%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
-	table.combination-table th:nth-of-type(4) {width:25%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(1) {width:35%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(4) {width:20%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:20%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
-	table.combination-table td:nth-of-type(4) {width:25%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(1) {width:35%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(4) {width:20%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:20%;}/*Setting the width of column 5.*/
 }
 
 /*--- Small tablet landscape ---*/
@@ -207,15 +217,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(3) {width:57%;}/*Setting the width of column 3.*/
 	table.nested-option-table td:nth-of-type(4) {width:8%;}/*Setting the width of column 4.*/
 
-	table.combination-table th:nth-of-type(1) {width:45%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(1) {width:35%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
 	table.combination-table th:nth-of-type(4) {width:20%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:20%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:40%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(1) {width:35%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
 	table.combination-table td:nth-of-type(4) {width:20%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:20%;}/*Setting the width of column 5.*/
 }
 
 /*--- Tablet landscape --- */
@@ -230,15 +242,17 @@ table.combination-table td:nth-of-type(4) {width:15%;}/*Setting the width of col
 	table.nested-option-table td:nth-of-type(3) {width:57%;}/*Setting the width of column 3.*/
 	table.nested-option-table td:nth-of-type(4) {width:8%;}/*Setting the width of column 4.*/
 
-	table.combination-table th:nth-of-type(1) {width:45%;}/*Setting the width of heading 1.*/
-	table.combination-table th:nth-of-type(2) {width:20%;}/*Setting the width of heading 2.*/
-	table.combination-table th:nth-of-type(3) {width:15%;}/*Setting the width of heading 3.*/
+	table.combination-table th:nth-of-type(1) {width:35%;}/*Setting the width of heading 1.*/
+	table.combination-table th:nth-of-type(2) {width:15%;}/*Setting the width of heading 2.*/
+	table.combination-table th:nth-of-type(3) {width:10%;}/*Setting the width of heading 3.*/
 	table.combination-table th:nth-of-type(4) {width:20%;}/*Setting the width of heading 4.*/
+	table.combination-table th:nth-of-type(5) {width:20%;}/*Setting the width of heading 5.*/
 
-	table.combination-table td:nth-of-type(1) {width:45%;}/*Setting the width of column 1.*/
-	table.combination-table td:nth-of-type(2) {width:20%;}/*Setting the width of column 2.*/
-	table.combination-table td:nth-of-type(3) {width:15%;}/*Setting the width of column 3.*/
+	table.combination-table td:nth-of-type(1) {width:35%;}/*Setting the width of column 1.*/
+	table.combination-table td:nth-of-type(2) {width:15%;}/*Setting the width of column 2.*/
+	table.combination-table td:nth-of-type(3) {width:10%;}/*Setting the width of column 3.*/
 	table.combination-table td:nth-of-type(4) {width:20%;}/*Setting the width of column 4.*/
+	table.combination-table td:nth-of-type(5) {width:20%;}/*Setting the width of column 5.*/
 }
 
 /*--- LAPTOP/ PC/ WIDER SCREEN --- */

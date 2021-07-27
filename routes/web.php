@@ -55,6 +55,7 @@ Route::group(['middleware'=>['sess']], function(){
 		Route::get('/admin/catalog/product','AdminProductController@index')->name('adminproduct.index');
 		Route::get('/admin/catalog/product/add','AdminProductController@add')->name('adminproduct.add');
 		Route::post('/admin/catalog/product/add','AdminProductController@addProduct');
+		Route::get('/relatedproduct/search','AdminProductController@searchRelatedProduct')->name('search.related.product');
 
 		Route::get('/admin/catalog/brand','AdminBrandController@index')->name('adminbrand.index');
 		Route::get('/admin/catalog/brand/add','AdminBrandController@add')->name('adminbrand.add');

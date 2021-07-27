@@ -2,6 +2,12 @@
     display: block; 
     min-width: 160px;
     position:relative
+}
+
+#related_product_container {
+    display: block; 
+    min-width: 160px;
+    position:relative
 } 
 
 .ui-autocomplete {

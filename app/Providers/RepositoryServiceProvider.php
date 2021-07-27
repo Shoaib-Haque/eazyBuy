@@ -51,6 +51,9 @@ use App\Repository\Eloquent\CombinationRepository;
 use App\Repository\Interfaces\ICombinationInventoryRepository;
 use App\Repository\Eloquent\CombinationInventoryRepository;
 
+use App\Repository\Interfaces\IRelatedProductRepository;
+use App\Repository\Eloquent\RelatedProductRepository;
+
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -98,5 +101,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(ICombinationRepository::class, CombinationRepository::class);
         $this->app->bind(ICombinationInventoryRepository::class, CombinationInventoryRepository::class);
+
+        $this->app->bind(IRelatedProductRepository::class, RelatedProductRepository::class);
     }
 }
