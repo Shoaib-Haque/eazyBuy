@@ -1,3 +1,5 @@
+var flag = true;
+
 //Select Category after Selecting Department
 jQuery.noConflict()(function ($) {
 	$(document).ready(function () {
@@ -112,3 +114,88 @@ jQuery.noConflict()(function ($) {
 	});
 });
 */ 
+function removeList(liId) {
+	jQuery.noConflict()(function ($) {
+		$(document).ready(function () {
+			var obj = document.getElementById(liId);
+			obj.remove();
+			var totalList = $("#related_product_list ul li");
+			if (totalList.length <= 0) {
+				document.getElementById('related_product_list').style.display = "none";
+			}
+		});
+	});
+}
+//Related Product
+jQuery.noConflict()(function ($) {
+	$(document).ready(function () {
+		$( "#related_product_search" ).autocomplete({
+			appendTo: "#related_product_container",
+			minLength: 0,
+		    source: function( request, response ) {
+		        $.ajax({
+		        	url: "/relatedproduct/search",
+		        	dataType: "json",
+		        	data: {
+		        		term : request.term,
+		        		_token:$("#token").data('token'),
+		          	},
+		          	autoFocus: true,
+		        	success: function(data) {
+		                response(data);
+		                //console.log(data);
+		            },    
+		        });
+		    },
+		    select: function( event, ui ) {
+		    	var selectedProduct = $("#related_product_list ul input");
+		    	if (selectedProduct.length >= 10) {
+		    		return false;
+		    	}
+		    	for (var i = 0; i < selectedProduct.length; i++) {
+		    		if (selectedProduct[i].value == ui.item.id) {
+		    			flag = false;
+		    			break;
+		    		}
+		    	}
+		    	if (flag) {
+		    		//console.log(ui.item.id);
+		    		var li = document.createElement("li");
+		    		li.id = "list"+ui.item.id;
+
+		    		var icon = document.createElement('i');
+					icon.className = "fa fa-minus-circle";
+		    		icon.style.cursor = "pointer";
+		    		icon.addEventListener("click", function() {
+				  		removeList($(this).parent().attr('id'));
+					});
+
+			        var hidden = document.createElement("input");
+			        hidden.type = "hidden";
+			        hidden.name = "relatedproduct[]"
+			        hidden.value = ui.item.id;
+
+			        var span = document.createElement('span');
+			        span.innerText = " "+ui.item.value;
+
+			        li.appendChild(icon);
+			        li.appendChild(hidden);
+			        li.appendChild(span);
+		    		$("#related_product_list").children().append(li);
+
+		    		var totalList = $("#related_product_list ul li");
+		    		if (totalList.length > 0) {
+		    			document.getElementById('related_product_list').style.display = "block";
+		    		}
+		    	}
+		    	
+		    	flag = true;
+				return false;    	
+			}
+		}).focus(function() {  //when focus, means there is no input.
+		    if ($(this).val().length == 0) {
+		        $(this).autocomplete("search", "");
+		    }
+		});
+	});
+});

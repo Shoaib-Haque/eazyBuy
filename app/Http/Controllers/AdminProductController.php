@@ -13,6 +13,7 @@ use App\Repository\Interfaces\IProductWeightRepository;
 use App\Repository\Interfaces\IProductSeoRepository;
 use App\Repository\Interfaces\IProductInventoryRepository;
 use App\Repository\Interfaces\IProductLinkRepository;
+use App\Repository\Interfaces\IRelatedProductRepository;
 use App\Repository\Interfaces\IProductImageRepository;
 use App\Repository\Interfaces\IProductFeatureRepository;
 use App\Repository\Interfaces\IProductAdditionalInformationRepository;
@@ -28,13 +29,14 @@ use App\Repository\Interfaces\ICombinationInventoryRepository;
 class AdminProductController extends Controller
 {
     public $department, $product, $productDetails, $productDimension, $productWeight, $productSeo, $productInventory, $productLink,
-           $productImage, $productFeature, $productAdditionalInformation, $productDiscount, $optionType, $option, $optionImage,
-           $combination, $combinationInventory;
+           $relatedProduct, $productImage, $productFeature, $productAdditionalInformation, $productDiscount, $optionType, 
+           $option, $optionImage, $combination, $combinationInventory;
 
     public function __construct(IDepartmentRepository $department, IProductRepository $product, 
                                 IProductDetailRepository $productDetails, IProductDimensionRepository $productDimension,
                                 IProductWeightRepository $productWeight, IProductSeoRepository $productSeo, 
-                                IProductInventoryRepository $productInventory, IProductLinkRepository $productLink,
+                                IProductInventoryRepository $productInventory, 
+                                IProductLinkRepository $productLink, IRelatedProductRepository $relatedproduct,
                                 IProductImageRepository $productImage, IProductFeatureRepository $productFeature,
                                 IProductAdditionalInformationRepository $productAdditionalInformation,
                                 IProductDiscountRepository $productDiscount, IOptionTypeRepository $optionType, 
@@ -48,6 +50,7 @@ class AdminProductController extends Controller
         $this->productSeo = $productSeo;
         $this->productInventory = $productInventory;
         $this->productLink = $productLink;
+        $this->relatedproduct = $relatedproduct;
         $this->productImage = $productImage;
         $this->productFeature = $productFeature;
         $this->productAdditionalInformation = $productAdditionalInformation;
@@ -90,24 +93,38 @@ class AdminProductController extends Controller
                     'created_at' => Carbon::now()->toDateString(), 'updated_at' => Carbon::now()->toDateString()));
 
         //Dimension
-        $proDimension = $this->productDimension->createOrUpdate(array('product_id' => $proId, 
+        if (isset($req->length_class) && $req->length_class != NULL) {
+            $proDimension = $this->productDimension->createOrUpdate(array('product_id' => $proId, 
             'length_class' => $req->length_class, 'length' => $req->length, 'width' => $req->width, 'height' => $req->height));
-
+        }
+        
         //Weight
-        $proWeight = $this->productWeight->createOrUpdate(array('product_id' => $proId, 'weight_class' => $req->weight_class,
+        if (isset($req->weight_class) && $req->weight_class != NULL) {
+            $proWeight = $this->productWeight->createOrUpdate(array('product_id' => $proId, 'weight_class' => $req->weight_class,
                                                                 'weight' => $req->weight));
-
+        }
+        
         //SEO
-        $proSeo = $this->productSeo->createOrUpdate(array('product_id' => $proId, 'seo' => $req->seo));
+        if (isset($req->seo) && $req->seo != NULL) {
+            $proSeo = $this->productSeo->createOrUpdate(array('product_id' => $proId, 'seo' => $req->seo));
+        }
 
         //Inventory
         $proInventory = $this->productInventory->createOrUpdate(array('product_id' => $proId, 'sku' => $req->product_sku, 
-                                                    'stock_quantity' => $req->stock_quantity, 'unit_price' => $req->unit_price));
+                        'stock_quantity' => $req->stock_quantity, 
+                        'unit_buying_price' => $req->unit_buying_price, 'unit_selling_price' => $req->unit_selling_price));
 
 
         //Link
         $proLink = $this->productLink->createOrUpdate(array('product_id' => $proId, 'brand_id' => $req->brand_id, 
                                                             'sub_category_id' => $req->subcategory_id));
+
+        //Related product
+        if (isset($req->relatedproduct)) {
+            foreach ($req->relatedproduct as $key => $value) {
+                $this->relatedproduct->createOrUpdate(array('product_id' => $proId, 'related_product_id' => $value));
+            }
+        }
 
         //Image
         if (isset($req->file)) { // Check if there is file
@@ -153,9 +170,23 @@ class AdminProductController extends Controller
                         $comId = $this->combination->createOrUpdate(array('product_id' => $proId, 
                                             'combination' => $req->singleOption[$i][$j], 'status' => 'Enabled'))['id'];
 
+                        if ($req->singleSelectBuyVar[$i][$j] == "+") {
+                            $buyingPrice = $req->unit_buying_price + $req->singleBuyingPrice[$i][$j];
+                        }
+                        else {
+                            $buyingPrice = $req->unit_buying_price - $req->singleBuyingPrice[$i][$j];
+                        }
+
+                        if ($req->singleSelectSellVar[$i][$j] == "+") {
+                            $sellingPrice = $req->unit_selling_price + $req->singleSellingPrice[$i][$j];
+                        }
+                        else {
+                            $sellingPrice = $req->unit_selling_price - $req->singleSellingPrice[$i][$j];
+                        }
+
                         $comInventory = $this->combinationInventory->createOrUpdate(array('combination_id' => $comId, 
                             'sku' => $req->singleSKU[$i][$j], 'stock_quantity' => $req->singleQuantity[$i][$j], 
-                            'operator' => $req->singleSelectVar[$i][$j], 'amount' => $req->singlePrice[$i][$j]));
+                            'unit_buying_price' => $buyingPrice, 'unit_selling_price' => $sellingPrice));
 
                         if (isset($req->singleFile[$i][$j])) { // Check if there is file
                             $fCount = count($req->singleFile[$i][$j]);  
@@ -229,9 +260,23 @@ class AdminProductController extends Controller
                         $comId = $this->combination->createOrUpdate(array('product_id' => $proId, 
                                             'combination' => $req->comboOption[$i][$j], 'status' => 'Enabled'))['id'];
 
+                        if ($req->comboSelectBuy[$i][$j] == "+") {
+                            $buyingPrice = $req->unit_buying_price + $req->comboBuyingPrice[$i][$j];
+                        }
+                        else {
+                            $buyingPrice = $req->unit_buying_price - $req->comboBuyingPrice[$i][$j];
+                        }
+
+                        if ($req->comboSelectSell[$i][$j] == "+") {
+                            $sellingPrice = $req->unit_selling_price + $req->comboSellingPrice[$i][$j];
+                        }
+                        else {
+                            $sellingPrice = $req->unit_selling_price - $req->comboSellingPrice[$i][$j];
+                        }
+
                         $comInventory = $this->combinationInventory->createOrUpdate(array('combination_id' => $comId, 
                             'sku' => $req->comboSKU[$i][$j], 'stock_quantity' => $req->comboQuantity[$i][$j], 
-                            'operator' => $req->comboSelect[$i][$j], 'amount' => $req->comboPrice[$i][$j]));
+                            'unit_buying_price' => $buyingPrice, 'unit_selling_price' => $sellingPrice));
                     }
                 }
             }
@@ -259,6 +304,18 @@ class AdminProductController extends Controller
                 'discount_parcentage' => $req->discountParcentage[$i], 'minimum_order_quantity' => $req->discountMinQuantity[$i], 
                 'start_date' => $req->discountStartDate[$i], 'end_date' => $req->discountEndDate[$i]));
         }
+    }
+
+    public function searchRelatedProduct(Request $request) {
+        $term = $request->term;
+
+        $queries = $this->product->searchRelatedProduct($term);
+        $results = array();
+
+        foreach ($queries as $query) {
+            $results[] = ['id' => $query->id, 'value' => $query->name]; //you can take custom values as you want
+        }
+        return response()->json($results);
     }
 
     /* 

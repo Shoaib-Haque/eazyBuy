@@ -1,3 +1,19 @@
 #category_tbody, #subcategory_tbody {
 	display: none;
 }
+
+.related-product-td {
+	vertical-align: top;
+}
+
+#related_product_list ul li {
+	list-style-type: none;
+}
+
+#related_product_list {
+	background-color: #E0E0E0;
+	padding-top: 10px;
+	display: none;
+	border-radius: 5px;
+	width: 98%;
+}

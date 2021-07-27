@@ -70,10 +70,12 @@ function addSingleOptionTableHeading(table) {
 	var th3 = document.createElement('th');
 	th3.innerHTML = "St.Qty.";
 	var th4 = document.createElement('th');
-	th4.innerText = "Price";
+	th4.innerText = "Buying Price";
 	var th5 = document.createElement('th');
-	th5.innerText = "Image";
+	th5.innerText = "Selling Price";
 	var th6 = document.createElement('th');
+	th6.innerText = "Image";
+	var th7 = document.createElement('th');
 
 	//adding ths into heading row
 	row.appendChild(th0);
@@ -83,6 +85,7 @@ function addSingleOptionTableHeading(table) {
 	row.appendChild(th4);
 	row.appendChild(th5);
 	row.appendChild(th6);
+	row.appendChild(th7);
 	//adding row into thead
 	thead.appendChild(row);
 	//adding thead into table
@@ -147,6 +150,7 @@ function addOptionRow(tbody, DivId) {
 			var cell4 = document.createElement('td');
 			var cell5 = document.createElement('td');
 			var cell6 = document.createElement('td');
+			var cell7 = document.createElement('td');
 
 			var dfault = document.createElement('input');
 			dfault.setAttribute("type", "checkbox");
@@ -183,30 +187,56 @@ function addOptionRow(tbody, DivId) {
 			quantity.addEventListener('input', preventInput, false);
 			cell3.appendChild(quantity);
 
-			var selectVar = document.createElement('select');
-			selectVar.className = "price-select";
-			selectVar.id = "selectVar"+singleRowCount+"div"+DivId;;
-			selectVar.setAttribute("name", "singleSelectVar["+iIndex+"]["+jIndex+"]");
+			var selectBuyVar = document.createElement('select');
+			selectBuyVar.className = "price-select";
+			selectBuyVar.id = "selectVarBuy"+singleRowCount+"div"+DivId;;
+			selectBuyVar.setAttribute("name", "singleSelectBuyVar["+iIndex+"]["+jIndex+"]");
 			//Create and append the options
 			
 			for (var i = 0; i < selectOptions.length; i++) {
 			    var selectOption = document.createElement("option");
 			    selectOption.value = selectOptions[i];
 			    selectOption.text = selectOptions[i];
-			    selectVar.appendChild(selectOption);
+			    selectBuyVar.appendChild(selectOption);
 			}
 
-			var price = document.createElement('input');
-			price.setAttribute('type', 'number');
-			price.setAttribute("min", "0");
-			price.setAttribute('placeholder', "Price");
-			price.setAttribute("name", "singlePrice["+iIndex+"]["+jIndex+"]");
-			price.className = "price";
-			price.id = "price"+singleRowCount+"div"+DivId;;
-			price.addEventListener('paste', preventStringPaste, false);
+			var buyingPrice = document.createElement('input');
+			buyingPrice.setAttribute('type', 'number');
+			buyingPrice.setAttribute("min", "0");
+			buyingPrice.setAttribute('placeholder', "Amount");
+			buyingPrice.setAttribute("name", "singleBuyingPrice["+iIndex+"]["+jIndex+"]");
+			buyingPrice.className = "price";
+			buyingPrice.id = "BuyingPrice"+singleRowCount+"div"+DivId;;
+			buyingPrice.addEventListener('paste', preventStringPaste, false);
 
-			cell4.appendChild(selectVar);
-			cell4.appendChild(price);
+			cell4.appendChild(selectBuyVar);
+			cell4.appendChild(buyingPrice);
+
+
+			var selectSellVar = document.createElement('select');
+			selectSellVar.className = "price-select";
+			selectSellVar.id = "selectVarSell"+singleRowCount+"div"+DivId;;
+			selectSellVar.setAttribute("name", "singleSelectSellVar["+iIndex+"]["+jIndex+"]");
+			//Create and append the options
+			
+			for (var i = 0; i < selectOptions.length; i++) {
+			    var selectOption = document.createElement("option");
+			    selectOption.value = selectOptions[i];
+			    selectOption.text = selectOptions[i];
+			    selectSellVar.appendChild(selectOption);
+			}
+
+			var sellingPrice = document.createElement('input');
+			sellingPrice.setAttribute('type', 'number');
+			sellingPrice.setAttribute("min", "0");
+			sellingPrice.setAttribute('placeholder', "Amount");
+			sellingPrice.setAttribute("name", "singleSellingPrice["+iIndex+"]["+jIndex+"]");
+			sellingPrice.className = "price";
+			sellingPrice.id = "sellingPrice"+singleRowCount+"div"+DivId;;
+			sellingPrice.addEventListener('paste', preventStringPaste, false);
+
+			cell5.appendChild(selectSellVar);
+			cell5.appendChild(sellingPrice);
 
 			//Image
 			var uploadBtnDiv = document.createElement("div");
@@ -267,9 +297,9 @@ function addOptionRow(tbody, DivId) {
 			sliderContainerDiv.appendChild(nextBtnDiv);
 			*/
 
-			cell5.appendChild(uploadBtnDiv);
-			cell5.appendChild(sliderContainerDiv);
-			cell5.appendChild(slideCount);
+			cell6.appendChild(uploadBtnDiv);
+			cell6.appendChild(sliderContainerDiv);
+			cell6.appendChild(slideCount);
 			
 			///
 			var removeBtn = document.createElement("button");
@@ -281,7 +311,7 @@ function addOptionRow(tbody, DivId) {
 
 			removeBtn.appendChild(icon);
 
-			cell6.appendChild(removeBtn);
+			cell7.appendChild(removeBtn);
 			removeBtn.addEventListener("click", function() {
 		  		removeOptionRow(row);
 			});
@@ -294,6 +324,7 @@ function addOptionRow(tbody, DivId) {
 			row.appendChild(cell4);
 			row.appendChild(cell5);
 			row.appendChild(cell6);
+			row.appendChild(cell7);
 			//adding row into tbody
 			tbody.appendChild(row);
 

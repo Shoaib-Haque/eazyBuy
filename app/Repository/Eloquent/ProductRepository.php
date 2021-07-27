@@ -25,5 +25,13 @@ class ProductRepository implements IProductRepository
         $product->save();
         return $product;
     }
+
+    public function searchRelatedProduct($term) {
+        $data = Products::where('name','LIKE','%'.$term.'%')
+                        ->take(5)
+                        ->get();
+        
+        return $data;
+    }
 }
 ?>

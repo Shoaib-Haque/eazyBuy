@@ -197,10 +197,21 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left full"><strong><font class="star">*</font>Unit Price</strong></td>
+			        	<td class="td-left full"><strong><font class="star">*</font>Unit Buying Price</strong></td>
 			            <td class="td-right full">
-			            	<input type="number" name="unit_price" id="unit_price" 
-			            	onpaste="preventPaste(event)" min="0" placeholder="Unit Price">
+			            	<input type="number" name="unit_buying_price" id="unit_buying_price" 
+			            	onpaste="preventPaste(event)" min="0" placeholder="Unit Buying Price">
+			            </td>
+			        </tr>
+
+			        <tr class="border_bottom"><td colspan="2"></td></tr>
+			        <tr><td colspan="2"></td></tr>
+
+			        <tr>
+			        	<td class="td-left full"><strong><font class="star">*</font>Unit Selling Price</strong></td>
+			            <td class="td-right full">
+			            	<input type="number" name="unit_selling_price" id="unit_selling_price" 
+			            	onpaste="preventPaste(event)" min="0" placeholder="Unit Selling Price">
 			            </td>
 			        </tr>
 
@@ -359,13 +370,17 @@
 			        <tr><td colspan="2"></td></tr>
 
 			        <tr>
-			        	<td class="td-left full">
+			        	<td class="td-left full related-product-td">
 			        		<strong title="Autocomplete">
-			        			Related Products<i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
+			        			Related Products <i class="fas fa-question-circle fa-xs text-primary" aria-hidden="true"></i>
 			        		</strong>
 			        	</td>
 			            <td class="td-right full">
 			            	<input type="text" name="related_product_search" id="related_product_search" placeholder="Related Products">
+			            	<div id="related_product_container"></div>
+			            	<div id="related_product_list">
+			            		<ul></ul>
+			            	</div>
 			            </td>
 			        </tr>
 			    </table>
