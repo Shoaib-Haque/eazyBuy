@@ -31,5 +31,11 @@ class CombinationInventoryRepository implements ICombinationInventoryRepository
         $combination_inventory->save();
         return $combination_inventory;
     }
+
+    public function getCombinationInv($combinationId) {
+        $data = CombinationInventory::where("combination_id" , "=" , $combinationId)->first();
+
+        return $data;
+    }
 }
 ?>

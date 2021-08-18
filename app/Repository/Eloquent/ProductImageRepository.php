@@ -23,5 +23,11 @@ class ProductImageRepository implements IProductImageRepository
         $productimage->save();
         return $productimage;
     }
+
+    public function getProductImageById($proId) {
+        $imageName = ProductImages::where('product_id', '=', $proId)->get();
+        
+        return $imageName;
+    }
 }
 ?>

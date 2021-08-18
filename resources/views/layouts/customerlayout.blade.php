@@ -13,10 +13,12 @@
 	  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/secondNav.css')}}">
 	  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/footer.css')}}">
 	  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/sideNav.css')}}" >
+	  	<link rel="stylesheet" type="text/css" href="{{asset('css/customer/main.css')}}" >
 
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"          ></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"    ></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"              ></script>
 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    ></script>
 	</head>
 	<body>
@@ -115,7 +117,7 @@
 			<nav class="navbar-second">
 			  	<ul>
 			  		<li>
-				    	<button class="openbtn"  data-bs-toggle="offcanvas">
+				    	<button class="openbtn" onclick="openNav()" data-bs-toggle="offcanvas">
 				    		<i class="fas fa-bars"></i> All
 				   		</button> 
 				    </li>
@@ -141,7 +143,7 @@
 		<!--sidenav-->
 		<div id="sidebar" class="sidebar">
 		  <div class="mySidebar-hello">
-		  	<a href="#" class="sidebar-signin">Hello, {{session('customername')}}</a>
+		  	<a href="/signin" class="sidebar-signin">Hello, {{session('customername')}}</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('sidebar').id)">×</a>
 		  </div>
 		  <h5>Shop By Department</h5>
@@ -167,7 +169,7 @@
 
 		<div id="department" class="sidebar">
 		  <div class="mySidebar-hello">
-		  	<a href="#" class="sidebar-signin">Hello, {{session('customername')}}</a>
+		  	<a href="/signin" class="sidebar-signin">Hello, {{session('customername')}}</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('department').id)">×</a>
 		  </div>
 		  <button class="main-menu-btn" onclick="openNav(document.getElementById('department').id)">
@@ -181,7 +183,7 @@
 
 		<div id="contact" class="sidebar">
 		  <div class="mySidebar-hello">
-		  	<a href="#" class="sidebar-signin">Hello, {{session('customername')}}</a>
+		  	<a href="/signin" class="sidebar-signin">Hello, {{session('customername')}}</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav(document.getElementById('contact').id)">×</a>
 		  </div>
 		  <button class="main-menu-btn" onclick="openNav(document.getElementById('contact').id)">
@@ -193,7 +195,10 @@
 		</div> 
 
 		<div class="disable">
+			<div class="main">
 			@yield('index')
+			@yield('product')
+			</div>
 
 			<!--footer-->
 			@yield('footer')
@@ -291,6 +296,6 @@
 		</div>
 
 		<script type="text/javascript" src="{{ asset('js/customer/layout/sideNav.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/home/layout/search.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/customer/layout/search.js') }}"></script>
 	</body>
 </html>

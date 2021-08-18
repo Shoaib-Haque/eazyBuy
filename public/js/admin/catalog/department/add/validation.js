@@ -9,7 +9,8 @@ function first_letter_check(name){
 //SPECIAL cheracter check
 function special_character_check(name){
 	for(var i=0;i<name.length;i++){
-		if((name.charCodeAt(i)>=0 && name.charCodeAt(i)<=31) || (name.charCodeAt(i)>=33 && name.charCodeAt(i)<=45)
+		if((name.charCodeAt(i)>=0 && name.charCodeAt(i)<=31) || (name.charCodeAt(i)>=33 && name.charCodeAt(i)<=37)
+			|| (name.charCodeAt(i)>=40 && name.charCodeAt(i)<=45) 
 			|| (name.charCodeAt(i)==47) || (name.charCodeAt(i)>=58 && name.charCodeAt(i)<=64) 
 			|| (name.charCodeAt(i)>=91 && name.charCodeAt(i)<=96) || (name.charCodeAt(i)>=123)){
 			return true;;

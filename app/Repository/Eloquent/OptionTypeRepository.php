@@ -27,5 +27,10 @@ class OptionTypeRepository implements IOptionTypeRepository
         $optiontype->save();
         return $optiontype;
     }
+
+    public function getOptionTypeByProductId($proId) {
+        $data = OptionTypes::where('product_id', '=', $proId)->get();        
+        return $data;
+    }
 }
 ?>

@@ -153,7 +153,8 @@ class AdminProductController extends Controller
                 $optTypeId = $this->optionType->createOrUpdate(array('product_id' => $proId,'type' => $req->singleOptionGroup[$i],
                                                         'input_type' => $req->singleSelectType[$i], 'status' => 'Enabled'))['id'];
 
-                $optionRowCount = intval($req->hiddenSingleRowCount[$i]); // Row Count of each option type
+                //$optionRowCount = intval($req->hiddenSingleRowCount[$i]); // Row Count of each option type
+                $optionRowCount = count($req->singleOption[$i]);
                 for ($j=0; $j < $optionRowCount; $j++) { // Row loop of each Div
                     if (isset($req->singleOption[$i][$j])) { // Is the Row exist?
                         $optArray = array('option_type_id' => $optTypeId, 'option' => $req->singleOption[$i][$j], 
@@ -212,16 +213,18 @@ class AdminProductController extends Controller
         $nestedGroupCount = $req->hiddenNestedGroupCount;
         for($i=1; $i <= $nestedGroupCount; $i++) { //Nested Div loop
             if (isset($req->hiddenOptionGroupNumber[$i])) { // Is the div exist
-                $gorupCount = $req->hiddenOptionGroupNumber[$i];
+                //$gorupCount = $req->hiddenOptionGroupNumber[$i];
+                $gorupCount = count($req->nestedOptionGroup[$i]);
                 for ($j=0; $j < $gorupCount; $j++) { // Group Div loop
                     if (isset($req->nestedOptionGroup[$i][$j])) { // Is the Div exist?
                         $optTypeId = $this->optionType->createOrUpdate(array('product_id' => $proId, 
-                                        'type' => $req->nestedOptionGroup[$i][$j], 'input_type' => $req->nestedSelectType[$i][$j], 'status' => 'Enabled'))['id'];
+        'type' => $req->nestedOptionGroup[$i][$j], 'input_type' => $req->nestedSelectType[$i][$j], 'status' => 'Enabled'))['id'];
+                        
                         $optionCount = $req->hiddenNestedRowCount[$i][$j];
                         for ($k=0; $k < $optionCount; $k++) { //Row Loop
                             if (isset($req->nestedOption[$i][$j][$k])) { // Is the row exist?
-                                $optArray = array('option_type_id' => $optTypeId, 'option' => $req->nestedOption[$i][$j][$k], 
-                                        'status' => 'Enabled');
+            $optArray = array('option_type_id' => $optTypeId, 'option' => $req->nestedOption[$i][$j][$k], 'status' => 'Enabled');
+                                
                                 if (isset($req->nestedDefault[$i][$j][$k])) {
                                     $optArray['is_default'] = "Yes";
                                 }
@@ -280,7 +283,6 @@ class AdminProductController extends Controller
                     }
                 }
             }
-            echo("<br>");
         }
 
         //Feature

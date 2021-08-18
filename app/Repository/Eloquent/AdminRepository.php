@@ -12,7 +12,7 @@ class AdminRepository implements IAdminRepository
     public function getAdminByEmailPassword($email, $password)
     {
         $admin = AdminProfiles::where('email', '=', $email, 'and')->where('password', '=' , $password)->first();
-        if( count($admin) ){
+        if( $admin ){
             return $admin;
         } else {
             return false;

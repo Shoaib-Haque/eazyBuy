@@ -33,5 +33,18 @@ class ProductRepository implements IProductRepository
         
         return $data;
     }
+
+    public function getAllProduct() {
+        $data = Products::select('id', 'name')
+                        ->take(5)
+                        ->get();
+
+        return $data;
+    }
+
+    public function getProductById($proId) {
+        $data = Products::where('id', '=', $proId)->first();        
+        return $data;
+    }
 }
 ?>

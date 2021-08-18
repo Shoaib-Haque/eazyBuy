@@ -9,9 +9,14 @@ function first_letter_check(name){
 //SPECIAL cheracter check
 function special_character_check(name){
 	for(var i=0;i<name.length;i++){
-		if((name.charCodeAt(i)>=0 && name.charCodeAt(i)<=31) || (name.charCodeAt(i)>=33 && name.charCodeAt(i)<=45)
-			|| (name.charCodeAt(i)==47) || (name.charCodeAt(i)>=58 && name.charCodeAt(i)<=64) 
-			|| (name.charCodeAt(i)>=91 && name.charCodeAt(i)<=96) || (name.charCodeAt(i)>=123)){
+		if((name.charCodeAt(i)>=0 && name.charCodeAt(i)<=31) 
+		|| (name.charCodeAt(i)>=33 && name.charCodeAt(i)<=37)
+		|| (name.charCodeAt(i)>=40 && name.charCodeAt(i)<=43) 
+		|| (name.charCodeAt(i)==45)
+		|| (name.charCodeAt(i)==47) 
+		|| (name.charCodeAt(i)>=58 && name.charCodeAt(i)<=64) 
+		|| (name.charCodeAt(i)>=91 && name.charCodeAt(i)<=96) 
+		|| (name.charCodeAt(i)>=123)){
 			return true;;
 		}
 	}
@@ -58,16 +63,16 @@ function finalValidation(){
 		$(document).ready(function () {
 			//Name 
 			if(name.value == ""){
-				document.getElementById("nameLabel").innerHTML = "Category Name must be between 1 and 100 characters!";
+				document.getElementById("nameLabel").innerHTML = "Subcategory Name must be between 1 and 100 characters!";
 			}
 			else if(first_letter_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Category Name Cannot start with space!";
+				document.getElementById("nameLabel").innerHTML = "Subcategory Name Cannot start with space!";
 			}
 			else if(special_character_check(name.value)){
-				document.getElementById("nameLabel").innerHTML = "Category Name cannot contain special character!";
+				document.getElementById("nameLabel").innerHTML = "Subcategory Name cannot contain special character!";
 			}
 			else if(result == true) {
-				document.getElementById("nameLabel").innerHTML = "Category name already in use in same department!";
+				document.getElementById("nameLabel").innerHTML = "Subcategory name already in use in same department!";
 				result = false;
 			}
 			else{

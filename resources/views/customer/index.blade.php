@@ -1,27 +1,5 @@
 @extends('layouts.customerlayout')
 @section('index') 
-		<h1>Welcome Bangladesh asknfkdjvdnvjfn vfa <a href="#">cdsbj</a></h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
-		<h1>Welcome</h1>
+	<div id="home"></div>
+    <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 @endsection 
