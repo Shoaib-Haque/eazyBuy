@@ -27,5 +27,19 @@ class OptionRepository implements IOptionRepository
         $option->save();
         return $option;
     }
+
+    public function getOptionByTypeId($typeId) {
+        $data = Options::where('option_type_id', '=', $typeId)->get();        
+        return $data;
+    }
+
+    public function getOptionForImage($typeId, $comArr) {
+        foreach ($comArr as $key => $value) {
+            $data = Options::where('option_type_id', '=', $typeId, 'and')->where('option', '=', $value)->select('id')->first();
+            if ($data) {
+                return $data;
+            }
+        }
+    }
 }
 ?>

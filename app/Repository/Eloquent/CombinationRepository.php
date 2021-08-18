@@ -8,8 +8,7 @@ class CombinationRepository implements ICombinationRepository
 {   
     protected $combination = null;
 
-    public function createOrUpdate( $collection = [], $id = null )
-    {   
+    public function createOrUpdate( $collection = [], $id = null ) {   
         if(is_null($id)) {
             $combination = new Combinations;
             $combination->product_id = $collection['product_id'];
@@ -24,6 +23,12 @@ class CombinationRepository implements ICombinationRepository
         $combination->status = $collection['status'];
         $combination->save();
         return $combination;
+    }
+
+    public function getCombination($proId, $combination) {
+        $data = Combinations::where("product_id" , "=" , $proId, "and")->where("combination" , "=" , $combination)->first();
+
+        return $data;
     }
 }
 ?>

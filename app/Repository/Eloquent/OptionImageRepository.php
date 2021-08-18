@@ -23,5 +23,17 @@ class OptionImageRepository implements IOptionImageRepository
         $optionimage->save();
         return $optionimage;
     }
+
+    public function getOptionImageByOptionId($optId) {
+        $data = OptionImages::where('option_id', '=', $optId)->first();
+
+        return $data;
+    }
+
+    public function getOptionImagesByOptionId($optId) {
+        $data = OptionImages::where('option_id', '=', $optId)->get();
+
+        return $data;
+    }
 }
 ?>

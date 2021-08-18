@@ -29,5 +29,10 @@ class ProductInventoryRepository implements IProductInventoryRepository
         $product_inventory->save();
         return $product_inventory;
     }
+
+    public function getPrice($proId) {
+        $data = ProductInventory::where('product_id', '=', $proId)->first();        
+        return $data;
+    }
 }
 ?>

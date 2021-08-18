@@ -22,7 +22,7 @@ class DepartmentRequest extends FormRequest
 
         return [
             'title.required' =>'Department name cannot be empty!',
-            'title.regex' =>'The name may only contain letters, digits and space!',
+            //'title.regex' =>'The name may only contain letters, digits and space!',
             'title.unique' =>'Department name already in use!',
         ];
     }
@@ -35,7 +35,8 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"  => "required|regex:/^[\pL\s]+$/u|unique:departments,title,". $this->did,
+            "title"  => "required|unique:departments,title,". $this->did,
+            //regex:/^[\pL\s]+$/u|
         ];
     }
 }

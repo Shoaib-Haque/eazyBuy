@@ -22,8 +22,8 @@ class CategoryRequest extends FormRequest
 
         return [
             'title.required' =>'Category name cannot be empty!',
-            'title.regex' =>'The name may only contain letters, digits and space!',
-            'title.unique' =>'Category name already in use!',
+            //'title.regex' =>'The name may only contain letters, digits and space!',
+            //'title.unique' =>'Category name already in use!',
             'department_id.required' => 'Please select a department!'
         ];
     }
@@ -36,8 +36,9 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"  => "required|regex:/^[\pL\s]+$/u|unique:categories,title,". $this->cid,
+            "title"  => "required",
             "department_id" => "required"
+            //|regex:/^[\pL\s]+$/u|unique:categories,title,". $this->cid
         ];
     }
 }
