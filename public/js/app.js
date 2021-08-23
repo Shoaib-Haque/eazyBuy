@@ -1899,7 +1899,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/api/customerhome').then(function (response) {
+                return _this.axios.get('/api/customerhome/products').then(function (response) {
                   _this.products = response.data;
                 })["catch"](function (error) {
                   console.log(error);
@@ -1915,7 +1915,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   }
-}); //<img src="{{'/images/product/'. product.image}}">
+});
 
 /***/ }),
 
@@ -1932,6 +1932,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/debounce */ "./node_modules/lodash/debounce.js");
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1944,9 +1946,102 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      product: [],
+      productName: "",
+      productDescription: "",
+      productImg: "",
+      productTempImg: "",
+      previewImg: "",
+      productPrice: "",
+      optionTypes: [],
+      options: [],
+      optionSelectImages: [],
+      optionImages: [],
+      optionTypesLength: 0,
+      proId: window.location.href.split("/").pop()
+    };
+  },
   mounted: function mounted() {
     this.showProduct();
+  },
+  updated: function updated() {
+    var flag;
+
+    for (var i = 0; i < this.optionTypesLength; i++) {
+      flag = false;
+
+      if (this.optionTypes[i].input_type == "Radio Button" && document.getElementsByName(this.optionTypes[i].type)[0].value == "") {
+        for (var j = 0; j < this.options[i].length; j++) {
+          if (this.options[i][j].is_default == "Yes") {
+            document.getElementsByName(this.optionTypes[i].type)[0].value = this.options[i][j].option;
+            flag = true;
+          }
+        }
+
+        if (!flag) {
+          document.getElementsByName(this.optionTypes[i].type)[0].value = this.options[i][0].option;
+        }
+      }
+    }
   },
   methods: {
     showProduct: function showProduct() {
@@ -1958,8 +2053,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get("/api/customer/product/".concat(_this.$route.params.proId)).then(function (response) {
-                  console.log("hello");
+                return _this.axios.get("/api/customer/product/".concat(_this.proId)).then(function (response) {
+                  _this.product = response.data;
+                  _this.productName = _this.product.productInfo.name;
+                  _this.productDescription = _this.product.productDescription;
+                  _this.productImg = '/images/product/' + _this.product.productImg.img_name;
+                  _this.productTempImg = '/images/product/' + _this.product.productImg.img_name;
+                  _this.productPrice = _this.product.productInv.unit_selling_price;
+                  _this.optionTypes = _this.product.optionTypes;
+                  _this.optionTypesLength = _this.optionTypes.length;
+                  _this.options = _this.product.options;
+                  _this.optionSelectImages = _this.product.optionImages;
+
+                  for (var i = 0; i < _this.optionTypesLength; i++) {
+                    if (_this.optionTypes[i].input_type == "Radio Button") {
+                      for (var j = 0; j < _this.options[i].length; j++) {
+                        if (_this.options[i][j].is_default == "Yes") {
+                          for (var k = 0; k < _this.optionImages.length; k++) {
+                            if (_this.optionImages[k].option_id == _this.options[i][j].id) {
+                              _this.productImg = '/images/product/' + _this.optionImages[k].img_name;
+                              _this.productTempImg = '/images/product/' + _this.optionImages[k].img_name;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  _this.makeCombination(true);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1971,6 +2092,120 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    getPrice: function getPrice(combination) {
+      var _this2 = this;
+
+      if (combination != "") {
+        axios.get('/api/product/price', {
+          params: {
+            combination: combination,
+            proId: this.proId
+          }
+        }).then(function (response) {
+          if (response.data.unit_selling_price) {
+            _this2.productPrice = response.data.unit_selling_price;
+          }
+        });
+      }
+    },
+    getImage: function getImage(combination) {
+      var _this3 = this;
+
+      if (combination != "") {
+        axios.get('/api/product/image', {
+          params: {
+            combination: combination,
+            proId: this.proId
+          }
+        }).then(function (response) {
+          _this3.optionImages = response.data;
+          _this3.productImg = '/images/product/' + response.data[0].img_name;
+          _this3.productTempImg = '/images/product/' + response.data[0].img_name;
+        });
+      }
+    },
+    makeCombination: function makeCombination(getImageFlag) {
+      var _this4 = this;
+
+      var optionTypes;
+      this.axios.get('/api/product/optiontypes', {
+        params: {
+          proId: this.proId
+        }
+      }).then(function (response) {
+        optionTypes = response.data;
+        var combination = ""; //if (data != "") {
+
+        var flag = true;
+
+        for (var i = 0; i < _this4.optionTypesLength; i++) {
+          if (document.getElementsByName(_this4.optionTypes[i].type)[0].value != "" && typeof document.getElementsByName(_this4.optionTypes[i].type)[0].value != 'undefined') {
+            if (i == optionTypes.length - 1) {
+              combination += document.getElementsByName(_this4.optionTypes[i].type)[0].value;
+            } else {
+              combination += document.getElementsByName(_this4.optionTypes[i].type)[0].value + "-";
+            }
+
+            if (optionTypes[i].input_type == "Radio Button") {
+              document.getElementById(_this4.optionTypes[i].type).innerText = document.getElementsByName(_this4.optionTypes[i].type)[0].value;
+            }
+          } else {
+            _this4.productPrice = "Please Select " + optionTypes[i].type;
+            flag = false;
+          }
+        }
+
+        if (getImageFlag) {
+          _this4.getImage(combination);
+        }
+
+        if (flag) {
+          _this4.getPrice(combination);
+        } //}                
+
+      });
+    },
+    mouseOverOptionImage: function mouseOverOptionImage(image) {
+      this.productImg = '/images/product/' + image;
+      this.productTempImg = '/images/product/' + image;
+    },
+    onChange: function onChange(event, label) {
+      var val = event.target.value;
+
+      if (val != "") {
+        this.makeCombination(false);
+      } else {
+        this.productPrice = "Please Select " + label;
+      }
+    },
+    onClick: function onClick(val, label, image) {
+      document.getElementsByName(label)[0].setAttribute("value", val);
+      document.getElementById(label).innerHTML = document.getElementsByName(label)[0].value;
+      this.productImg = '/images/product/' + image;
+      this.productTempImg = '/images/product/' + image;
+      this.previewImg = "";
+      this.makeCombination(true);
+    },
+    mouseOutImage: function mouseOutImage(label, image) {
+      this.productImg = this.productTempImg;
+      this.previewImg = "";
+      document.getElementById(label).innerHTML = document.getElementsByName(label)[0].value;
+    },
+    mouseOverImage: function mouseOverImage(val, label, image) {
+      var flag = false;
+
+      for (var i = 0; i < this.optionImages.length; i++) {
+        if (image == this.optionImages[i].img_name) {
+          flag = true;
+        }
+      }
+
+      if (!flag) {
+        this.previewImg = '/images/product/' + image;
+        this.productImg = "";
+        document.getElementById(label).innerHTML = val;
+      }
     }
   }
 });
@@ -2102,6 +2337,559 @@ var routes = [{
   component: ProductShow,
   props: true
 }];
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_Symbol.js":
+/*!****************************************!*\
+  !*** ./node_modules/lodash/_Symbol.js ***!
+  \****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseGetTag.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseGetTag.js ***!
+  \********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
+    getRawTag = __webpack_require__(/*! ./_getRawTag */ "./node_modules/lodash/_getRawTag.js"),
+    objectToString = __webpack_require__(/*! ./_objectToString */ "./node_modules/lodash/_objectToString.js");
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseTrim.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseTrim.js ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var trimmedEndIndex = __webpack_require__(/*! ./_trimmedEndIndex */ "./node_modules/lodash/_trimmedEndIndex.js");
+
+/** Used to match leading whitespace. */
+var reTrimStart = /^\s+/;
+
+/**
+ * The base implementation of `_.trim`.
+ *
+ * @private
+ * @param {string} string The string to trim.
+ * @returns {string} Returns the trimmed string.
+ */
+function baseTrim(string) {
+  return string
+    ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+    : string;
+}
+
+module.exports = baseTrim;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_freeGlobal.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_freeGlobal.js ***!
+  \********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+module.exports = freeGlobal;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_getRawTag.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_getRawTag.js ***!
+  \*******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_objectToString.js":
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_objectToString.js ***!
+  \************************************************/
+/***/ ((module) => {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_root.js":
+/*!**************************************!*\
+  !*** ./node_modules/lodash/_root.js ***!
+  \**************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_trimmedEndIndex.js":
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_trimmedEndIndex.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+/** Used to match a single whitespace character. */
+var reWhitespace = /\s/;
+
+/**
+ * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+ * character of `string`.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {number} Returns the index of the last non-whitespace character.
+ */
+function trimmedEndIndex(string) {
+  var index = string.length;
+
+  while (index-- && reWhitespace.test(string.charAt(index))) {}
+  return index;
+}
+
+module.exports = trimmedEndIndex;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/debounce.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/debounce.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js"),
+    now = __webpack_require__(/*! ./now */ "./node_modules/lodash/now.js"),
+    toNumber = __webpack_require__(/*! ./toNumber */ "./node_modules/lodash/toNumber.js");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        timeWaiting = wait - timeSinceLastCall;
+
+    return maxing
+      ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+      : timeWaiting;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        clearTimeout(timerId);
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+module.exports = debounce;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/isObject.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isObject.js ***!
+  \*****************************************/
+/***/ ((module) => {
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/isObjectLike.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/isObjectLike.js ***!
+  \*********************************************/
+/***/ ((module) => {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/isSymbol.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isSymbol.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && baseGetTag(value) == symbolTag);
+}
+
+module.exports = isSymbol;
+
 
 /***/ }),
 
@@ -19317,6 +20105,113 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
+/***/ "./node_modules/lodash/now.js":
+/*!************************************!*\
+  !*** ./node_modules/lodash/now.js ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+module.exports = now;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/toNumber.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/toNumber.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var baseTrim = __webpack_require__(/*! ./_baseTrim */ "./node_modules/lodash/_baseTrim.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js"),
+    isSymbol = __webpack_require__(/*! ./isSymbol */ "./node_modules/lodash/isSymbol.js");
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = baseTrim(value);
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = toNumber;
+
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
@@ -20504,7 +21399,199 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    { staticStyle: { padding: "5px" } },
+    [
+      _c("span", [_vm._v(_vm._s(_vm.productName))]),
+      _vm._v(" "),
+      _c("div", { domProps: { innerHTML: _vm._s(_vm.productDescription) } }),
+      _vm._v(" "),
+      _vm.productImg
+        ? _c("img", {
+            staticStyle: { width: "100px", height: "100px" },
+            attrs: { src: _vm.productImg }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.previewImg
+        ? _c("img", {
+            staticStyle: { width: "100px", height: "100px" },
+            attrs: { src: _vm.previewImg }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.options, function(outerOption) {
+        return _c(
+          "li",
+          _vm._l(outerOption, function(innerOption) {
+            return _c("span", [
+              _vm._v("\n          " + _vm._s(innerOption.option) + "\n        ")
+            ])
+          }),
+          0
+        )
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.optionTypesLength, function(n, index) {
+        return _c("div", [
+          _vm.optionTypes[index].input_type == "Select"
+            ? _c("div", [
+                _c("label", [_vm._v(_vm._s(_vm.optionTypes[index].type))]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    attrs: { name: _vm.optionTypes[index].type },
+                    on: {
+                      change: function($event) {
+                        return _vm.onChange($event, _vm.optionTypes[index].type)
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Select " + _vm._s(_vm.optionTypes[index].type))
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.options[index], function(option) {
+                      return _c(
+                        "option",
+                        {
+                          domProps: {
+                            selected: option.is_default == "Yes",
+                            value: option.option
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(option.option) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.optionTypes[index].input_type == "Radio Button"
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "div",
+                    [
+                      _c("label", [
+                        _vm._v(_vm._s(_vm.optionTypes[index].type) + ": ")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.options[index], function(option) {
+                        return _c("span", [
+                          option.is_default == "Yes"
+                            ? _c(
+                                "label",
+                                { attrs: { id: _vm.optionTypes[index].type } },
+                                [_vm._v(_vm._s(option.option))]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          option.is_default == "Yes"
+                            ? _c("input", {
+                                attrs: {
+                                  type: "hidden",
+                                  name: _vm.optionTypes[index].type
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.options[index], function(option) {
+                    return _c(
+                      "div",
+                      { staticStyle: { display: "inline-block" } },
+                      _vm._l(_vm.optionSelectImages, function(optionImage) {
+                        return _c("div", [
+                          optionImage.option_id == option.id
+                            ? _c("img", {
+                                staticStyle: {
+                                  width: "100px",
+                                  height: "100px"
+                                },
+                                attrs: {
+                                  src:
+                                    "/images/product/" + optionImage.img_name,
+                                  title: "Click to select " + option.option
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.onClick(
+                                      option.option,
+                                      _vm.optionTypes[index].type,
+                                      optionImage.img_name
+                                    )
+                                  },
+                                  mouseover: function($event) {
+                                    return _vm.mouseOverImage(
+                                      option.option,
+                                      _vm.optionTypes[index].type,
+                                      optionImage.img_name
+                                    )
+                                  },
+                                  mouseout: function($event) {
+                                    return _vm.mouseOutImage(
+                                      _vm.optionTypes[index].type,
+                                      optionImage.img_name
+                                    )
+                                  }
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      }),
+                      0
+                    )
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      }),
+      _vm._v(" "),
+      _vm.productPrice
+        ? _c("label", { attrs: { div: "" } }, [
+            _vm._v("Price: " + _vm._s(_vm.productPrice))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.optionImages, function(optionImage) {
+          return _c("img", {
+            staticStyle: { width: "100px", height: "100px" },
+            attrs: { src: "/images/product/" + optionImage.img_name },
+            on: {
+              mouseover: function($event) {
+                return _vm.mouseOverOptionImage(optionImage.img_name)
+              }
+            }
+          })
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", [_c("router-view")], 1)
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

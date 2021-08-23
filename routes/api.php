@@ -18,5 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/customerhome', 'CustomerHomeController@index');
+Route::get('/customerhome/products', 'CustomerHomeController@index');
 Route::get('/customer/product/{proId}', 'CustomerProductController@index');
+Route::get('/product/price','CustomerProductController@getPrice')->name('customer.product.price');
+Route::get('/product/optiontypes','CustomerProductController@getOptionTypes')->name('customer.product.optiontypes');
+Route::get('/product/image','CustomerProductController@getImage')->name('customer.product.image');

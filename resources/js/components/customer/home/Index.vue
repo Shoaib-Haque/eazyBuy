@@ -26,7 +26,7 @@ export default {
     },
     methods:{
         async getProducts(){
-            await this.axios.get('/api/customerhome').then(response=>{
+            await this.axios.get('/api/customerhome/products').then(response=>{
                 this.products = response.data
             }).catch(error=>{
                 console.log(error)
@@ -35,5 +35,4 @@ export default {
         },
     }
 }
-//<img src="{{'/images/product/'. product.image}}">
 </script>
