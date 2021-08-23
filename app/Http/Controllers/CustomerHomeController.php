@@ -22,8 +22,8 @@ class CustomerHomeController extends Controller
     function index() {
     	$proList = $this->product->getAllProduct();
     	foreach ($proList as $key => $value) {
-    		$value['price'] = $this->productInventory->getPrice($value['id'])['unit_selling_price'];
-            $value['image'] = $this->productImage->getProductImageById($value['id'])[0]['img_name'];
+    		$value['price'] = $this->productInventory->getProductInventory($value['id'])['unit_selling_price'];
+            $value['image'] = $this->productImage->getProductImageById($value['id'])['img_name'];
     	}
         
         return response()->json($proList);

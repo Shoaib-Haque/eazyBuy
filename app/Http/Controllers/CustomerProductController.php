@@ -63,8 +63,9 @@ class CustomerProductController extends Controller
 
     public function index($proId) {
         $productImg = $this->productImage->getProductImageById($proId);
-        $productImg = $this->productImage->getProductImageById($proId);
         $productInfo = $this->product->getProductById($proId);
+        $productDescription = html_entity_decode($productInfo['description'], ENT_QUOTES, 'UTF-8');
+        $productInv = $this->productInventory->getProductInventory($proId);
         $optionTypes = $this->optionType->getOptionTypeByProductId($proId);
         $options = array();
         $optionImages = array();
@@ -78,28 +79,14 @@ class CustomerProductController extends Controller
         }
 
         return response()->json([
-            'productImg' => $productImg, 'productInfo' => $productInfo,  'optionTypes' => $optionTypes, 
-            'options' => $options, 'optionImages' => $optionImages
+            'productImg' => $productImg, 'productInfo' => $productInfo, 'productInv' => $productInv,
+            'optionTypes' => $optionTypes, 'options' => $options, 'optionImages' => $optionImages, 
+            'productDescription' => $productDescription
         ]);
-        
-        /* $productImg = $this->productImage->getProductImageById($proId);
-    	$productImg = $this->productImage->getProductImageById($proId);
-        $productInfo = $this->product->getProductById($proId);
-        $optionTypes = $this->optionType->getOptionTypeByProductId($proId);
-        $options = array();
-        $optionImages = array();
-        foreach ($optionTypes as $typeKey => $typeValue) {
-            $opt = $options[] = $this->option->getOptionByTypeId($typeValue['id']);
-            foreach ($opt as $optKey => $optValue) {
-                if ($this->optionImage->getOptionImageByOptionId($optValue['id'])) {
-                    $optionImages[] = $this->optionImage->getOptionImageByOptionId($optValue['id']);
-                }
-            }
-        }
 
-        return view("customer.product.index1", [ 'productImg' => $productImg, 'productInfo' => $productInfo, 
-                                                'optionTypes' => $optionTypes, 'options' => $options, 
-                                                'optionImages' => $optionImages]);
+        /*return view("customer.product.index1", [ 'productImg' => $productImg, 'productInfo' => $productInfo, 
+                                                'productInv' => $productInv, 'optionTypes' => $optionTypes, 
+                                                'options' => $options, 'optionImages' => $optionImages]);
         */ 
     }
 

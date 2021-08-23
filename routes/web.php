@@ -67,11 +67,11 @@ Route::group(['middleware'=>['sess']], function(){
 	});
 
 	Route::group(['middleware'=>['customersess']], function(){
-		Route::get('/customerhome', function () {return view('customer.index'); })->name('customer.index');
+		Route::get('/customerhome', function () {return view('customer.home.index'); })->name('customer.index');
 		Route::get('/customer/product/{proId}', function () {return view('customer.product.index'); });
-		Route::get('/product/price','CustomerProductController@getPrice')->name('customer.product.price');
-		Route::get('/product/image','CustomerProductController@getImage')->name('customer.product.image');
-		Route::get('/product/optiontypes','CustomerProductController@getOptionTypes')->name('customer.product.optiontypes');
+		//Route::get('/product/price','CustomerProductController@getPrice')->name('customer.product.price');
+		//Route::get('/product/image','CustomerProductController@getImage')->name('customer.product.image');
+		//Route::get('/product/optiontypes','CustomerProductController@getOptionTypes')->name('customer.product.optiontypes');
 	});
 });
 

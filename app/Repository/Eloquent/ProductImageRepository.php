@@ -25,7 +25,7 @@ class ProductImageRepository implements IProductImageRepository
     }
 
     public function getProductImageById($proId) {
-        $imageName = ProductImages::where('product_id', '=', $proId)->get();
+        $imageName = ProductImages::where('product_id', '=', $proId)->first();
         
         return $imageName;
     }
