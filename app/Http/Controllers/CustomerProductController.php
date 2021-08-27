@@ -24,11 +24,14 @@ use App\Repository\Interfaces\IOptionImageRepository;
 use App\Repository\Interfaces\ICombinationRepository;
 use App\Repository\Interfaces\ICombinationInventoryRepository;
 
+use App\Repository\Interfaces\IBrandRepository;
+use App\Repository\Interfaces\ISubCategoryRepository;
+
 class CustomerProductController extends Controller
 {
     public $product, $productDetails, $productDimension, $productWeight, $productSeo, $productInventory, $productLink,
            $relatedProduct, $productImage, $productFeature, $productAdditionalInformation, $productDiscount, $optionType, 
-           $option, $optionImage, $combination, $combinationInventory;
+           $option, $optionImage, $combination, $combinationInventory, $brand, $subcategory;
 
    	public function __construct(IProductRepository $product, 
                                 IProductDetailRepository $productDetails, IProductDimensionRepository $productDimension,
@@ -39,7 +42,8 @@ class CustomerProductController extends Controller
                                 IProductAdditionalInformationRepository $productAdditionalInformation,
                                 IProductDiscountRepository $productDiscount, IOptionTypeRepository $optionType, 
                                 IOptionRepository $option, IOptionImageRepository $optionImage, 
-                                ICombinationRepository $combination, ICombinationInventoryRepository $combinationInventory) {
+                                ICombinationRepository $combination, ICombinationInventoryRepository $combinationInventory,
+                                IBrandRepository $brand, ISubCategoryRepository $subcategory) {
         $this->product = $product;
         $this->productDetails = $productDetails;
         $this->productDimension = $productDimension;
@@ -59,12 +63,16 @@ class CustomerProductController extends Controller
 
         $this->combination = $combination;
         $this->combinationInventory = $combinationInventory;
+
+        $this->brand = $brand;
+        $this->subcategory = $subcategory;
     }
 
     public function index($proId) {
         $productImg = $this->productImage->getProductImageById($proId);
         $productInfo = $this->product->getProductById($proId);
         $productDescription = html_entity_decode($productInfo['description'], ENT_QUOTES, 'UTF-8');
+        $proLink = $this->productLink->getLinksByProductId($proId);
         $productInv = $this->productInventory->getProductInventory($proId);
         $optionTypes = $this->optionType->getOptionTypeByProductId($proId);
         $options = array();
@@ -78,10 +86,13 @@ class CustomerProductController extends Controller
             }
         }
 
+        $proBrand = $this->brand->getBrandById($proLink['brand_id']);
+        $proSubcategory = $this->subcategory->getSubCategoryById($proLink['sub_category_id']);
+
         return response()->json([
             'productImg' => $productImg, 'productInfo' => $productInfo, 'productInv' => $productInv,
             'optionTypes' => $optionTypes, 'options' => $options, 'optionImages' => $optionImages, 
-            'productDescription' => $productDescription
+            'productDescription' => $productDescription, 'proBrand' => $proBrand, 'proSubcategory' => $proSubcategory,
         ]);
 
         /*return view("customer.product.index1", [ 'productImg' => $productImg, 'productInfo' => $productInfo, 
