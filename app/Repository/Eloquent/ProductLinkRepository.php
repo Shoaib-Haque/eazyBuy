@@ -25,5 +25,11 @@ class ProductLinkRepository implements IProductLinkRepository
         $productlink->save();
         return $productlink;
     }
+
+    public function getLinksByProductId($proId) {
+        $data = ProductLinks::where('product_id', '=', $proId)->first();
+
+        return $data;
+    }
 }
 ?>
